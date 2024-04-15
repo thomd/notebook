@@ -16,6 +16,7 @@ services:
       PORT: "8008"
       REMOTE_PAGES_REPO: "git@github.com:thomd/notebook-pages.git"
       LOCAL_PAGES_REPO: "/data"
+      PAGES_DIR: "/data/pages"
     ports:
       - '8008:8008'
     volumes:

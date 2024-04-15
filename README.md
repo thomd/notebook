@@ -14,6 +14,9 @@ Start application with
 
     docker compose up -d
 
+The [notebook-pages](https://github.com/thomd/notebook-pages) repository containing all the markdown pages will be cloned into the docker volume
+`~/.notebook/notebook-pages`.
+
 ## Development
 
     docker compose build

@@ -1,4 +1,7 @@
 FROM python:3.9
+WORKDIR /root/.ssh
+ENV GIT_SSH_COMMAND "ssh -i /run/secrets/notebook_ssh_key -F /dev/null"
+RUN ssh-keyscan github.com >> ~/.ssh/known_hosts
 WORKDIR /code
 COPY ./requirements.txt /code/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt

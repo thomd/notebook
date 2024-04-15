@@ -16,4 +16,11 @@ services:
       PORT: 8008
     ports:
       - '8008:8008'
+    volumes:
+      - "~/.notebook:/data"
     restart: "no"
+    secrets:
+      - notebook_ssh_key
+secrets:
+  notebook_ssh_key:
+    file: ~/.ssh/notebook

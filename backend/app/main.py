@@ -1,10 +1,18 @@
 from typing import Union
 from fastapi import FastAPI
 from git import Repo
+import os
 
-# repo_url = "https://github.com/gitpython-developers/QuickStartTutorialFiles.git"
+remote_pages_repo = os.getenv("REMOTE_PAGES_REPO")
+local_pages_repo = os.getenv("LOCAL_PAGES_REPO")
+try:
+    repo = Repo(local_pages_repo)
+    repo.remotes.origin.pull()
+except:
+    repo = Repo.clone_from(remote_pages_repo, local_pages_repo)
 
-# repo = Repo.clone_from(repo_url, local_dir)
+status = repo.git.status()
+print(status)
 
 
 app = FastAPI()

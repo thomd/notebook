@@ -1,6 +1,6 @@
 # Notebook
 
-A simple Wiki-like application to manage my personal notes (mainly it-development and science stuff) as Markdown files.
+A simple **wiki-like** application to manage my personal notes (mainly it-development and science stuff) as **markdown files**.
 
 ## Setup
 
@@ -15,8 +15,7 @@ Start the application with
 
     docker compose up -d
 
-The [notebook-pages](https://github.com/thomd/notebook-pages) repository containing all the markdown pages will be cloned into the docker volume
-`~/.notebook/notebook-pages`.
+The repository containing all the notebook pages as markdown files will be cloned into the docker volume `~/.notebook/notebook-pages`.
 
 ## Development
 

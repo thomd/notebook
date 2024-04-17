@@ -1,16 +1,17 @@
 # Notebook
 
-## Setup
-    
-In order to access a ptivate git repository on Github, upload the following public key to [SSH keys](https://github.com/settings/keys) on Github.
+A simple Wiki-like application to manage my personal notes (mainly it-development and science stuff) as Markdown files.
 
-Do not enter a passphrase for the key.
+## Setup
+
+Accessing the private git repository on Github containing the [notebook-pages](https://github.com/thomd/notebook-pages), upload a public key to [SSH
+keys](https://github.com/settings/keys) on Github (do not enter a passphrase for the key):
 
     cd ~/.ssh
     ssh-keygen -f notebook
     cat notebook.pub | pbcopy
 
-Start application with
+Start the application with
 
     docker compose up -d
 
@@ -20,5 +21,6 @@ The [notebook-pages](https://github.com/thomd/notebook-pages) repository contain
 ## Development
 
     docker compose build
-    docker compose down
     docker compose up -d
+    docker compose ps
+    docker compose down

@@ -10,7 +10,7 @@
     export REMOTE_PAGES_REPO="$HOME/.gitrepos/wiki-pages.git"
     export LOCAL_PAGES_REPO=".pages"
     export PAGES_DIR=".pages"
-    uvicorn app.main:app --reload
+    uvicorn main:app --reload
 
 ## Routes
 

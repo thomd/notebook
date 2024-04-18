@@ -1,24 +1,10 @@
 from typing import Union
 from fastapi import FastAPI
-from git import Repo
 import os
-import logging
 from pathlib import Path
+from notebook import repo
 
-logging.basicConfig(level=logging.INFO, format='[API]: %(message)s')
-
-remote_pages_repo = os.getenv("REMOTE_PAGES_REPO")
-local_pages_repo = os.getenv("LOCAL_PAGES_REPO")
 pages_dir = os.getenv("PAGES_DIR")
-
-try:
-    repo = Repo(local_pages_repo)
-    repo.remotes.origin.pull()
-except:
-    repo = Repo.clone_from(remote_pages_repo, local_pages_repo)
-
-status = repo.git.status()
-logging.info(status)
 
 app = FastAPI()
 

@@ -14,7 +14,7 @@ def add(filename):
 
 def delete(filename):
     repo = Repo(LOCAL_PAGES_REPO, search_parent_directories=True)
-    repo.index.add(filename)
+    repo.git.add(filename)
     repo.index.commit(f'delete {filename}')
     origin = repo.remote(name='origin')
     origin.push()

@@ -30,7 +30,7 @@ def create_new_page(page: model.Page):
     if path.exists():
         raise HTTPException(status_code=409, detail="Page does already exist")
     else:
-        return pg.createPage(page)
+        return pg.createPage(path, page.content)
 
 @app.delete("/pages/{page_id}")
 def delete_page(page_id: str):

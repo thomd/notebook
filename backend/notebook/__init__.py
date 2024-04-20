@@ -1,19 +1,17 @@
 from git import Repo
+from notebook import log
 import os
-import logging
 
-REMOTE_PAGES_REPO = os.getenv("REMOTE_PAGES_REPO")
-LOCAL_PAGES_REPO = os.getenv("LOCAL_PAGES_REPO")
-
-logging.basicConfig(level=logging.INFO, format="[API]: %(message)s")
+REMOTE_PAGES_REPO = os.getenv('REMOTE_PAGES_REPO')
+LOCAL_PAGES_REPO = os.getenv('LOCAL_PAGES_REPO')
 
 try:
-    repo = Repo(LOCAL_PAGES_REPO)
+    repo = Repo(LOCAL_PAGES_REPO, search_parent_directories=True)
     repo.remotes.origin.pull()
-    logging.info(f"git pull into '{LOCAL_PAGES_REPO}'")
+    log.info(f"git pull into '{LOCAL_PAGES_REPO}'")
 except:
     repo = Repo.clone_from(REMOTE_PAGES_REPO, LOCAL_PAGES_REPO)
-    logging.info(f"cloning '{REMOTE_PAGES_REPO}' to '{LOCAL_PAGES_REPO}'")
+    log.info(f"cloning '{REMOTE_PAGES_REPO}' to '{LOCAL_PAGES_REPO}'")
 
-logging.info(f"git status: {repo.git.status()}")
+log.info(f'git status: {repo.git.status()}')
 

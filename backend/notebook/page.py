@@ -1,11 +1,12 @@
-from notebook import model
+from notebook import model, repository, log
 from slugify import slugify
+from pathlib import Path
 
 def _filename(path):
     return path.name
 
 def _id(path):
-    return path.stem
+    return slugify(path.stem)
 
 def _title(path):
     return path.stem.title()
@@ -38,12 +39,22 @@ def getPages(path):
             pages.append(getPage(page))
     return model.Pages(pages=pages, total=len(pages))
 
-def createPage(p):
+def createPage(path, content):
+
+    # write new markdown file
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open('w', encoding='utf-8') as file:
+        file.write(content)
+
+    # git commit & push
+    repository.push('add', _filename(path))
+
+    # create Page object
     page = model.Page(
-        id = createId(p.title),
-        filename = createFilename(p.title),
-        title = p.title,
-        content = p.content
+        id = _id(path),
+        filename = _filename(path),
+        title = _title(path),
+        content = content
     )
     return page
 

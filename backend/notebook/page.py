@@ -23,6 +23,7 @@ def createFilename(title):
 def createId(title):
     return slugify(title)
 
+
 def getPage(path):
     page= model.Page(
         id = _id(path),
@@ -32,6 +33,7 @@ def getPage(path):
     )
     return page
 
+
 def getPages(path):
     pages = []
     for page in path.iterdir():
@@ -39,17 +41,12 @@ def getPages(path):
             pages.append(getPage(page))
     return model.Pages(pages=pages, total=len(pages))
 
-def createPage(path, content):
 
-    # write new markdown file
+def createPage(path, content):
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open('w', encoding='utf-8') as file:
         file.write(content)
-
-    # git commit & push
-    repository.push('add', _filename(path))
-
-    # create Page object
+    repository.add(_filename(path))
     page = model.Page(
         id = _id(path),
         filename = _filename(path),
@@ -59,5 +56,8 @@ def createPage(path, content):
     return page
 
 
+def deletePage(path):
+    path.unlink()
+    repository.delete(_filename(path))
 
 

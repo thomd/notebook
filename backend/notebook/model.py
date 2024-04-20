@@ -1,15 +1,13 @@
-from dataclasses import dataclass
+from pydantic import BaseModel
 from typing import List
 
-@dataclass
-class Page:
-    id: str
-    filename: str
+class Page(BaseModel):
+    id: str = None
+    filename: str = None
     title: str
     content: str
-    changed: bool = False
 
-@dataclass
-class Pages:
+class Pages(BaseModel):
     pages: List[Page]
+    total: int = 0
 

@@ -24,6 +24,14 @@ def createId(title):
     return slugify(title)
 
 
+def getPages(path):
+    pages = []
+    for page in path.iterdir():
+        if page.is_file():
+            pages.append(getPage(page))
+    return model.Pages(pages=pages, total=len(pages))
+
+
 def getPage(path):
     page= model.Page(
         id = _id(path),
@@ -32,14 +40,6 @@ def getPage(path):
         content = _content(path)
     )
     return page
-
-
-def getPages(path):
-    pages = []
-    for page in path.iterdir():
-        if page.is_file():
-            pages.append(getPage(page))
-    return model.Pages(pages=pages, total=len(pages))
 
 
 def createPage(path, content):
@@ -60,4 +60,7 @@ def deletePage(path):
     path.unlink()
     repository.delete(_filename(path))
 
+
+def patchPage(path, page):
+    return getPage(path).copy(update=page.dict(exclude_none=True))
 

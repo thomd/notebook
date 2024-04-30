@@ -3,25 +3,11 @@ from slugify import slugify
 from pathlib import Path
 import frontmatter
 
-def _id(path):
-    return path.stem
-
-def _title(path):
-    # FIXME remove
-    return path.stem.title()
-
-def _content(path):
-    return path.read_text(encoding="utf-8")
-
-def error(message):
-    return model.Error(message)
-
 def createFilename(title):
-    return slugify(title)
+    return slugify(title) + '.md'
 
 def createId(title):
     return slugify(title)
-
 
 def getPages(path):
     pages = []
@@ -29,7 +15,6 @@ def getPages(path):
         if page.is_file():
             pages.append(getPage(page))
     return model.Pages(pages=pages, total=len(pages))
-
 
 def getPage(path):
     data = frontmatter.load(str(path))
@@ -40,7 +25,6 @@ def getPage(path):
         content = data.content
     )
     return response
-
 
 def createPage(path, page):
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -57,31 +41,30 @@ def createPage(path, page):
     )
     return response
 
-
 def deletePage(path):
     path.unlink()
     repository.commit()
 
-
 def putPage(path, page):
-    return getPage(path).copy(update=page.dict(exclude_none=True))
-
+    current_page = getPage(path)
+    if current_page.title != page.title:
+        path = path.rename(Path(f'{str(path.parent)}/{createFilename(page.title)}'))
+    return createPage(path, page)
 
 def patchPage(path, page):
     updates = page.dict(exclude_none=True)
     if updates.get('content'):
         data = frontmatter.load(str(path))
-        data.content = page.content
+        data.content = updates.get('content')
         with path.open('w', encoding='utf-8') as file:
             file.write(frontmatter.dumps(data))
     if updates.get('title'):
         filename = createFilename(updates.get('title'))
-        path = path.rename(Path(f'{str(path.parent)}/{filename}.md'))
+        path = path.rename(Path(f'{str(path.parent)}/{filename}'))
         data = frontmatter.load(str(path))
         data['title'] = updates.get('title')
         with path.open('w', encoding='utf-8') as file:
             file.write(frontmatter.dumps(data))
     repository.commit()
     return getPage(path).copy(update=updates)
-
 

@@ -29,7 +29,7 @@ def get_page(page_id: str):
 @app.post("/pages", status_code=201, response_model=model.Response, response_model_exclude_none=True)
 def create_page(page: model.Page):
     filename = pg.createFilename(page.title)
-    path = Path(f"{pages_dir}/{filename}.md")
+    path = Path(f"{pages_dir}/{filename}")
     if path.exists():
         raise HTTPException(status_code=409, detail=f"Page '{filename}' does already exist")
     else:
@@ -47,24 +47,26 @@ def delete_page(page_id: str):
         raise HTTPException(status_code=404, detail=f"Page '{page_id}' does not exist")
 
 
-# curl -H "Content-Type: application/json" -X PUT -d '{"title":"foo","content":"# foo"}' http://127.0.0.1:8000/pages/foo -s | jq
+# curl -H "Content-Type: application/json" -X PUT -d '{"title": "Foo", "content": "# Foo"}' http://127.0.0.1:8000/pages/foo -s | jq
 @app.put("/pages/{page_id}", response_model=model.Response, response_model_exclude_none=True)
 def update_page(page_id: str, page: model.Page):
     """ PUT is used to replace the existing page """
     path = Path(f"{pages_dir}/{page_id}.md")
-    if path.exists():
-        return pg.putPage(path, page)
-    else:
+    if not path.exists():
         raise HTTPException(status_code=404, detail=f"Page '{page_id}' does not exist")
+    elif path.name != pg.createFilename(page.title) and Path(f'{pages_dir}/{pg.createFilename(page.title)}').exists():
+        raise HTTPException(status_code=500, detail=f"Page '{pg.createId(page.title)}' does already exist")
+    else:
+        return pg.putPage(path, page)
 
 
 # curl -H "Content-Type: application/json" -X PATCH -d '{"title": "Other Foo"}' http://127.0.0.1:8000/pages/foo -s | jq
-# @app.patch("/pages/{page_id}", response_model=model.Response, response_model_exclude_none=True)
-@app.patch("/pages/{page_id}")
+@app.patch("/pages/{page_id}", response_model=model.Response, response_model_exclude_none=True)
 def change_page(page_id: str, page: model.PageUpdate):
     """ PATCH is used to partially replace existing page attributes """
-    path = Path(f"{pages_dir}/{page_id}.md")
-    # TODO if new title a.k.a. page alread exist, then show error
+    path = Path(f'{pages_dir}/{page_id}.md')
+    if page.title != None and Path(f'{pages_dir}/{pg.createFilename(page.title)}').exists() and not path.exists():
+        raise HTTPException(status_code=500, detail=f"Page '{pg.createId(page.title)}' does already exist")
     if path.exists():
         return pg.patchPage(path, page)
     else:

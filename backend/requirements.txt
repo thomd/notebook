@@ -3,3 +3,5 @@ pydantic
 uvicorn
 gitpython
 python-slugify
+markdown
+python-frontmatter

@@ -1,14 +1,13 @@
 from notebook import model, repository, log
 from slugify import slugify
 from pathlib import Path
-
-def _filename(path):
-    return path.name
+import frontmatter
 
 def _id(path):
-    return slugify(path.stem)
+    return path.stem
 
 def _title(path):
+    # FIXME remove
     return path.stem.title()
 
 def _content(path):
@@ -33,34 +32,56 @@ def getPages(path):
 
 
 def getPage(path):
-    page= model.Page(
-        id = _id(path),
-        filename = _filename(path),
-        title = _title(path),
-        content = _content(path)
+    data = frontmatter.load(str(path))
+    response = model.Response(
+        id = path.stem,
+        filename = path.name,
+        title = data.get('title', path.stem),
+        content = data.content
     )
-    return page
+    return response
 
 
-def createPage(path, content):
+def createPage(path, page):
     path.parent.mkdir(parents=True, exist_ok=True)
+    data = frontmatter.Post(content=page.content)
+    data['title'] = page.title
     with path.open('w', encoding='utf-8') as file:
-        file.write(content)
-    repository.add(_filename(path))
-    page = model.Page(
-        id = _id(path),
-        filename = _filename(path),
-        title = _title(path),
-        content = content
+        file.write(frontmatter.dumps(data))
+    repository.commit()
+    response = model.Response(
+        id = path.stem,
+        filename = path.name,
+        title = page.title,
+        content = page.content
     )
-    return page
+    return response
 
 
 def deletePage(path):
     path.unlink()
-    repository.delete(_filename(path))
+    repository.commit()
+
+
+def putPage(path, page):
+    return getPage(path).copy(update=page.dict(exclude_none=True))
 
 
 def patchPage(path, page):
-    return getPage(path).copy(update=page.dict(exclude_none=True))
+    updates = page.dict(exclude_none=True)
+    if updates.get('content'):
+        data = frontmatter.load(str(path))
+        data.content = page.content
+        with path.open('w', encoding='utf-8') as file:
+            file.write(frontmatter.dumps(data))
+    if updates.get('title'):
+        filename = createFilename(updates.get('title'))
+        path = path.rename(Path(f'{str(path.parent)}/{filename}.md'))
+        data = frontmatter.load(str(path))
+        data['title'] = updates.get('title')
+        with path.open('w', encoding='utf-8') as file:
+            file.write(frontmatter.dumps(data))
+    repository.commit()
+    return getPage(path).copy(update=updates)
+
 

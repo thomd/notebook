@@ -1,6 +1,5 @@
 from git import Repo
 from notebook import log
-from pathlib import Path
 import os
 
 LOCAL_PAGES_REPO = os.getenv('LOCAL_PAGES_REPO')
@@ -10,18 +9,18 @@ def changes(repo):
         repo.index.add(file)
     return [tuple([elem for elem in status.split(' ') if elem != '']) for status in repo.git.status(short=True).split('\n') if status != '']
 
-def commit(push=False):
+def commit(push=True):
     repo = Repo(LOCAL_PAGES_REPO, search_parent_directories=True)
     message = []
     for (flag, file) in changes(repo):
         if flag == 'M':
-            message.append(f"changed '{Path(file).stem}'")
+            message.append(f'changed {file}')
         if flag == 'A':
-            message.append(f"added '{Path(file).stem}'")
+            message.append(f'added {file}')
         if flag == 'D':
-            message.append(f"deleted '{Path(file).stem}'")
+            message.append(f'deleted {file}')
         repo.git.add(file)
-    repo.index.commit(', '.join(message))
+    repo.index.commit(' and '.join(message))
     if push == True:
         origin = repo.remote(name='origin')
         origin.push()

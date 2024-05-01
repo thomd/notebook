@@ -2,6 +2,8 @@
 
 ## Development
 
+Either run the following commands
+
     python -m venv .venv
     source .venv/bin/activate
     pip install -r requirements.txt
@@ -12,6 +14,11 @@
     export PAGES_DIR=".pages"
     uvicorn main:app --reload
 
+or run
+
+    ./develop.sh
+
 ## Routes
 
-    curl -s localhost:8000/pages | jq
+    open http://localhost:8000/docs
+    open http://localhost:8000/redoc

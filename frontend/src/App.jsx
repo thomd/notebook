@@ -1,13 +1,54 @@
 import React from "react"
-import { ChakraProvider, Heading } from '@chakra-ui/react'
-import Search from './components/Search'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import Decorator, { loader as decoratorLoader, action as decoratorAction } from "./routes/Decorator";
+import Error from "./Error";
+import Index from "./routes/Index";
+import Page, { loader as pageLoader, action as pageAction } from "./routes/Page";
+import PageEdit, { action as pageEditAction } from "./routes/PageEdit";
+import { action as pageDeleteAction } from "./routes/PageDelete";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Decorator />,
+    errorElement: <Error />,
+    loader: decoratorLoader,
+    action: decoratorAction,
+    children: [
+      {
+        errorElement: <Error />,
+        children: [
+          {
+            index: true,
+            element: <Index />
+          },
+          {
+            path: "pages/:pageId",
+            element: <Page />,
+            loader: pageLoader,
+            action: pageAction,
+          },
+          {
+            path: "pages/:pageId/edit",
+            element: <PageEdit />,
+            loader: pageLoader,
+            action: pageEditAction,
+          },
+          {
+            path: "pages/:pageId/delete",
+            action: pageDeleteAction,
+            errorElement: <div>Oops! There was an error.</div>,
+          },
+        ]
+      }
+    ]
+  },
+]);
 
 function App() {
   return (
-    <ChakraProvider>
-      <Heading>I'm a Heading</Heading>
-      <Search />
-    </ChakraProvider>
+    <RouterProvider router={router} />
   )
 }
 

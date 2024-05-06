@@ -22,6 +22,8 @@ def getPage(path):
         id = path.stem,
         filename = path.name,
         title = data.get('title', path.stem),
+        category = data.get('category'),
+        favorite = data.get('favorite', False),
         content = data.content
     )
     return response
@@ -30,6 +32,10 @@ def createPage(path, page):
     path.parent.mkdir(parents=True, exist_ok=True)
     data = frontmatter.Post(content=page.content)
     data['title'] = page.title
+    if page.category:
+        data['category'] = page.category
+    if page.favorite != None:
+        data['favorite'] = page.favorite
     with path.open('w', encoding='utf-8') as file:
         file.write(frontmatter.dumps(data))
     repository.commit()
@@ -37,6 +43,8 @@ def createPage(path, page):
         id = path.stem,
         filename = path.name,
         title = page.title,
+        category = page.category,
+        favorite = page.favorite,
         content = page.content
     )
     return response
@@ -53,9 +61,14 @@ def putPage(path, page):
 
 def patchPage(path, page):
     updates = page.dict(exclude_none=True)
-    if updates.get('content'):
+    if not updates.get('title'):
         data = frontmatter.load(str(path))
-        data.content = updates.get('content')
+        if updates.get('content'):
+            data.content = updates.get('content')
+        if updates.get('category'):
+            data['category'] = updates.get('category')
+        if updates.get('favorite') != None:
+            data['favorite'] = updates.get('favorite')
         with path.open('w', encoding='utf-8') as file:
             file.write(frontmatter.dumps(data))
     if updates.get('title'):

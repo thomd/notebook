@@ -10,20 +10,21 @@ def getChanges(repo):
     return [tuple([elem for elem in status.split(' ') if elem != '']) for status in repo.git.status(short=True).split('\n') if status != '']
 
 def commit(push=True):
-    repo = Repo(LOCAL_PAGES_REPO, search_parent_directories=True)
-    changes = getChanges(repo)
-    if len(changes) > 0:
-        message = []
-        for (flag, file) in changes:
-            if flag == 'M':
-                message.append(f'updated {file}')
-            if flag == 'A':
-                message.append(f'added {file}')
-            if flag == 'D':
-                message.append(f'deleted {file}')
-            repo.git.add(file)
-        repo.index.commit(' and '.join(message))
-        if push == True:
-            origin = repo.remote(name='origin')
-            origin.push()
+    if LOCAL_PAGES_REPO:
+        repo = Repo(LOCAL_PAGES_REPO, search_parent_directories=True)
+        changes = getChanges(repo)
+        if len(changes) > 0:
+            message = []
+            for (flag, file) in changes:
+                if flag == 'M':
+                    message.append(f'updated {file}')
+                if flag == 'A':
+                    message.append(f'added {file}')
+                if flag == 'D':
+                    message.append(f'deleted {file}')
+                repo.git.add(file)
+            repo.index.commit(' and '.join(message))
+            if push == True:
+                origin = repo.remote(name='origin')
+                origin.push()
 

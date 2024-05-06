@@ -2,5 +2,5 @@
 
 ## Development
 
-    npm run start
+    npm start
     open http://localhost:3000

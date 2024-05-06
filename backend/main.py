@@ -1,12 +1,24 @@
 from fastapi import FastAPI, HTTPException
-import os
+from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
+import os
 from notebook import page as pg
 from notebook import model
 
 pages_dir = os.getenv("PAGES_DIR")
-app = FastAPI()
 
+origins = [
+    "http://localhost:3000",
+]
+
+app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # curl -H "Content-Type: application/json " http://localhost:8000/pages -s | jq
 @app.get("/pages", response_model=model.Pages, response_model_exclude_none=True)

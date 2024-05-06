@@ -2,6 +2,10 @@ from notebook import model, repository, log
 from slugify import slugify
 from pathlib import Path
 import frontmatter
+import os
+
+def pagesDir():
+    return os.environ.get("PAGES_DIR")
 
 def createFilename(title):
     return slugify(title) + '.md'
@@ -29,7 +33,6 @@ def getPage(path):
     return response
 
 def createPage(path, page):
-    path.parent.mkdir(parents=True, exist_ok=True)
     data = frontmatter.Post(content=page.content)
     data['title'] = page.title
     if page.category:

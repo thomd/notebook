@@ -2,7 +2,7 @@ from git import Repo
 from notebook import log
 import os
 
-LOCAL_PAGES_REPO = os.getenv('LOCAL_PAGES_REPO')
+LOCAL_PAGES_REPO = os.environ.get('LOCAL_PAGES_REPO')
 
 def getChanges(repo):
     for file in repo.untracked_files:

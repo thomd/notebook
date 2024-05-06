@@ -1,11 +1,8 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
-import os
 from notebook import page as pg
 from notebook import model
-
-pages_dir = os.getenv("PAGES_DIR")
 
 origins = [
     "http://localhost:3000",
@@ -23,14 +20,14 @@ app.add_middleware(
 # curl -H "Content-Type: application/json " http://localhost:8000/pages -s | jq
 @app.get("/pages", response_model=model.Pages, response_model_exclude_none=True)
 def get_pages():
-    path = Path(pages_dir)
+    path = Path(pg.pagesDir())
     return pg.getPages(path)
 
 
 # curl -H "Content-Type: application/json" http://localhost:8000/pages/foo -s | jq
 @app.get("/pages/{page_id}", response_model=model.Response, response_model_exclude_none=True)
 def get_page(page_id: str):
-    path = Path(f"{pages_dir}/{page_id}.md")
+    path = Path(f"{pg.pagesDir()}/{page_id}.md")
     if path.exists():
         return pg.getPage(path)
     else:
@@ -41,7 +38,7 @@ def get_page(page_id: str):
 @app.post("/pages", status_code=201, response_model=model.Response, response_model_exclude_none=True)
 def create_page(page: model.Page):
     filename = pg.createFilename(page.title)
-    path = Path(f"{pages_dir}/{filename}")
+    path = Path(f"{pg.pagesDir()}/{filename}")
     if path.exists():
         raise HTTPException(status_code=409, detail=f"Page '{filename}' does already exist")
     else:
@@ -51,7 +48,7 @@ def create_page(page: model.Page):
 # curl -H "Content-Type: application/json" -X DELETE http://localhost:8000/pages/foo -s | jq
 @app.delete("/pages/{page_id}")
 def delete_page(page_id: str):
-    path = Path(f"{pages_dir}/{page_id}.md")
+    path = Path(f"{pg.pagesDir()}/{page_id}.md")
     if path.exists():
         pg.deletePage(path)
         return {"success": f"deleted page {page_id}"}
@@ -63,10 +60,10 @@ def delete_page(page_id: str):
 @app.put("/pages/{page_id}", response_model=model.Response, response_model_exclude_none=True)
 def update_page(page_id: str, page: model.Page):
     """ PUT is used to replace the existing page """
-    path = Path(f"{pages_dir}/{page_id}.md")
+    path = Path(f"{pg.pagesDir()}/{page_id}.md")
     if not path.exists():
         raise HTTPException(status_code=404, detail=f"Page '{page_id}' does not exist")
-    elif path.name != pg.createFilename(page.title) and Path(f'{pages_dir}/{pg.createFilename(page.title)}').exists():
+    elif path.name != pg.createFilename(page.title) and Path(f'{pg.pagesDir()}/{pg.createFilename(page.title)}').exists():
         raise HTTPException(status_code=500, detail=f"Page '{pg.createId(page.title)}' does already exist")
     else:
         return pg.putPage(path, page)
@@ -76,8 +73,8 @@ def update_page(page_id: str, page: model.Page):
 @app.patch("/pages/{page_id}", response_model=model.Response, response_model_exclude_none=True)
 def change_page_attributes(page_id: str, page: model.PageUpdate):
     """ PATCH is used to partially replace existing page attributes """
-    path = Path(f'{pages_dir}/{page_id}.md')
-    if page.title != None and Path(f'{pages_dir}/{pg.createFilename(page.title)}').exists() and not path.exists():
+    path = Path(f'{pg.pagesDir()}/{page_id}.md')
+    if page.title != None and Path(f'{pg.pagesDir()}/{pg.createFilename(page.title)}').exists() and not path.exists():
         raise HTTPException(status_code=500, detail=f"Page '{pg.createId(page.title)}' does already exist")
     if path.exists():
         return pg.patchPage(path, page)

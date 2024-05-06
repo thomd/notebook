@@ -1,9 +1,10 @@
 from git import Repo
 from notebook import log
+from pathlib import Path
 import os
 
-REMOTE_PAGES_REPO = os.getenv('REMOTE_PAGES_REPO')
-LOCAL_PAGES_REPO = os.getenv('LOCAL_PAGES_REPO')
+REMOTE_PAGES_REPO = os.environ.get('REMOTE_PAGES_REPO')
+LOCAL_PAGES_REPO = os.environ.get('LOCAL_PAGES_REPO')
 
 if REMOTE_PAGES_REPO and LOCAL_PAGES_REPO:
     try:
@@ -17,5 +18,4 @@ if REMOTE_PAGES_REPO and LOCAL_PAGES_REPO:
         log.info(f'git status: {repo.git.status()}')
 else:
     log.error('Environment not set')
-
 

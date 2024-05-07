@@ -1,10 +1,11 @@
-from notebook import model, repository, log
+from notebook import model, repository
 from slugify import slugify
 from pathlib import Path
 import frontmatter
 import os
 
 def pagesDir():
+    ''' to make API testable, endpoints determine pages location in each call '''
     return os.environ.get("PAGES_DIR")
 
 def createFilename(title):

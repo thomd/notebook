@@ -64,7 +64,7 @@ def putPage(path, page):
     return createPage(path, page)
 
 def patchPage(path, page):
-    updates = page.dict(exclude_none=True)
+    updates = page.model_dump(exclude_none=True)
     if not updates.get('title'):
         data = frontmatter.load(str(path))
         if updates.get('content'):
@@ -83,5 +83,5 @@ def patchPage(path, page):
         with path.open('w', encoding='utf-8') as file:
             file.write(frontmatter.dumps(data))
     repository.commit()
-    return getPage(path).copy(update=updates)
+    return getPage(path).model_copy(update=updates)
 

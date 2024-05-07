@@ -20,4 +20,3 @@ class PageUpdate(BaseModel):
 class Pages(BaseModel):
     pages: List[Response]
     total: int = 0
-

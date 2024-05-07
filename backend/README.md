@@ -20,6 +20,8 @@ or run
 
 ## Test
 
+    source .venv/bin/activate
+    pip install pytest
     pytest
 
 ## Routes

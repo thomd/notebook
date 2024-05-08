@@ -20,9 +20,10 @@ or run
 
 ## Test
 
-    source .venv/bin/activate
+Start `uvicorn` server and run
+
     pip install pytest
-    pytest
+    nodemon -w notebook -e py -x pytest
 
 ## Routes
 

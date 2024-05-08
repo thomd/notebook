@@ -2,6 +2,7 @@ from fastapi.testclient import TestClient
 from pathlib import Path
 import os
 import json
+import frontmatter
 import pytest
 from .main import app
 
@@ -19,7 +20,13 @@ def test_get_pages(setup_pages_dir):
 def test_create_new_page(setup_pages_dir):
     response = client.post('/pages', content=json.dumps({"title": "Foo", "content": "# Foo"}))
     assert response.status_code == 201
-    assert response.json() == {'content': '# Foo', 'favorite': False, 'filename': 'foo.md', 'id': 'foo', 'title': 'Foo'}
+    assert response.json() == {'content': '# Foo', 'filename': 'foo.md', 'id': 'foo', 'title': 'Foo'}
+    with open(f'{os.environ.get("PAGES_DIR")}/foo.md') as f:
+        metadata, content = frontmatter.parse(f.read())
+    assert content == '# Foo'
+    assert metadata['title'] == 'Foo'
+    assert 'category' not in metadata
+    assert 'favorite' not in metadata
 
 def test_delete_existing_page(setup_pages_dir):
     client.post('/pages', content=json.dumps({"title": "Bar", "content": "# Bar"}))
@@ -49,7 +56,7 @@ def test_get_non_existing_page(setup_pages_dir):
 def test_replace_same_existing_page(setup_pages_dir):
     response = client.put('/pages/foo', content=json.dumps({"title": "Foo", "content": "# Foo"}))
     assert response.status_code == 200
-    assert response.json() == {'content': '# Foo', 'favorite': False, 'filename': 'foo.md', 'id': 'foo', 'title': 'Foo'}
+    assert response.json() == {'content': '# Foo', 'filename': 'foo.md', 'id': 'foo', 'title': 'Foo'}
 
 def test_replace_non_existing_page(setup_pages_dir):
     response = client.put('/pages/bar', content=json.dumps({"title": "Foo", "content": "# Foo"}))

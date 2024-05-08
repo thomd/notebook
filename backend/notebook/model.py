@@ -4,7 +4,7 @@ from typing import List, Optional
 class Page(BaseModel):
     title: str = Field(min_length=2, max_length=100, examples=["Page Title"])
     category: Optional[str] = None
-    favorite: bool = Field(default=False)
+    favorite: Optional[bool] = None
     content: str = Field(examples=["# Page Title"])
 
 class Response(Page):

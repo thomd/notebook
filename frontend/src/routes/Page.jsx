@@ -21,15 +21,16 @@ export default function Page() {
   return (
     <div id="page">
       <div>
-        <h1>{page.title ? (<>{page.title}</>) : (<>No Title</>)}{" "}<Favorite page={page} /></h1>
+        <h1 className="mb-4 text-lg font-medium">{page.title ? (<>{page.title}</>) : (<>No Title</>)}{" "}<Favorite page={page} /></h1>
         {page.notes && <p>{page.notes}</p>}
         <div>
-          <Form action="edit">
-            <button type="submit">Edit</button>
+          <Form action="edit" className="inline">
+            <button type="submit" className="mt-4 py-1 px-3 bg-gray-400 hover:bg-gray-500 text-white text-base rounded outline-none">Edit</button>
           </Form>
           <Form
             method="post"
             action="delete"
+            className="inline"
             onSubmit={(event) => {
               if (
                 !window.confirm(
@@ -40,7 +41,7 @@ export default function Page() {
               }
               }}
             >
-              <button type="submit">Delete</button>
+              <button type="submit" className="mt-4 ml-4 py-1 px-3 bg-red-400 hover:bg-red-500 text-white text-base rounded outline-none">Delete</button>
             </Form>
           </div>
         </div>
@@ -55,7 +56,7 @@ function Favorite({ page }) {
     favorite = fetcher.formData.get("favorite") === "true";
   }
   return (
-    <fetcher.Form method="post">
+    <fetcher.Form method="post" className="inline">
       <button name="favorite" value={favorite ? "false" : "true"}>
         {favorite ? "★" : "☆"}
       </button>

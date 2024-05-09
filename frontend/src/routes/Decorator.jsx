@@ -31,11 +31,11 @@ export default function Decorator() {
         <Search />
       </div>
       <div id="navigation" className="navigation">
-        <div>
-          <Form id="search-form">
+        <div className="flex-1 flex-col">
+          <Form id="search-form" className="relative">
             <input
               id="q"
-              className={searching ? "loading" : ""}
+              className={"block w-full border-0 py-1 pr-2 pl-8 text-gray-900 shadow-sm ring-1 ring-gray-300 outline-none" + (searching ? " loading" : "")}
               placeholder="Search"
               type="search"
               name="q"
@@ -49,8 +49,8 @@ export default function Decorator() {
             />
             <div id="search-spinner" hidden={!searching} />
           </Form>
-          <Form method="post">
-            <button type="submit">New Page</button>
+          <Form method="post" className="my-4">
+            <button type="submit" className="py-1 px-3 bg-gray-400 hover:bg-gray-500 text-white text-base rounded outline-none">New Page</button>
           </Form>
         </div>
         <nav>

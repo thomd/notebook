@@ -13,7 +13,7 @@ export default function PageEdit() {
   const navigate = useNavigate();
 
   return (
-    <Form method="post" id="page-form">
+    <Form method="post">
       <div>
         <label className="block mb-2 text-sm font-medium leading-6 text-gray-900">Title</label>
         <input placeholder="Title" type="text" name="title" defaultValue={page?.title} className="block w-full border-0 px-2 py-1 text-gray-900 shadow-sm ring-1 ring-gray-300 outline-none" />

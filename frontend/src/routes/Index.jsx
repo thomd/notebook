@@ -1,6 +1,6 @@
 export default function Index() {
   return (
-    <p id="index">
+    <p className="index">
       TODO: List all pages in categories
     </p>
   );

@@ -19,33 +19,31 @@ export async function action({ request, params }) {
 export default function Page() {
   const { page } = useLoaderData();
   return (
-    <div id="page">
+    <div className="page">
+      <h1 className="mb-4 text-lg font-medium">{page.title ? (<>{page.title}</>) : (<>No Title</>)}{" "}<Favorite page={page} /></h1>
+      {page.notes && <p>{page.notes}</p>}
       <div>
-        <h1 className="mb-4 text-lg font-medium">{page.title ? (<>{page.title}</>) : (<>No Title</>)}{" "}<Favorite page={page} /></h1>
-        {page.notes && <p>{page.notes}</p>}
-        <div>
-          <Form action="edit" className="inline">
-            <button type="submit" className="mt-4 py-1 px-3 bg-gray-400 hover:bg-gray-500 text-white text-base rounded outline-none">Edit</button>
-          </Form>
-          <Form
-            method="post"
-            action="delete"
-            className="inline"
-            onSubmit={(event) => {
-              if (
-                !window.confirm(
-                  "Please confirm you want to delete this page."
-                )
-              ) {
-                event.preventDefault();
-              }
-              }}
-            >
-              <button type="submit" className="mt-4 ml-4 py-1 px-3 bg-red-400 hover:bg-red-500 text-white text-base rounded outline-none">Delete</button>
-            </Form>
-          </div>
-        </div>
+        <Form action="edit" className="inline">
+          <button type="submit" className="mt-4 py-1 px-3 bg-gray-400 hover:bg-gray-500 text-white text-base rounded outline-none">Edit</button>
+        </Form>
+        <Form
+          method="post"
+          action="delete"
+          className="inline"
+          onSubmit={(event) => {
+            if (
+              !window.confirm(
+                "Please confirm you want to delete this page."
+              )
+            ) {
+              event.preventDefault();
+            }
+            }}
+          >
+          <button type="submit" className="mt-4 ml-4 py-1 px-3 bg-red-400 hover:bg-red-500 text-white text-base rounded outline-none">Delete</button>
+        </Form>
       </div>
+    </div>
   );
 }
 

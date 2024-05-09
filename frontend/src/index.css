@@ -17,8 +17,6 @@
   grid-area: header;
   background-color: #fff;
   padding: 0 1rem;
-  display: flex;
-  align-items: center;
 }
 
 .navigation {
@@ -43,8 +41,6 @@
   grid-area: footer;
   background-color: #fff;
   padding: 0 1rem;
-  display: flex;
-  align-items: center;
 }
 
 input[type="search"] {

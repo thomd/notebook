@@ -20,11 +20,9 @@ export default function Decorator() {
   const navigation = useNavigation();
   return (
     <>
-      <div className="header">
-        <div className="flex">
-          <Search q={q} />
-          <NewButton />
-        </div>
+      <div className="header flex flex-nowrap justify-between items-center">
+        <Search q={q} />
+        <NewButton />
       </div>
       <div className="navigation">
         <Navigation pages={pages} />

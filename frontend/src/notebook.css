@@ -593,6 +593,18 @@ video {
   width: 100%;
 }
 
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
 .rounded {
   border-radius: 0.25rem;
 }
@@ -728,8 +740,6 @@ video {
   grid-area: header;
   background-color: #fff;
   padding: 0 1rem;
-  display: flex;
-  align-items: center;
 }
 
 .navigation {
@@ -754,8 +764,6 @@ video {
   grid-area: footer;
   background-color: #fff;
   padding: 0 1rem;
-  display: flex;
-  align-items: center;
 }
 
 input[type="search"] {

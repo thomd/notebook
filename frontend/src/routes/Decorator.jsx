@@ -1,4 +1,5 @@
 import { Outlet, NavLink, Form, useLoaderData, redirect, useNavigation, useSubmit } from "react-router-dom";
+import { Search } from "../components/Search";
 import { getPages, createPage } from "../pages";
 import { useEffect } from "react";
 
@@ -26,9 +27,12 @@ export default function Decorator() {
 
   return (
     <>
-      <div id="navigation">
+      <div id="header" className="header">
+        <Search />
+      </div>
+      <div id="navigation" className="navigation">
         <div>
-          <Form id="search-form" role="search">
+          <Form id="search-form">
             <input
               id="q"
               className={searching ? "loading" : ""}
@@ -81,8 +85,11 @@ export default function Decorator() {
           )}
         </nav>
       </div>
-      <div id="content" className={navigation.state === "loading" ? "loading" : ""}>
+      <div id="content" className={"content" + (navigation.state === "loading" ? " loading" : "")}>
         <Outlet />
+      </div>
+      <div id="footer" className="footer">
+        Footer
       </div>
     </>
   );

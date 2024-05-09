@@ -2,7 +2,13 @@ import React, { useState, useRef } from "react"
 import { useDisclosure, ModalOverlay, Modal, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, Input } from '@chakra-ui/react'
 import { useHotkeys } from 'react-hotkeys-hook'
 
-const Search = () => {
+export function Search() {
+    return (
+        <div id="search">TODO: Search</div>
+    );
+}
+
+export default function SearchModal() {
   const SearchOverlay = () => (
     <ModalOverlay
       bg='blackAlpha.300'
@@ -31,6 +37,4 @@ const Search = () => {
     </Modal>
   )
 }
-
-export default Search;
 

@@ -33,6 +33,12 @@
   padding: 1rem;
 }
 
+.content.loading {
+  opacity: 0.25;
+  transition: opacity 200ms;
+  transition-delay: 200ms;
+}
+
 .footer {
   grid-area: footer;
   background-color: #fff;

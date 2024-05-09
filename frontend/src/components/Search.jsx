@@ -1,11 +1,31 @@
 import React, { useState, useRef } from "react"
+import { Form, useNavigation, useSubmit } from "react-router-dom";
 import { useDisclosure, ModalOverlay, Modal, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, Input } from '@chakra-ui/react'
 import { useHotkeys } from 'react-hotkeys-hook'
 
-export function Search() {
-    return (
-        <div id="search">TODO: Search</div>
-    );
+export function Search({ q }) {
+  const navigation = useNavigation();
+  const submit = useSubmit();
+  const searching = navigation.location && new URLSearchParams(navigation.location.search).has("q");
+  return (
+    <Form id="search-form" className="relative">
+      <input
+        id="q"
+        className={"block w-52 border-0 py-1 pr-2 pl-8 text-gray-900 shadow-sm ring-1 ring-gray-300 outline-none" + (searching ? " loading" : "")}
+        placeholder="Search"
+        type="search"
+        name="q"
+        defaultValue={q}
+        onChange={(event) => {
+          const isFirstSearch = q == null;
+          submit(event.currentTarget.form, {
+            replace: !isFirstSearch,
+          });
+        }}
+      />
+      <div id="search-spinner" hidden={!searching} />
+    </Form>
+  );
 }
 
 export default function SearchModal() {

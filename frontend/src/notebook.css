@@ -574,6 +574,14 @@ video {
   margin-top: 2rem;
 }
 
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
+.ml-3 {
+  margin-left: 0.75rem;
+}
+
 .block {
   display: block;
 }
@@ -582,12 +590,24 @@ video {
   display: inline;
 }
 
+.flex {
+  display: flex;
+}
+
 .hidden {
   display: none;
 }
 
 .w-full {
   width: 100%;
+}
+
+.w-36 {
+  width: 9rem;
+}
+
+.w-52 {
+  width: 13rem;
 }
 
 .flex-1 {
@@ -747,6 +767,12 @@ video {
   grid-area: content;
   background-color: #fff;
   padding: 1rem;
+}
+
+.content.loading {
+  opacity: 0.25;
+  transition: opacity 200ms;
+  transition-delay: 200ms;
 }
 
 .footer {

@@ -1,7 +1,6 @@
-import React from "react"
 import { Outlet, Form, useLoaderData, redirect, useNavigation } from "react-router-dom";
 import { Search } from "../components/Search";
-import { Navigation } from "../components/Navigation";
+import Navigation from "../components/Navigation";
 import { getPages, createPage } from "../pages";
 
 export async function action() {

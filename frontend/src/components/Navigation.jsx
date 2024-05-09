@@ -1,7 +1,6 @@
-import React from "react"
 import { NavLink } from "react-router-dom";
 
-export function Navigation({ pages }) {
+export default function Navigation({ pages }) {
   return (
     <nav>
       {pages.length ? (

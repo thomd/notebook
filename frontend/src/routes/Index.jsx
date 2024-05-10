@@ -1,7 +1,7 @@
 export default function Index() {
   return (
     <p className="index">
-      TODO: List all pages in categories
+      TODO: https://www.june.so/blog/tailwind-css-masonry-layout
     </p>
   );
 }

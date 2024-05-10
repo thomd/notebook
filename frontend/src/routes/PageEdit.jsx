@@ -13,7 +13,7 @@ export default function PageEdit() {
   const navigate = useNavigate();
 
   return (
-    <Form method="post" className="grid grid-cols-2 gap-8">
+    <Form method="post" className="grid grid-cols-2 gap-8 h-full grid-rows-[auto_1fr_auto]">
       <div>
         <input placeholder="Title" type="text" name="title" defaultValue={page?.title} className="block w-full border-0 px-2 py-1 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-300 outline-none" />
       </div>
@@ -21,7 +21,7 @@ export default function PageEdit() {
         <input placeholder="Category" type="text" name="category" defaultValue={page?.category} className="block w-full border-0 px-2 py-1 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-300 outline-none" />
       </div>
       <div className="col-span-2">
-        <textarea name="notes" defaultValue={page?.notes} rows={16} className="block w-full border-0 px-2 py-1 text-gray-900 shadow-sm ring-1 ring-gray-300 outline-none" />
+        <textarea name="notes" defaultValue={page?.notes} className="block w-full h-full border-0 px-2 py-1 text-gray-900 shadow-sm ring-1 ring-gray-300 outline-none" />
       </div>
       <div className="col-span-2">
         <button type="submit" className="py-1 px-3 bg-gray-400 hover:bg-gray-500 text-white text-base rounded outline-none">Save</button>

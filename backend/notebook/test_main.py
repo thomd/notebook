@@ -83,11 +83,23 @@ def test_patch_page_category(setup_pages_dir):
     response = client.patch('/pages/foo', content=json.dumps({"category": "Test"}))
     assert response.status_code == 200
     assert response.json() == {'category': 'Test', 'content': '# Foo Foo', 'favorite': False, 'filename': 'foo.md', 'id': 'foo', 'title': 'Foo'}
+    with open(f'{os.environ.get("PAGES_DIR")}/foo.md') as f:
+        metadata, content = frontmatter.parse(f.read())
+    assert content == '# Foo Foo'
+    assert metadata['title'] == 'Foo'
+    assert metadata['category'] == 'Test'
+    assert 'favorite' not in metadata
 
 def test_patch_page_favorite(setup_pages_dir):
     response = client.patch('/pages/foo', content=json.dumps({"favorite": True}))
     assert response.status_code == 200
     assert response.json() == {'category': 'Test', 'content': '# Foo Foo', 'favorite': True, 'filename': 'foo.md', 'id': 'foo', 'title': 'Foo'}
+    with open(f'{os.environ.get("PAGES_DIR")}/foo.md') as f:
+        metadata, content = frontmatter.parse(f.read())
+    assert content == '# Foo Foo'
+    assert metadata['title'] == 'Foo'
+    assert metadata['category'] == 'Test'
+    assert metadata['favorite'] == True
 
 def test_patch_page_title(setup_pages_dir):
     response = client.patch('/pages/foo', content=json.dumps({"title": "Foo2"}))

@@ -43,14 +43,15 @@ def createPage(path, page):
     with path.open('w', encoding='utf-8') as file:
         file.write(frontmatter.dumps(data))
     repository.commit()
-    response = model.Response(
-        id = path.stem,
-        filename = path.name,
-        title = page.title,
-        category = page.category,
-        favorite = page.favorite,
-        content = page.content
-    )
+    response = getPage(path)
+    # response = model.Response(
+        # id = path.stem,
+        # filename = path.name,
+        # title = page.title,
+        # category = page.category,
+        # favorite = page.favorite,
+        # content = page.content
+    # )
     return response
 
 def deletePage(path):

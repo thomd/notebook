@@ -12,7 +12,7 @@ client = TestClient(app)
 def setup_pages_dir(tmp_path_factory):
     os.environ["PAGES_DIR"] = str(tmp_path_factory.mktemp("pages"))
 
-def test_get_pages(setup_pages_dir):
+def test_get_zero_pages(setup_pages_dir):
     response = client.get('/pages')
     assert response.status_code == 200
     assert response.json() == {'pages': [], 'total': 0}
@@ -20,7 +20,7 @@ def test_get_pages(setup_pages_dir):
 def test_create_new_page(setup_pages_dir):
     response = client.post('/pages', content=json.dumps({"title": "Foo", "content": "# Foo"}))
     assert response.status_code == 201
-    assert response.json() == {'content': '# Foo', 'filename': 'foo.md', 'id': 'foo', 'title': 'Foo'}
+    assert response.json() == {'content': '# Foo', 'favorite': False, 'filename': 'foo.md', 'id': 'foo', 'title': 'Foo'}
     with open(f'{os.environ.get("PAGES_DIR")}/foo.md') as f:
         metadata, content = frontmatter.parse(f.read())
     assert content == '# Foo'
@@ -56,7 +56,7 @@ def test_get_non_existing_page(setup_pages_dir):
 def test_replace_same_existing_page(setup_pages_dir):
     response = client.put('/pages/foo', content=json.dumps({"title": "Foo", "content": "# Foo"}))
     assert response.status_code == 200
-    assert response.json() == {'content': '# Foo', 'filename': 'foo.md', 'id': 'foo', 'title': 'Foo'}
+    assert response.json() == {'content': '# Foo', 'favorite': False, 'filename': 'foo.md', 'id': 'foo', 'title': 'Foo'}
 
 def test_replace_non_existing_page(setup_pages_dir):
     response = client.put('/pages/bar', content=json.dumps({"title": "Foo", "content": "# Foo"}))
@@ -102,3 +102,9 @@ def test_patch_existing_page_title(setup_pages_dir):
     response = client.patch('/pages/foo2', content=json.dumps({"title": "Foo"}))
     assert response.status_code == 500
     assert response.json() == {'detail': "Page 'foo' does already exist"}
+
+def test_get_multiple_pages(setup_pages_dir):
+    response = client.get('/pages')
+    assert response.status_code == 200
+    assert response.json()['total'] == 3
+

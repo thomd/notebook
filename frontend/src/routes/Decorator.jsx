@@ -1,11 +1,12 @@
 import { Outlet, Form, useLoaderData, redirect, useNavigation } from "react-router-dom";
 import { Search } from "../components/Search";
 import Navigation from "../components/Navigation";
+import { NewButton, NewModal } from "../components/NewPage";
 import { getPages, createPage } from "../pages";
 
 export async function action() {
-  const page = await createPage();
-  return redirect(`/pages/${page.id}/edit`);
+  //const page = await createPage();
+  //return redirect(`/pages/${page.id}/edit`);
 }
 
 export async function loader({ request }) {
@@ -37,12 +38,3 @@ export default function Decorator() {
   );
 }
 
-function NewButton() {
-  return (
-    <>
-      <Form method="post">
-        <button type="submit" className="ml-4 py-1 px-3 bg-gray-400 hover:bg-gray-500 text-white text-base rounded outline-none">New Page</button>
-      </Form>
-    </>
-  );
-}

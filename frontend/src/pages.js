@@ -2,14 +2,25 @@ import localforage from "localforage";
 import { matchSorter } from "match-sorter";
 import sortBy from "sort-by";
 
+const baseUrl = 'http://localhost:8000'
+
 export async function getPages(query) {
-    await fakeNetwork(`getPages:${query}`);
-    let pages = await localforage.getItem("pages");
+    const response = await fetch(`${baseUrl}/pages`);
+    const data = await response.json();
+    let pages = await data.pages;
+    console.log('pages:', pages)
     if (!pages) pages = [];
     if (query) {
         pages = matchSorter(pages, query, { keys: ["title"] });
     }
     return pages.sort(sortBy("title"));
+}
+
+export async function getPage(id) {
+    const response = await fetch(`${baseUrl}/pages/${id}`);
+    const data = await response.json();
+    console.log('page:', data)
+    return data ?? null;
 }
 
 export async function createPage() {
@@ -22,32 +33,37 @@ export async function createPage() {
     return page;
 }
 
-export async function getPage(id) {
-    await fakeNetwork(`page:${id}`);
-    let pages = await localforage.getItem("pages");
-    let page = pages.find(page => page.id === id);
-    return page ?? null;
+export async function patchPage(id, updates) {
+    console.log('patch page', id, 'with', updates)
+    const response = await fetch(`${baseUrl}/pages/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updates),
+    });
+    const data = await response.json();
+    console.log('patched page:', data)
+    return data ?? null;
 }
 
 export async function updatePage(id, updates) {
-    await fakeNetwork();
-    let pages = await localforage.getItem("pages");
-    let page = pages.find(page => page.id === id);
-    if (!page) throw new Error("No page found for", id);
-    Object.assign(page, updates);
-    await set(pages);
-    return page;
+    const response = await fetch(`${baseUrl}/pages/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updates),
+    });
+    const data = await response.json();
+    return data ?? null;
 }
 
 export async function deletePage(id) {
-    let pages = await localforage.getItem("pages");
-    let index = pages.findIndex(page => page.id === id);
-    if (index > -1) {
-        pages.splice(index, 1);
-        await set(pages);
-        return true;
-    }
-    return false;
+    const response = await fetch(`${baseUrl}/pages/${id}`, {
+        method: 'DELETE'
+    });
+    return response.status === '204' ? true : false
 }
 
 function set(pages) {

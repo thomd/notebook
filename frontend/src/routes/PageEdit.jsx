@@ -1,10 +1,10 @@
 import { Form, useLoaderData, redirect, useNavigate } from "react-router-dom";
-import { updatePage } from "../pages";
+import { patchPage } from "../pages";
 
 export async function action({ request, params }) {
   const formData = await request.formData();
   const updates = Object.fromEntries(formData);
-  await updatePage(params.pageId, updates);
+  await patchPage(params.pageId, updates);
   return redirect(`/pages/${params.pageId}`);
 }
 
@@ -21,7 +21,7 @@ export default function PageEdit() {
         <input placeholder="Category" type="text" name="category" defaultValue={page?.category} className="block w-full border-0 px-2 py-1 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-300 outline-none" />
       </div>
       <div className="col-span-2">
-        <textarea name="notes" defaultValue={page?.notes} className="block w-full h-full border-0 px-2 py-1 text-gray-900 shadow-sm ring-1 ring-gray-300 outline-none" />
+        <textarea name="content" defaultValue={page?.content} className="block w-full h-full border-0 px-2 py-1 text-gray-900 shadow-sm ring-1 ring-gray-300 outline-none" />
       </div>
       <div className="col-span-2">
         <button type="submit" className="py-1 px-3 bg-gray-400 hover:bg-gray-500 text-white text-base rounded outline-none">Save</button>

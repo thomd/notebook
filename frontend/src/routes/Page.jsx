@@ -1,5 +1,5 @@
 import { Form, useLoaderData, useFetcher } from "react-router-dom";
-import { getPage, updatePage } from "../pages";
+import { getPage, patchPage } from "../pages";
 
 export async function loader({ params }) {
   const page = await getPage(params.pageId);
@@ -11,7 +11,7 @@ export async function loader({ params }) {
 
 export async function action({ request, params }) {
   let formData = await request.formData();
-  return updatePage(params.pageId, {
+  return patchPage(params.pageId, {
     favorite: formData.get("favorite") === "true",
   });
 }
@@ -20,8 +20,11 @@ export default function Page() {
   const { page } = useLoaderData();
   return (
     <div className="page">
-      <h1 className="mb-4 text-lg font-medium">{page.title ? (<>{page.title}</>) : (<>No Title</>)}{" "}<Favorite page={page} /></h1>
-      {page.notes && <p>{page.notes}</p>}
+      <h1 className="mb-4 text-lg font-medium">
+        <Title page={page} />
+        <Favorite page={page} />
+      </h1>
+      {page.content && <p>{page.content}</p>}
       <div>
         <Form action="edit" className="inline">
           <button type="submit" className="mt-4 py-1 px-3 bg-gray-400 hover:bg-gray-500 text-white text-base rounded outline-none">Edit</button>
@@ -47,6 +50,21 @@ export default function Page() {
   );
 }
 
+function Title({ page }) {
+  return (
+    <>
+      {page.category ? (
+        <>
+          <span>{page.category}: </span>
+          <span>{page.title}</span>
+        </>
+      ) : (
+        <span>{page.title}</span>
+      )}
+    </>
+  );
+}
+
 function Favorite({ page }) {
   const fetcher = useFetcher();
   let favorite = page.favorite;
@@ -54,7 +72,7 @@ function Favorite({ page }) {
     favorite = fetcher.formData.get("favorite") === "true";
   }
   return (
-    <fetcher.Form method="post" className="inline">
+    <fetcher.Form method="post" className="inline ml-4">
       <button name="favorite" value={favorite ? "false" : "true"}>
         {favorite ? "★" : "☆"}
       </button>

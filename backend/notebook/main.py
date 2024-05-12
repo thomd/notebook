@@ -47,8 +47,8 @@ def create_page(page: model.Page):
 
 # curl -H "Content-Type: application/json" -X PUT -d '{"title": "Foo", "content": "# Foo"}' http://localhost:8000/pages/foo -s | jq
 @app.put("/pages/{page_id}", response_model=model.Response, response_model_exclude_none=True)
-def update_page(page_id: str, page: model.Page):
-    """ PUT is used to replace the existing page """
+def replace_page(page_id: str, page: model.Page):
+    """ PUT is used to replace the existing paghe. It is likely to be rarely used. """
     path = Path(f"{pg.pagesDir()}/{page_id}.md")
     if not path.exists():
         raise HTTPException(status_code=404, detail=f"Page '{page_id}' does not exist")
@@ -60,13 +60,14 @@ def update_page(page_id: str, page: model.Page):
 
 # curl -H "Content-Type: application/json" -X PATCH -d '{"title": "Other Foo"}' http://localhost:8000/pages/foo -s | jq
 @app.patch("/pages/{page_id}", response_model=model.Response, response_model_exclude_none=True)
-def change_page_attributes(page_id: str, page: model.PageUpdate):
-    """ PATCH is used to partially replace existing page attributes """
+def update_page(page_id: str, page: model.PageUpdate):
+    """ PATCH is used to partially replace existing page attributes. """
     path = Path(f'{pg.pagesDir()}/{page_id}.md')
-    if page.title != None and Path(f'{pg.pagesDir()}/{pg.createFilename(page.title)}').exists():
+    # if we change the title to an existing page, we would unintentionally overwrite it
+    if page.title != None and page_id != pg.createId(page.title) and Path(f'{pg.pagesDir()}/{pg.createFilename(page.title)}').exists():
         raise HTTPException(status_code=500, detail=f"Page '{pg.createId(page.title)}' does already exist")
-    if path.exists():
-        return pg.patchPage(path, page)
+    elif path.exists():
+        return pg.updatePage(path, page)
     else:
         raise HTTPException(status_code=404, detail=f"Page '{page_id}' does not exist")
 

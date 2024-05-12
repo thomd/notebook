@@ -2,14 +2,14 @@ from pydantic import BaseModel, Field
 from typing import List, Optional
 
 class Page(BaseModel):
-    title: str = Field(min_length=2, max_length=100, examples=["Page Title"])
+    title: str = Field(min_length=2, max_length=100)
     category: Optional[str] = None
     favorite: Optional[bool] = None
-    content: str = Field(examples=["# Page Title"])
+    content: Optional[str] = ""
 
 class Response(Page):
-    id: str = Field(min_length=2, max_length=100, pattern=r'^[a-z0-9-]+$', examples=["page"])
-    filename: str = Field(pattern=r'^[a-z0-9-]+\.md$', examples=["page.md"])
+    id: str = Field(min_length=2, max_length=100, pattern=r'^[a-z0-9-]+$')
+    filename: str = Field(pattern=r'^[a-z0-9-]+\.md$')
 
 class PageUpdate(BaseModel):
     title: Optional[str] = None

@@ -14,12 +14,14 @@ def createFilename(title):
 def createId(title):
     return slugify(title)
 
+
 def getPages(path):
     pages = []
     for page in path.iterdir():
         if page.is_file():
             pages.append(getPage(page))
     return model.Pages(pages=pages, total=len(pages))
+
 
 def getPage(path):
     data = frontmatter.load(str(path))
@@ -33,6 +35,7 @@ def getPage(path):
     )
     return response
 
+
 def createPage(path, page):
     data = frontmatter.Post(content=page.content)
     data['title'] = page.title
@@ -44,19 +47,13 @@ def createPage(path, page):
         file.write(frontmatter.dumps(data))
     repository.commit()
     response = getPage(path)
-    # response = model.Response(
-        # id = path.stem,
-        # filename = path.name,
-        # title = page.title,
-        # category = page.category,
-        # favorite = page.favorite,
-        # content = page.content
-    # )
     return response
+
 
 def deletePage(path):
     path.unlink()
     repository.commit()
+
 
 def putPage(path, page):
     current_page = getPage(path)
@@ -64,25 +61,33 @@ def putPage(path, page):
         path = path.rename(Path(f'{str(path.parent)}/{createFilename(page.title)}'))
     return createPage(path, page)
 
-def patchPage(path, page):
+
+def updatePage(path, page):
     updates = page.model_dump(exclude_none=True)
-    if not updates.get('title'):
-        data = frontmatter.load(str(path))
-        if updates.get('content'):
-            data.content = updates.get('content')
-        if updates.get('category'):
-            data['category'] = updates.get('category')
-        if updates.get('favorite') != None:
-            data['favorite'] = updates.get('favorite')
-        with path.open('w', encoding='utf-8') as file:
-            file.write(frontmatter.dumps(data))
-    if updates.get('title'):
+
+    # if we change the title we first rename the file
+    if updates.get('title') and path.stem != createId(updates.get('title')):
         filename = createFilename(updates.get('title'))
         path = path.rename(Path(f'{str(path.parent)}/{filename}'))
-        data = frontmatter.load(str(path))
+
+    # then we update the content and the frontmatter
+    data = frontmatter.load(str(path))
+    if updates.get('content'):
+        data.content = updates.get('content')
+    if updates.get('title'):
         data['title'] = updates.get('title')
-        with path.open('w', encoding='utf-8') as file:
-            file.write(frontmatter.dumps(data))
+    if updates.get('favorite') != None:
+        data['favorite'] = updates.get('favorite')
+    if updates.get('category'):
+        data['category'] = updates.get('category')
+
+    # finally we write the file ...
+    with path.open('w', encoding='utf-8') as file:
+        file.write(frontmatter.dumps(data))
+
+    # ... commit ...
     repository.commit()
-    return getPage(path).model_copy(update=updates)
+
+    # ... and return the page data
+    return getPage(path)
 

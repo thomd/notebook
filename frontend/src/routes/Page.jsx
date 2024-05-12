@@ -1,23 +1,23 @@
-import { Form, useLoaderData, useFetcher } from "react-router-dom";
-import { getPage, patchPage } from "../pages";
+import { Form, useLoaderData, useFetcher } from "react-router-dom"
+import { getPage, patchPage } from "../pages"
 
 export async function loader({ params }) {
-  const page = await getPage(params.pageId);
+  const page = await getPage(params.pageId)
   if (!page) {
-    throw new Response("", { status: 404, statusText: "Page Not Found" });
+    throw new Response("", { status: 404, statusText: "Page Not Found" })
   }
-  return { page };
+  return { page }
 }
 
 export async function action({ request, params }) {
-  let formData = await request.formData();
+  let formData = await request.formData()
   return patchPage(params.pageId, {
     favorite: formData.get("favorite") === "true",
-  });
+  })
 }
 
 export default function Page() {
-  const { page } = useLoaderData();
+  const { page } = useLoaderData()
   return (
     <div className="page">
       <h1 className="mb-4 text-lg font-medium">
@@ -62,14 +62,14 @@ function Title({ page }) {
         <span>{page.title}</span>
       )}
     </>
-  );
+  )
 }
 
 function Favorite({ page }) {
-  const fetcher = useFetcher();
-  let favorite = page.favorite;
+  const fetcher = useFetcher()
+  let favorite = page.favorite
   if (fetcher.formData) {
-    favorite = fetcher.formData.get("favorite") === "true";
+    favorite = fetcher.formData.get("favorite") === "true"
   }
   return (
     <fetcher.Form method="post" className="inline ml-4">
@@ -77,6 +77,6 @@ function Favorite({ page }) {
         {favorite ? "★" : "☆"}
       </button>
     </fetcher.Form>
-  );
+  )
 }
 

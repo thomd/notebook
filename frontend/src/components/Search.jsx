@@ -1,16 +1,16 @@
-import { useState, useRef, useEffect } from "react"
-import { Form, useNavigation, useSubmit } from "react-router-dom";
+import { useState, useRef, useEffect } from 'react'
+import { Form, useNavigation, useSubmit } from 'react-router-dom'
 import { useDisclosure, ModalOverlay, Modal, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, Input } from '@chakra-ui/react'
 import { useHotkeys } from 'react-hotkeys-hook'
 
 export function Search({ q }) {
-  const navigation = useNavigation();
-  const submit = useSubmit();
-  const searching = navigation.location && new URLSearchParams(navigation.location.search).has("q");
+  const navigation = useNavigation()
+  const submit = useSubmit()
+  const searching = navigation.location && new URLSearchParams(navigation.location.search).has("q")
 
   useEffect(() => {
-    document.getElementById("q").value = q;
-  }, [q]);
+    document.getElementById("q").value = q
+  }, [q])
 
   return (
     <Form className="relative">
@@ -30,7 +30,7 @@ export function Search({ q }) {
       />
       <div className="search-spinner" hidden={!searching} />
     </Form>
-  );
+  )
 }
 
 export default function SearchModal() {

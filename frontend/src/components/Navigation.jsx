@@ -5,6 +5,9 @@ export default function Navigation({ pages }) {
     <nav>
       {pages.length ? (
         <ul>
+          <li className="mb-4">
+            <NavLink to={''}>Home</NavLink>
+          </li>
           {pages.map((page) => (
             <li key={page.id}>
               <NavLink

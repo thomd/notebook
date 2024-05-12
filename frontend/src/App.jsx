@@ -1,20 +1,20 @@
-import React from "react"
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import React from 'react'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
-import Decorator, { loader as decoratorLoader, action as decoratorAction } from "./routes/Decorator";
-import Error from "./Error";
-import Index from "./routes/Index";
-import Page, { loader as pageLoader, action as pageAction } from "./routes/Page";
-import PageEdit, { action as pageEditAction } from "./routes/PageEdit";
-import { action as pageDeleteAction } from "./routes/PageDelete";
+import Decorator, { loader as decoratorLoader } from './routes/Decorator'
+import Error from './Error'
+import Index from './routes/Index'
+import Page, { loader as pageLoader, action as pageAction } from './routes/Page'
+import PageEdit, { action as pageEditAction } from './routes/PageEdit'
+import { action as pageDeleteAction } from './routes/PageDelete'
+import { action as newPageAction } from './routes/PageNew'
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Decorator />,
     errorElement: <Error />,
     loader: decoratorLoader,
-    action: decoratorAction,
     children: [
       {
         errorElement: <Error />,
@@ -24,27 +24,31 @@ const router = createBrowserRouter([
             element: <Index />
           },
           {
-            path: "pages/:pageId",
+            path: 'pages/:pageId',
             element: <Page />,
             loader: pageLoader,
             action: pageAction,
           },
           {
-            path: "pages/:pageId/edit",
+            path: 'pages/:pageId/edit',
             element: <PageEdit />,
             loader: pageLoader,
             action: pageEditAction,
           },
           {
-            path: "pages/:pageId/delete",
+            path: 'new',
+            action: newPageAction,
+          },
+          {
+            path: 'pages/:pageId/delete',
             action: pageDeleteAction,
-            errorElement: <div>Oops! There was an error.</div>,
+            errorElement: <div>There was an error deleting the page.</div>,
           },
         ]
       }
     ]
   },
-]);
+])
 
 function App() {
   return (

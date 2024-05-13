@@ -11,16 +11,18 @@ export default function PageEdit() {
   const { page } = useLoaderData()
   const navigate = useNavigate()
 
+  const content = page.content === '' ? '# ' + page.title : page.content
+
   return (
     <Form method="post" className="grid grid-cols-2 gap-8 h-full grid-rows-[auto_1fr_auto]">
       <div>
-        <input required placeholder="Title" type="text" name="title" defaultValue={page?.title} className="block w-full border-0 px-2 py-1 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-300 outline-none" />
+        <input required placeholder="Title" type="text" name="title" defaultValue={page.title} className="block w-full border-0 px-2 py-1 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-300 outline-none" />
       </div>
       <div>
-        <input placeholder="Category" type="text" name="category" defaultValue={page?.category} className="block w-full border-0 px-2 py-1 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-300 outline-none" />
+        <input placeholder="Category" type="text" name="category" defaultValue={page.category} className="block w-full border-0 px-2 py-1 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-300 outline-none" />
       </div>
       <div className="col-span-2">
-        <textarea name="content" autoFocus defaultValue={page?.content} className="block w-full h-full border-0 px-2 py-1 text-gray-900 shadow-sm ring-1 ring-gray-300 outline-none" />
+        <textarea name="content" autoFocus defaultValue={content} className="block w-full h-full border-0 px-2 py-1 text-gray-900 shadow-sm ring-1 ring-gray-300 outline-none" />
       </div>
       <div className="col-span-2">
         <button type="submit" className="py-1 px-3 bg-gray-400 hover:bg-gray-500 text-white text-base rounded outline-none">Save</button>

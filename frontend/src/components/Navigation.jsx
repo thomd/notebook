@@ -36,6 +36,6 @@ export default function Navigation({ pages }) {
         <p>No Pages</p>
       )}
     </nav>
-  );
+  )
 }
 

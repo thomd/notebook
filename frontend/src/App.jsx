@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import Decorator, { loader as decoratorLoader } from './routes/Decorator'
 import Error from './Error'
-import Index from './routes/Index'
+import Index, { loader as indexLoader } from './routes/Index'
 import Page, { loader as pageLoader, action as pageAction } from './routes/Page'
 import PageEdit, { action as pageEditAction } from './routes/PageEdit'
 import { action as pageDeleteAction } from './routes/PageDelete'
@@ -21,7 +21,8 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <Index />
+            element: <Index />,
+            loader: indexLoader
           },
           {
             path: 'pages/:pageId',

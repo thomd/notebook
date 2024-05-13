@@ -553,8 +553,17 @@ video {
   grid-column: span 2 / span 2;
 }
 
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
 .mb-4 {
   margin-bottom: 1rem;
+}
+
+.ml-2 {
+  margin-left: 0.5rem;
 }
 
 .ml-4 {
@@ -565,8 +574,28 @@ video {
   margin-top: 1rem;
 }
 
-.ml-2 {
-  margin-left: 0.5rem;
+.mr-1 {
+  margin-right: 0.25rem;
+}
+
+.mt-7 {
+  margin-top: 1.75rem;
+}
+
+.ml-3 {
+  margin-left: 0.75rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
 }
 
 .block {
@@ -589,8 +618,16 @@ video {
   display: none;
 }
 
+.h-3 {
+  height: 0.75rem;
+}
+
 .h-full {
   height: 100%;
+}
+
+.w-3 {
+  width: 0.75rem;
 }
 
 .w-52 {
@@ -690,17 +727,13 @@ video {
   line-height: 1.5rem;
 }
 
-.text-lg {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-}
-
 .font-bold {
   font-weight: 700;
 }
 
-.font-medium {
-  font-weight: 500;
+.text-gray-400 {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
 .text-gray-500 {
@@ -869,3 +902,4 @@ input[type="search"].loading {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+

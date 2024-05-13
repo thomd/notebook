@@ -1,0 +1,92 @@
+.markdown h1 {
+  font-size: 1.5rem;
+  line-height: 1.75rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+.markdown h2 {
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+.markdown blockquote {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 40px;
+  margin-inline-end: 40px;
+}
+.markdown a {
+  color: #f87171;
+}
+.markdown ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+.markdown del {
+  text-decoration: line-through;
+}
+.markdown pre {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background-color: #eee;
+  padding: 0.3rem 0.6rem;
+}
+.markdown pre code {
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: #333;
+}
+.markdown code {
+  background-color: #eee;
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: #333;
+  padding: 0.2rem 0.3rem;
+}
+.markdown table {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.markdown table tr {
+  border-bottom: 1px solid #ccc;
+}
+.markdown table tr th, .markdown table tr td {
+  text-align: left;
+  padding: 0.3rem 0.5rem;
+}
+.markdown sup {
+  top: -0.5em;
+  font-size: 0.8rem;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+.markdown section.footnotes {
+  margin-top: 2rem;
+  border-top: 1px solid #aaa;
+}
+.markdown section.footnotes .sr-only {
+  display: none;
+}
+.markdown section.footnotes ol {
+  margin-top: 0.5rem;
+}
+.markdown section.footnotes ol p {
+  font-size: 80%;
+  color: #666;
+}
+.markdown section.footnotes ol p a {
+  font-size: 0;
+}
+.markdown section.footnotes ol p a:after {
+  font-size: 0.8rem;
+  content: " [back]";
+}

@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 
 export default function Category({ category, groupedPages }) {
   return (
-    <div className="mb-8">
+    <div>
       {category !== 'undefined' ? (
         <h2 className="font-bold">{category}</h2>
       ) : (

@@ -12,12 +12,28 @@ export default function Index() {
   const groupedPages = Object.groupBy(pages, page => page.category)
   const categories = Object.keys(groupedPages)
 
+  const firstColumn = categories.filter((_, index) => index % 3 === 0)
+  const secondColumn = categories.filter((_, index) => index % 3 === 1)
+  const thirdColumn = categories.filter((_, index) => index % 3 === 2)
+
   return (
     <>
-      <div className="index">
-        {categories.map((category) => (
-          <Category key={category} category={category} groupedPages={groupedPages} />
-        ))}
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+        <div className="grid gap-8 auto-rows-min">
+          {firstColumn.map((category) => (
+            <Category key={category} category={category} groupedPages={groupedPages} />
+          ))}
+        </div>
+        <div className="grid gap-8 auto-rows-min">
+          {secondColumn.map((category) => (
+            <Category key={category} category={category} groupedPages={groupedPages} />
+          ))}
+        </div>
+        <div className="grid gap-8 auto-rows-min">
+          {thirdColumn.map((category) => (
+            <Category key={category} category={category} groupedPages={groupedPages} />
+          ))}
+        </div>
       </div>
     </>
   );

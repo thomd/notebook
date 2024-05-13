@@ -99,22 +99,6 @@ def test_get_non_existing_page(setup_pages_dir):
     assert response.status_code == 404
     assert response.json() == {'detail': "Page 'non-exist' does not exist"}
 
-# def test_replace_same_existing_page(setup_pages_dir):
-    # response = client.put('/pages/foo', content=json.dumps({"title": "Foo", "content": "# Foo"}))
-    # assert response.status_code == 200
-    # assert response.json() == {'content': '# Foo', 'favorite': False, 'filename': 'foo.md', 'id': 'foo', 'title': 'Foo'}
-
-# def test_replace_non_existing_page(setup_pages_dir):
-    # response = client.put('/pages/bar', content=json.dumps({"title": "Foo", "content": "# Foo"}))
-    # assert response.status_code == 404
-    # assert response.json() == {'detail': "Page 'bar' does not exist"}
-
-# def test_replace_to_existing_page(setup_pages_dir):
-    # client.post('/pages', content=json.dumps({"title": "Baz", "content": "# Baz"}))
-    # response = client.put('/pages/foo', content=json.dumps({"title": "Baz", "content": "# Baz"}))
-    # assert response.status_code == 500
-    # assert response.json() == {'detail': "Page 'baz' does already exist"}
-
 def test_patch_non_existing_page(setup_pages_dir):
     response = client.patch('/pages/non-exist', content=json.dumps({"title": "Non Exist"}))
     assert response.status_code == 404
@@ -164,8 +148,11 @@ def test_patch_page_category(setup_pages_dir):
     client.delete('/pages/test-9')
 
 def test_patch_page_favorite(setup_pages_dir):
+    # we create a page
     response = client.post('/pages', content=json.dumps({"title": "Test 10"}))
     assert response.json() == {'content': '', 'favorite': False, 'filename': 'test-10.md', 'id': 'test-10', 'title': 'Test 10'}
+
+    # then we set the favorite attribute to Trure
     response = client.patch('/pages/test-10', content=json.dumps({"favorite": True}))
     assert response.status_code == 200
     assert response.json() == {'content': '', 'favorite': True, 'filename': 'test-10.md', 'id': 'test-10', 'title': 'Test 10'}
@@ -175,6 +162,19 @@ def test_patch_page_favorite(setup_pages_dir):
     assert metadata['title'] == 'Test 10'
     assert 'category' not in metadata
     assert metadata['favorite'] == True
+
+    # then we set the favorite attribute back to False
+    response = client.patch('/pages/test-10', content=json.dumps({"favorite": False}))
+    assert response.status_code == 200
+    assert response.json() == {'content': '', 'favorite': False, 'filename': 'test-10.md', 'id': 'test-10', 'title': 'Test 10'}
+    with open(f'{os.environ.get("PAGES_DIR")}/test-10.md') as f:
+        metadata, content = frontmatter.parse(f.read())
+    assert content == ''
+    assert metadata['title'] == 'Test 10'
+    assert 'category' not in metadata
+    assert 'favorite' not in metadata
+
+    # delete the page
     client.delete('/pages/test-10')
 
 def test_get_multiple_pages(setup_pages_dir):

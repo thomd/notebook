@@ -76,7 +76,9 @@ def updatePage(path, page):
         data.content = updates.get('content')
     if updates.get('title'):
         data['title'] = updates.get('title')
-    if updates.get('favorite') != None:
+    if 'favorite' in data:
+        del data['favorite']
+    if updates.get('favorite') == True:
         data['favorite'] = updates.get('favorite')
     if updates.get('category'):
         data['category'] = updates.get('category')

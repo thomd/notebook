@@ -1,8 +1,8 @@
-import { Outlet, Form, useLoaderData, redirect, useNavigation } from 'react-router-dom'
+import { Outlet, useLoaderData, useNavigation } from 'react-router-dom'
 import { Search } from '../components/Search'
 import Navigation from '../components/Navigation'
 import { NewPageForm } from '../components/NewPage'
-import { getPages, createPage } from '../pages'
+import { getPages } from '../pages'
 
 export async function loader({ request }) {
   const url = new URL(request.url)

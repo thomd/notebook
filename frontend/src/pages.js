@@ -1,4 +1,3 @@
-import localforage from 'localforage'
 import { matchSorter } from 'match-sorter'
 import sortBy from 'sort-by'
 
@@ -57,24 +56,3 @@ export async function deletePage(id) {
     });
     return response.status === '204' ? true : false
 }
-
-function set(pages) {
-    return localforage.setItem("pages", pages);
-}
-
-let fakeCache = {};
-async function fakeNetwork(key) {
-    if (!key) {
-        fakeCache = {};
-    }
-
-    if (fakeCache[key]) {
-        return;
-    }
-
-    fakeCache[key] = true;
-    return new Promise(res => {
-        setTimeout(res, Math.random() * 1600);
-    });
-}
-

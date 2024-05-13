@@ -1,40 +1,23 @@
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default function Navigation({ pages }) {
+  const favoritePages = pages.filter(page => page.favorite === true)
+
   return (
     <nav>
-      {pages.length ? (
-        <ul>
-          <li className="mb-4">
-            <NavLink to={''}>Home</NavLink>
+      <ul>
+        <li className="mb-4">
+          <Link to={''}>Home</Link>
+        </li>
+        {favoritePages.map((page) => (
+          <li key={page.id}>
+            <Link to={`pages/${page.id}`}>
+              {page.title}
+              {page.favorite && <span className="ml-2">★</span>}
+            </Link>
           </li>
-          {pages.map((page) => (
-            <li key={page.id}>
-              <NavLink
-                to={`pages/${page.id}`}
-                className={({ isActive, isPending }) =>
-                    isActive
-                    ? "active"
-                      : isPending
-                      ? "pending"
-                    : ""
-                }
-              >
-                {page.title ? (
-                  <>
-                    {page.title}
-                  </>
-                ) : (
-                  <span>No Title</span>
-                )}{" "}
-                {page.favorite && <span>★</span>}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No Pages</p>
-      )}
+        ))}
+      </ul>
     </nav>
   )
 }

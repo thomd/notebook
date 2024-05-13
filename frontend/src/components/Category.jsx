@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default function Category({ category, groupedPages }) {
   return (
@@ -11,10 +11,10 @@ export default function Category({ category, groupedPages }) {
       <ul>
         {groupedPages[category].map((page) => (
           <li key={page.id}>
-            <NavLink to={`pages/${page.id}`}>
-              <span>{page.title}</span>
-              {page.favorite && <span>★</span>}
-            </NavLink>
+            <Link to={`pages/${page.id}`}>
+              {page.title}
+              {page.favorite && <span className="ml-2">★</span>}
+            </Link>
           </li>
         ))}
       </ul>

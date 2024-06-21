@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
 from notebook import page as pg
 from notebook import model
+from notebook import log
 
 origins = [
     "http://localhost:3000",
@@ -30,6 +31,18 @@ def get_page(page_id: str):
     path = Path(f"{pg.pagesDir()}/{page_id}.md")
     if path.exists():
         return pg.getPage(path)
+    else:
+        raise HTTPException(status_code=404, detail=f"Page '{page_id}' does not exist")
+
+
+# curl -H "Content-Type: application/json" http://localhost:8000/pages/foo/1/2 -s | jq
+@app.get("/pages/{page_id}/{start}/{end}", response_model=model.Response, response_model_exclude_none=True)
+def get_page(page_id: str, start: int, end: int):
+    path = Path(f"{pg.pagesDir()}/{page_id}.md")
+    if start <= 0 or end < start:
+        raise HTTPException(status_code=404, detail=f"Page with lines {start} to {end} does not exist")
+    if path.exists():
+        return pg.getPageFragment(path, start, end)
     else:
         raise HTTPException(status_code=404, detail=f"Page '{page_id}' does not exist")
 
@@ -68,6 +81,22 @@ def update_page(page_id: str, page: model.PageUpdate):
         raise HTTPException(status_code=500, detail=f"Page '{pg.createId(page.title)}' does already exist")
     elif path.exists():
         return pg.updatePage(path, page)
+    else:
+        raise HTTPException(status_code=404, detail=f"Page '{page_id}' does not exist")
+
+
+# curl -H "Content-Type: application/json" -X PATCH -d '{"content": "Bar"}' http://localhost:8000/pages/foo/1/2 -s | jq
+@app.patch("/pages/{page_id}/{start}/{end}", response_model=model.Response, response_model_exclude_none=True)
+def update_page(page_id: str, start: int, end: int, page: model.PageUpdate):
+    """ PATCH content of a page with a updated fragment between lines {start} and {end}. """
+    if start <= 0 or end < start:
+        raise HTTPException(status_code=404, detail=f"Page with lines {start} to {end} does not exist")
+    path = Path(f'{pg.pagesDir()}/{page_id}.md')
+    # if we change the title to an existing page, we would unintentionally overwrite it
+    if page.title != None and page_id != pg.createId(page.title) and Path(f'{pg.pagesDir()}/{pg.createFilename(page.title)}').exists():
+        raise HTTPException(status_code=500, detail=f"Page '{pg.createId(page.title)}' does already exist")
+    elif path.exists():
+        return pg.updatePageWithFragment(path, start, end, page)
     else:
         raise HTTPException(status_code=404, detail=f"Page '{page_id}' does not exist")
 

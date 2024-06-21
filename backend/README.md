@@ -20,10 +20,10 @@ or run
 
 ## Test
 
-Start `uvicorn` server and run
+Start `uvicorn` server in background or separate terminal (see above) and run
 
-    pip install pytest
-    nodemon -w notebook -e py -x pytest
+    source .venv/bin/activate
+    nodemon -w notebook -e py -x pytest -vv
 
 ## Routes
 

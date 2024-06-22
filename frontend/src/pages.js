@@ -7,7 +7,6 @@ export async function getPages(query) {
     const response = await fetch(`${baseUrl}/pages`)
     const data = await response.json()
     let pages = await data.pages
-    console.log('pages:', pages)
     if (!pages) pages = []
     if (query) {
         pages = matchSorter(pages, query, { keys: ['title'] })
@@ -15,15 +14,17 @@ export async function getPages(query) {
     return pages.sort(sortBy('title'))
 }
 
-export async function getPage(id) {
-    const response = await fetch(`${baseUrl}/pages/${id}`)
+export async function getPage(id, start, end) {
+    let url = `${baseUrl}/pages/${id}`
+    if (start && end) {
+        url += `/${start}/${end}`
+    }
+    const response = await fetch(url)
     const data = await response.json()
-    console.log('page:', data)
     return data ?? null
 }
 
 export async function createPage(updates) {
-    console.log('create page with', updates)
     const response = await fetch(`${baseUrl}/pages`, {
         method: 'POST',
         headers: {
@@ -32,13 +33,15 @@ export async function createPage(updates) {
         body: JSON.stringify(updates),
     });
     const data = await response.json()
-    console.log('created page:', data)
     return data ?? null
 }
 
-export async function patchPage(id, updates) {
-    console.log('patch page', id, 'with', updates)
-    const response = await fetch(`${baseUrl}/pages/${id}`, {
+export async function patchPage(id, start, end, updates) {
+    let url = `${baseUrl}/pages/${id}`
+    if (start && end) {
+        url += `/${start}/${end}`
+    }
+    const response = await fetch(url, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
@@ -46,7 +49,6 @@ export async function patchPage(id, updates) {
         body: JSON.stringify(updates),
     });
     const data = await response.json()
-    console.log('patched page:', data)
     return data ?? null
 }
 

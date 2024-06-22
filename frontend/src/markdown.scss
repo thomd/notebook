@@ -3,18 +3,48 @@
   $link-color: #f87171;
 
   h1 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     line-height: 1.75rem;
-    font-weight: 500;
-    margin-bottom: 1rem;
+    font-weight: 600;
+    padding-bottom: 1rem;
+
+    &:not(:first-child) {
+      padding-top: 2rem;
+    }
   }
 
   h2 {
+    font-size: 1.4rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+  }
+
+  h3 {
     font-size: 1.2rem;
     line-height: 1.5rem;
-    font-weight: 500;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    font-weight: 600;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+  }
+
+  h1, h2, h3 {
+    display: flex;
+    justify-content: space-between;
+
+    a {
+      display: none;
+      margin-right: 5rem;
+      font-size: 1rem;
+      font-weight: 300;
+    }
+
+    &:hover {
+      a {
+        display: inline-block;
+      }
+    }
   }
 
   blockquote {

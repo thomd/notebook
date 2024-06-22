@@ -9,7 +9,7 @@ export default function Category({ category, groupedPages }) {
       <ul>
         {groupedPages[category].map((page) => (
           <li key={page.id}>
-            <Link to={`pages/${page.id}`}>
+            <Link to={`pages/${page.id}/`}>
               {page.title}
               {page.favorite && <span className="ml-2">★</span>}
             </Link>

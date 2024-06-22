@@ -3,8 +3,8 @@ import { patchPage } from '../pages'
 
 export async function action({ request, params }) {
   const updates = Object.fromEntries(await request.formData())
-  await patchPage(params.pageId, updates)
-  return redirect(`/pages/${params.pageId}`)
+  await patchPage(params.pageId, params.start, params.end, updates)
+  return redirect(`/pages/${params.pageId}/`)
 }
 
 export default function PageEdit() {

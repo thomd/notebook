@@ -3,7 +3,7 @@ import { getPage, patchPage } from '../pages'
 import MarkdownViewer from '../components/Markdown'
 
 export async function loader({ params }) {
-  const page = await getPage(params.pageId)
+  const page = await getPage(params.pageId, params.start, params.end)
   if (!page) {
     throw new Response('', { status: 404, statusText: 'Page Not Found' })
   }

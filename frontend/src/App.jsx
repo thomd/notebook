@@ -31,6 +31,12 @@ const router = createBrowserRouter([
             action: pageAction,
           },
           {
+            path: 'pages/:pageId/edit/:start/:end',
+            element: <PageEdit />,
+            loader: pageLoader,
+            action: pageEditAction,
+          },
+          {
             path: 'pages/:pageId/edit',
             element: <PageEdit />,
             loader: pageLoader,

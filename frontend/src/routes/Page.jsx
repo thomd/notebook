@@ -3,7 +3,7 @@ import { getPage, patchPage } from '../pages'
 import MarkdownViewer from '../components/Markdown'
 
 export async function loader({ params }) {
-  const page = await getPage(params.pageId, params.start, params.end)
+  const page = await getPage(params)
   if (!page) {
     throw new Response('', { status: 404, statusText: 'Page Not Found' })
   }
@@ -12,7 +12,7 @@ export async function loader({ params }) {
 
 export async function action({ request, params }) {
   let formData = await request.formData()
-  return patchPage(params.pageId, {
+  return patchPage(params, {
     favorite: formData.get('favorite') === 'true',
   })
 }

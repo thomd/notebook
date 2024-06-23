@@ -11,7 +11,7 @@ export default function MarkdownViewer({ content }) {
   return (
     <div className="markdown mb-8">
       <Markdown
-        remarkPlugins={[remarkGfm, [remarkHeadlineEdit, { maxDepth: 2, linkText: '[ edit ]'}], remarkMath]}
+        remarkPlugins={[remarkGfm, [remarkHeadlineEdit, { position: 'after', linkText: '[ edit ]', className: 'headline'}], remarkMath]}
         rehypePlugins={[rehypeKatex, rehypeSlug, rehypeRaw]}
         remarkRehypeOptions={{allowDangerousHtml: true}}
       >{content}</Markdown>

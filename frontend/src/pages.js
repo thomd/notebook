@@ -14,8 +14,9 @@ export async function getPages(query) {
     return pages.sort(sortBy('title'))
 }
 
-export async function getPage(id, start, end) {
-    let url = `${baseUrl}/pages/${id}`
+export async function getPage(params) {
+    let { pageId, start, end } = params
+    let url = `${baseUrl}/pages/${pageId}`
     if (start && end) {
         url += `/${start}/${end}`
     }
@@ -36,8 +37,9 @@ export async function createPage(updates) {
     return data ?? null
 }
 
-export async function patchPage(id, start, end, updates) {
-    let url = `${baseUrl}/pages/${id}`
+export async function patchPage(params, updates) {
+    let { pageId, start, end } = params
+    let url = `${baseUrl}/pages/${pageId}`
     if (start && end) {
         url += `/${start}/${end}`
     }
@@ -52,8 +54,8 @@ export async function patchPage(id, start, end, updates) {
     return data ?? null
 }
 
-export async function deletePage(id) {
-    const response = await fetch(`${baseUrl}/pages/${id}`, {
+export async function deletePage(pageId) {
+    const response = await fetch(`${baseUrl}/pages/${pageId}`, {
         method: 'DELETE'
     });
     return response.status === '204' ? true : false

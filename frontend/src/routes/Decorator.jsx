@@ -27,7 +27,7 @@ export default function Decorator() {
         <Outlet />
       </div>
       <div className="footer">
-        <a href="https://github.com/thomd/notes">https://github.com/thomd/notes</a>
+        <a className="text-sm text-gray-400" href="https://github.com/thomd/notes">https://github.com/thomd/notes</a>
       </div>
     </>
   )

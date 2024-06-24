@@ -1,3 +1,14 @@
+.markdown {
+  padding-right: 20%;
+  position: relative;
+}
+.markdown aside {
+  position: absolute;
+  left: 82%;
+  padding: 0.5rem 0 0.5rem 1rem;
+  margin: -0.5rem 0;
+  border-left: 5px solid #eee;
+}
 .markdown h1 {
   font-size: 1.6rem;
   line-height: 1.75rem;
@@ -30,6 +41,9 @@
 .markdown .headline:hover a {
   display: inline-block;
 }
+.markdown p {
+  margin-bottom: 1rem;
+}
 .markdown blockquote {
   display: block;
   margin-block-start: 1em;
@@ -43,11 +57,20 @@
 .markdown ul {
   display: block;
   list-style-type: disc;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
+  margin-block-start: 1rem;
+  margin-block-end: 1rem;
+  margin-inline-start: 20px;
   margin-inline-end: 0px;
-  padding-inline-start: 40px;
+  padding-inline-start: 0px;
+}
+.markdown ol {
+  display: block;
+  list-style-type: decimal;
+  margin-block-start: 1rem;
+  margin-block-end: 1rem;
+  margin-inline-start: 24px;
+  margin-inline-end: 0px;
+  padding-inline-start: 0px;
 }
 .markdown del {
   text-decoration: line-through;

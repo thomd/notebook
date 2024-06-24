@@ -1,6 +1,19 @@
+$link-color: #f87171;
+$text-color: #000;
+$aside-color: #eee;
+
 .markdown {
 
-  $link-color: #f87171;
+  padding-right: 20%;
+  position: relative;
+
+  aside {
+    position: absolute;
+    left: 82%;
+    padding: 0.5rem 0 0.5rem 1rem;
+    margin: -0.5rem 0;
+    border-left: 5px solid $aside-color;
+  }
 
   h1 {
     font-size: 1.6rem;
@@ -43,6 +56,10 @@
     }
   }
 
+  p {
+    margin-bottom: 1rem;
+  }
+
   blockquote {
     display: block;
     margin-block-start: 1em;
@@ -58,11 +75,21 @@
   ul {
     display: block;
     list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
+    margin-block-start: 1rem;
+    margin-block-end: 1rem;
+    margin-inline-start: 20px;
     margin-inline-end: 0px;
-    padding-inline-start: 40px;
+    padding-inline-start: 0px;
+  }
+
+  ol {
+    display: block;
+    list-style-type: decimal;
+    margin-block-start: 1rem;
+    margin-block-end: 1rem;
+    margin-inline-start: 24px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
   }
 
   del {

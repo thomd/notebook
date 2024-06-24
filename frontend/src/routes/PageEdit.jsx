@@ -15,6 +15,7 @@ export default function PageEdit() {
 
   return (
     <Form method="post" className="grid grid-cols-2 gap-8 h-full grid-rows-[auto_1fr_auto]">
+      <input type="hidden" name="favorite" value={page.favorite} />
       <div>
         <input required placeholder="Title" type="text" name="title" defaultValue={page.title} className="block w-full border-0 px-2 py-1 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-300 outline-none" />
       </div>

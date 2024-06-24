@@ -46,10 +46,15 @@
 }
 .markdown blockquote {
   display: block;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 40px;
-  margin-inline-end: 40px;
+  margin-block-start: 1rem;
+  margin-block-end: 1rem;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  border-left: 6px solid #fee;
+  padding-left: 1rem;
+}
+.markdown blockquote p {
+  font-style: italic;
 }
 .markdown a {
   color: #f87171;

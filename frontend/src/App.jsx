@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-
 import Decorator, { loader as decoratorLoader } from './routes/Decorator'
 import Error from './Error'
 import Index, { loader as indexLoader } from './routes/Index'
@@ -8,6 +7,7 @@ import Page, { loader as pageLoader, action as pageAction } from './routes/Page'
 import PageEdit, { action as pageEditAction } from './routes/PageEdit'
 import { action as pageDeleteAction } from './routes/PageDelete'
 import { action as newPageAction } from './routes/PageNew'
+import { scrollMenu } from './scroll'
 
 const router = createBrowserRouter([
   {
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <Index />,
-            loader: indexLoader
+            loader: indexLoader,
           },
           {
             path: 'pages/:pageId',
@@ -51,16 +51,15 @@ const router = createBrowserRouter([
             action: pageDeleteAction,
             errorElement: <div>There was an error deleting the page.</div>,
           },
-        ]
-      }
-    ]
+        ],
+      },
+    ],
   },
 ])
 
 function App() {
-  return (
-    <RouterProvider router={router} />
-  )
+  useEffect(scrollMenu)
+  return <RouterProvider router={router} />
 }
 
-export default App;
+export default App

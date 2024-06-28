@@ -16,20 +16,21 @@ export default function Decorator() {
   const navigation = useNavigation()
   return (
     <>
-      <div className="header flex flex-nowrap justify-between items-center">
+      <div className="menu-wrapper header flex flex-nowrap justify-between items-center">
         <Search q={q} />
         <NewPageForm />
       </div>
       <div className="navigation">
         <Navigation pages={pages} />
       </div>
-      <div className={"content" + (navigation.state === "loading" ? " loading" : "")}>
+      <div className={'content' + (navigation.state === 'loading' ? ' loading' : '')}>
         <Outlet />
       </div>
       <div className="footer">
-        <a className="text-sm text-gray-400" href="https://github.com/thomd/notebook-notes">https://github.com/thomd/notes</a>
+        <a className="text-sm text-gray-400" href="https://github.com/thomd/notebook-notes">
+          https://github.com/thomd/notebook-notes
+        </a>
       </div>
     </>
   )
 }
-

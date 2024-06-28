@@ -1,13 +1,21 @@
 {
   "singleAttributePerLine": false,
   "bracketSameLine": true,
-  "xmlSelfClosingSpace": false,
   "printWidth": 160,
   "overrides": [
     {
       "files": "src/*.scss",
       "options": {
         "tabWidth": 4
+      }
+    },
+    {
+      "files": "src/**/*.{js,jsx}",
+      "options": {
+        "tabWidth": 2,
+        "trailingComma": "es5",
+        "semi": false,
+        "singleQuote": true
       }
     }
   ]

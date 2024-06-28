@@ -9,18 +9,18 @@ export async function loader({ request }) {
 
 export default function Index() {
   const { pages } = useLoaderData()
-  const groupedPages = Object.groupBy(pages, page => page.category)
-  const categories = Object.keys(groupedPages)
+  const groupedPages = Object.groupBy(pages, (page) => page.category)
+  const categories = Object.keys(groupedPages).sort()
 
-  const numberCols = 4
+  const numberCols = 3
   let columns = []
-  for (let i = 0; i < numberCols ; i++) {
+  for (let i = 0; i < numberCols; i++) {
     columns.push(categories.filter((_, index) => index % numberCols === i))
   }
 
   return (
     <>
-      <div className="grid gap-24" style={{"gridTemplateColumns": "repeat(" + numberCols + ", minmax(0, 1fr))"}}>
+      <div className="grid gap-24" style={{ gridTemplateColumns: 'repeat(' + numberCols + ', minmax(0, 1fr))' }}>
         {columns.map((column, index) => (
           <div key={'col-' + index} className="grid gap-8 auto-rows-min">
             {column.map((category) => (
@@ -30,6 +30,5 @@ export default function Index() {
         ))}
       </div>
     </>
-  );
+  )
 }
-

@@ -10,6 +10,12 @@
       }
     },
     {
+      "files": "src/*.css",
+      "options": {
+        "tabWidth": 2
+      }
+    },
+    {
       "files": "src/**/*.{js,jsx}",
       "options": {
         "tabWidth": 2,

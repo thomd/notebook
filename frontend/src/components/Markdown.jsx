@@ -6,6 +6,7 @@ import rehypeSlug from 'rehype-slug'
 import remarkMath from 'remark-math'
 import rehypeRaw from 'rehype-raw'
 import remarkHeadlineEdit from 'remark-headline-edit'
+import remarkTextmarker from 'remark-textmarker'
 import { visit } from 'unist-util-visit'
 import 'katex/dist/katex.min.css'
 
@@ -18,6 +19,7 @@ export default function MarkdownViewer({ content }) {
           remarkAside,
           remarkGfm,
           [remarkHeadlineEdit, { position: 'after', linkText: '[ edit ]', className: 'headline'}],
+          [remarkTextmarker, { markupSymbolOpen: '≈≈', markupSymbolClose: '≈≈', htmlTag: 'mark', className: 'yellow-marker' }],
           remarkMath
         ]}
         rehypePlugins={[

@@ -105,7 +105,8 @@
 .markdown table tr {
   border-bottom: 1px solid #ccc;
 }
-.markdown table tr th, .markdown table tr td {
+.markdown table tr th,
+.markdown table tr td {
   text-align: left;
   padding: 0.3rem 0.5rem;
 }
@@ -136,4 +137,9 @@
 .markdown section.footnotes ol p a:after {
   font-size: 0.8rem;
   content: " [back]";
+}
+.markdown mark.yellow-marker {
+  background: rgba(255, 255, 0, 0.3);
+  padding: 0 3px;
+  margin: 0 -3px;
 }

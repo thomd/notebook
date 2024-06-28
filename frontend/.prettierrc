@@ -1,0 +1,14 @@
+{
+  "singleAttributePerLine": false,
+  "bracketSameLine": true,
+  "xmlSelfClosingSpace": false,
+  "printWidth": 160,
+  "overrides": [
+    {
+      "files": "src/*.scss",
+      "options": {
+        "tabWidth": 4
+      }
+    }
+  ]
+}

@@ -3,6 +3,7 @@ import { Search } from '../components/Search'
 import Navigation from '../components/Navigation'
 import { NewPageForm } from '../components/NewPage'
 import { getPages } from '../pages'
+import { useScrollToTop } from '../scroll'
 
 export async function loader({ request }) {
   const url = new URL(request.url)
@@ -14,6 +15,7 @@ export async function loader({ request }) {
 export default function Decorator() {
   const { pages, q } = useLoaderData()
   const navigation = useNavigation()
+  useScrollToTop()
   return (
     <>
       <div className="menu-wrapper header flex flex-nowrap justify-between items-center">

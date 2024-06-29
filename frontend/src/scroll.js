@@ -1,4 +1,5 @@
 export const scrollMenu = () => {
+  console.log('scrollMenu')
   let lastScroll = 0
   window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset

@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^13.5.0",
     "framer-motion": "^11.0.28",
     "match-sorter": "^6.3.4",
+    "prettier": "^3.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hotkeys-hook": "^4.5.0",
@@ -27,13 +28,12 @@
     "sort-by": "^1.2.0"
   },
   "devDependencies": {
-    "prettier": "^3.3.2",
     "sass": "^1.77.1",
     "tailwindcss": "^3.4.3"
   },
   "scripts": {
     "start": "GENERATE_SOURCEMAP=false react-scripts start",
-    "build": "react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

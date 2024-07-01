@@ -8,13 +8,25 @@
     --aside-border-color: #eee;
 
     --code-background-color: #f6f6f6;
-    --code-text-color: #222;
-    --code-font-family: monospace;
+    --code-text-color: #111;
+}
+
+::selection {
+    background-color: rgba(255, 255, 0, 0.3);
+    text-shadow: none;
+}
+
+@font-face {
+    font-family: "Inconsolata";
+    src: url("inconsolata-webfont.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
 }
 
 .markdown {
     padding-right: 20%;
     position: relative;
+    font-family: "Helvetica Neue", Arial, sans-serif;
 
     aside {
         position: absolute;
@@ -22,22 +34,23 @@
         padding: 0.5rem 0 0.5rem 1rem;
         margin: -0.5rem 0;
         border-left: 5px solid var(--aside-border-color);
+        font-size: 0.8rem;
     }
 
     h1 {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
         line-height: 1.75rem;
         font-weight: 600;
     }
 
     h2 {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         line-height: 1.5rem;
         font-weight: 600;
     }
 
     h3 {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
         line-height: 1.5rem;
         font-weight: 600;
     }
@@ -55,7 +68,7 @@
             display: none;
             margin-left: 2rem;
             font-size: 1rem;
-            font-weight: 300;
+            font-weight: 400;
         }
 
         &:hover {
@@ -94,7 +107,7 @@
 
     ul {
         display: block;
-        list-style-type: disc;
+        list-style-type: circle;
         margin-block-start: 1rem;
         margin-block-end: 1rem;
         margin-inline-start: 20px;
@@ -123,17 +136,21 @@
         padding: 0.3rem 0.6rem;
 
         code {
-            font-family: var(--code-font-family);
-            font-size: 0.9rem;
-            color: #333;
+            font-family: "Inconsolata", "Courier New", Courier, monospace;
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--code-text-color);
+            line-height: 1;
         }
     }
 
     code {
         background-color: var(--code-background-color);
-        font-family: var(--code-font-family);
-        font-size: 0.9rem;
+        font-family: "Inconsolata", "Courier New", Courier, monospace;
+        font-size: 1rem;
         color: var(--code-text-color);
+        font-weight: 400;
+        line-height: 1;
         padding: 0.2rem 0.3rem;
     }
 
@@ -215,7 +232,7 @@
         padding: 2px 5px;
         margin: 0 3px 0 0;
         color: var(--text-color);
-        font-family: var(--code-font-family);
+        font-family: "Inconsolata", "Courier New", Courier, monospace;
         font-size: 1rem;
         border-radius: 4px;
         box-shadow: 1px 1px 3px 0 #eee;

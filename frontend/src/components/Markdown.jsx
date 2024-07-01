@@ -27,11 +27,11 @@ export default function MarkdownViewer({ content }) {
           [
             rehypeTextmarker,
             [
-              { textPattern: /≈([^≈]+)≈/g, className: 'yellow-marker' },
-              { textPattern: / (# .+)/g, className: 'grey-marker' },
-              { textPattern: /^(# .+)/g, className: 'grey-marker' },
+              { textPattern: /≈([^≈]+)≈/g, className: 'yellow-marker', tags: ['p', 'code'] },
+              { textPattern: / (# .+)/g, className: 'grey-marker', tags: ['code'] },
+              { textPattern: /^(# .+)/g, className: 'grey-marker', tags: ['code'] },
               { textPattern: /\b(TODO)\b/, className: 'red-marker' },
-              { textPattern: /\[([^\]]+)\]/g, htmlTag: 'kbd' },
+              { textPattern: /\[([^\]]+)\]/g, htmlTag: 'kbd', tags: ['p', 'li'] },
             ],
           ],
           rehypeRaw,

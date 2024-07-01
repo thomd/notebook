@@ -5,8 +5,8 @@ import rehypeKatex from 'rehype-katex'
 import rehypeSlug from 'rehype-slug'
 import remarkMath from 'remark-math'
 import rehypeRaw from 'rehype-raw'
-import remarkHeadlineEdit from 'remark-headline-edit'
-import remarkTextmarker from 'remark-textmarker'
+import remarkHeadingLines from 'remark-heading-lines'
+import rehypeTextmarker from 'rehype-textmarker'
 import { visit } from 'unist-util-visit'
 import 'katex/dist/katex.min.css'
 
@@ -18,17 +18,25 @@ export default function MarkdownViewer({ content }) {
           remarkDirective,
           remarkAside,
           remarkGfm,
-          [remarkHeadlineEdit, { position: 'after', linkText: '[ edit ]', className: 'headline'}],
-          [remarkTextmarker, { markupSymbolOpen: '≈≈', markupSymbolClose: '≈≈', htmlTag: 'mark', className: 'yellow-marker' }],
-          remarkMath
+          [remarkHeadingLines, { position: 'after', linkText: '[ Edit ]', className: 'headline' }],
+          remarkMath,
         ]}
         rehypePlugins={[
           rehypeKatex,
           rehypeSlug,
-          rehypeRaw
+          [
+            rehypeTextmarker,
+            [
+              { textPattern: /≈([^≈]+)≈/g, className: 'yellow-marker' },
+              { textPattern: / (# .+)/g, className: 'grey-marker' },
+              { textPattern: /^(# .+)/g, className: 'grey-marker' },
+              { textPattern: /\b(TODO)\b/, className: 'red-marker' },
+              { textPattern: /\[([^\]]+)\]/g, htmlTag: 'kbd' },
+            ],
+          ],
+          rehypeRaw,
         ]}
-        remarkRehypeOptions={{allowDangerousHtml: true}}
-      >
+        remarkRehypeOptions={{ allowDangerousHtml: true }}>
         {content}
       </Markdown>
     </div>
@@ -40,7 +48,9 @@ function remarkAside() {
   // TRANSLATE
   //
   //     :::aside
+  //
   //     text
+  //
   //     :::
   //
   // TO
@@ -49,7 +59,7 @@ function remarkAside() {
   //     <p>text</p>
   //     </aside>
   //
-  return function(tree) {
+  return function (tree) {
     visit(tree, (node) => {
       if (node.type === 'containerDirective' && node.name === 'aside') {
         const data = node.data || (node.data = {})

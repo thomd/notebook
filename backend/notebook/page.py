@@ -113,7 +113,6 @@ def updatePage(path, page):
 
 def updatePageWithFragment(path, start, end, page):
     updates = page.model_dump(exclude_none=True)
-    log.info(f'updates: {updates}')
 
     # if we change the title we first rename the file
     if updates.get('title') and path.stem != createId(updates.get('title')):

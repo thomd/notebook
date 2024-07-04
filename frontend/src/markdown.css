@@ -127,7 +127,6 @@
   color: var(--code-text-color);
   font-weight: 400;
   line-height: 1;
-  padding: 0.2rem 0.3rem;
 }
 .markdown table {
   margin-top: 1rem;
@@ -175,14 +174,20 @@
   margin: 0 -3px;
 }
 .markdown mark.red-marker {
-  background-color: rgba(255, 0, 0, 0.8);
+  background-color: rgb(255, 0, 0);
   color: #fff;
-  padding: 0 3px;
-  margin: 0 3px 0 0;
+  padding: 2px 5px;
+  margin: 0 5px 0 0;
 }
 .markdown mark.grey-marker {
   background-color: transparent;
   color: #bbb;
+}
+.markdown mark.grey-marker .white-marker {
+  background-color: #fff;
+  color: #999;
+  padding: 3px;
+  margin: -3px;
 }
 .markdown kbd {
   background: var(--code-background-color);

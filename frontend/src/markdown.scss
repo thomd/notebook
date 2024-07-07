@@ -8,6 +8,7 @@
     --aside-border-color: #eee;
 
     --code-background-color: #f6f6f6;
+    --inline-code-background-color: #f3f3f3;
     --code-text-color: #111;
 }
 
@@ -129,21 +130,6 @@
         text-decoration: line-through;
     }
 
-    pre {
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        background-color: var(--code-background-color);
-        padding: 0.3rem 0.6rem;
-
-        code {
-            font-family: "Inconsolata", "Courier New", Courier, monospace;
-            font-size: 1rem;
-            font-weight: 400;
-            color: var(--code-text-color);
-            line-height: 1;
-        }
-    }
-
     code {
         background-color: var(--code-background-color);
         font-family: "Inconsolata", "Courier New", Courier, monospace;
@@ -151,6 +137,21 @@
         color: var(--code-text-color);
         font-weight: 400;
         line-height: 1;
+    }
+
+    pre {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        background-color: var(--code-background-color);
+        padding: 0.3rem 0.6rem;
+    }
+
+    p {
+        & > code {
+            padding: 3px;
+            margin: -3px 0;
+            background-color: var(--inline-code-background-color);
+        }
     }
 
     table {

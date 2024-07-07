@@ -1,28 +1,33 @@
 import Markdown from 'react-markdown'
-import remarkDirective from 'remark-directive'
-import { gfmTableFromMarkdown, gfmTableToMarkdown } from 'mdast-util-gfm-table'
-import { gfmTable } from 'micromark-extension-gfm-table'
 import rehypeKatex from 'rehype-katex'
 import rehypeSlug from 'rehype-slug'
 import remarkMath from 'remark-math'
 import rehypeRaw from 'rehype-raw'
+import { gfmTableFromMarkdown, gfmTableToMarkdown } from 'mdast-util-gfm-table'
+import { gfmTable } from 'micromark-extension-gfm-table'
 import remarkHeadingLines from 'remark-heading-lines'
 import rehypeTextmarker from 'rehype-textmarker'
-import { visit } from 'unist-util-visit'
+import rehypeBlock from 'rehype-block'
 import 'katex/dist/katex.min.css'
+
+function remarkGfmTable(options = {}) {
+  const self = this
+  const data = self.data()
+  const micromarkExtensions = data.micromarkExtensions || (data.micromarkExtensions = [])
+  const fromMarkdownExtensions = data.fromMarkdownExtensions || (data.fromMarkdownExtensions = [])
+  const toMarkdownExtensions = data.toMarkdownExtensions || (data.toMarkdownExtensions = [])
+  micromarkExtensions.push(gfmTable())
+  fromMarkdownExtensions.push([gfmTableFromMarkdown()])
+  toMarkdownExtensions.push({ extensions: [gfmTableToMarkdown(options)] })
+}
 
 export default function MarkdownViewer({ content }) {
   return (
     <div className="markdown mb-8">
       <Markdown
-        remarkPlugins={[
-          remarkDirective,
-          remarkAside,
-          remarkGfmTable,
-          [remarkHeadingLines, { position: 'after', linkText: '[ Edit ]', className: 'headline' }],
-          remarkMath,
-        ]}
+        remarkPlugins={[remarkGfmTable, [remarkHeadingLines, { position: 'after', linkText: '[ Edit ]', className: 'headline' }], remarkMath]}
         rehypePlugins={[
+          rehypeBlock,
           rehypeKatex,
           rehypeSlug,
           [
@@ -43,41 +48,4 @@ export default function MarkdownViewer({ content }) {
       </Markdown>
     </div>
   )
-}
-
-function remarkGfmTable(options = {}) {
-  const self = this
-  const data = self.data()
-  const micromarkExtensions = data.micromarkExtensions || (data.micromarkExtensions = [])
-  const fromMarkdownExtensions = data.fromMarkdownExtensions || (data.fromMarkdownExtensions = [])
-  const toMarkdownExtensions = data.toMarkdownExtensions || (data.toMarkdownExtensions = [])
-  micromarkExtensions.push(gfmTable())
-  fromMarkdownExtensions.push([gfmTableFromMarkdown()])
-  toMarkdownExtensions.push({ extensions: [gfmTableToMarkdown(options)] })
-}
-
-function remarkAside() {
-  //
-  // TRANSLATE
-  //
-  //     :::aside
-  //
-  //     text
-  //
-  //     :::
-  //
-  // TO
-  //
-  //     <aside>
-  //     <p>text</p>
-  //     </aside>
-  //
-  return function (tree) {
-    visit(tree, (node) => {
-      if (node.type === 'containerDirective' && node.name === 'aside') {
-        const data = node.data || (node.data = {})
-        data.hName = 'aside'
-      }
-    })
-  }
 }

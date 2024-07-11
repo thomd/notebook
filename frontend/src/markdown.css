@@ -33,6 +33,13 @@
   border-left: 5px solid var(--aside-border-color);
   font-size: 0.8rem;
 }
+.markdown aside ul {
+  list-style-type: none;
+  margin-inline-start: 0;
+}
+.markdown aside ul li {
+  margin: 0.5rem 0;
+}
 .markdown h1 {
   font-size: 1.8rem;
   line-height: 1.75rem;

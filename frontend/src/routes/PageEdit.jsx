@@ -7,7 +7,7 @@ import * as parserMarkdown from 'prettier/parser-markdown'
 export async function action({ request, params }) {
   const updates = Object.fromEntries(await request.formData())
   await patchPage(params, updates)
-  return redirect(`/pages/${params.pageId}/`)
+  return redirect(`/pages/${params.pageId}/${document.location.hash}`)
 }
 
 export default function PageEdit() {

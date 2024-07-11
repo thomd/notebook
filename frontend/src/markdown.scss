@@ -36,6 +36,15 @@
         margin: -0.5rem 0;
         border-left: 5px solid var(--aside-border-color);
         font-size: 0.8rem;
+
+        ul {
+            list-style-type: none;
+            margin-inline-start: 0;
+
+            li {
+                margin: 0.5rem 0;
+            }
+        }
     }
 
     h1 {

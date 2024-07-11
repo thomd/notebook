@@ -1,14 +1,3 @@
-import { useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
-
-export function useScrollToTop() {
-  const { pathname } = useLocation()
-  useEffect(() => {
-    window.scrollTo(0, 0)
-    document.body.classList.remove('scroll-up', 'scroll-down')
-  }, [pathname])
-}
-
 export const scrollMenu = () => {
   let lastScroll = 0
   window.addEventListener('scroll', () => {

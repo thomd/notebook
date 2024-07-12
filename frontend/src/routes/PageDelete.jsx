@@ -5,4 +5,3 @@ export async function action({ params }) {
   await deletePage(params.pageId)
   return redirect('/')
 }
-

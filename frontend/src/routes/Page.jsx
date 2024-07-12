@@ -1,4 +1,5 @@
-import { Form, useLoaderData } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useLoaderData, useOutletContext } from 'react-router-dom'
 import { getPage, patchPage } from '../pages'
 import MarkdownViewer from '../components/Markdown'
 import Favorite from '../components/Favorite'
@@ -20,13 +21,12 @@ export async function action({ request, params }) {
 }
 
 export default function Page() {
+  const [pageTitle, setPageTitle] = useOutletContext() // eslint-disable-line no-unused-vars
   const { page } = useLoaderData()
 
-  const handleDelete = (ev) => {
-    if (!window.confirm('Please confirm you want to delete this page.')) {
-      ev.preventDefault()
-    }
-  }
+  useEffect(() => {
+    setPageTitle(page.title)
+  })
 
   return (
     <div className="page">
@@ -35,14 +35,6 @@ export default function Page() {
         <Favorite page={page} />
       </div>
       <MarkdownViewer content={page.content} />
-      <div>
-        <Form action="edit" className="inline">
-          <button type="submit" className="mt-4 py-1 px-3 bg-gray-400 hover:bg-gray-500 text-white text-base rounded outline-none">Edit</button>
-        </Form>
-        <Form method="post" action="delete" className="inline" onSubmit={handleDelete}>
-          <button type="submit" className="mt-4 ml-4 py-1 px-3 bg-red-400 hover:bg-red-500 text-white text-base rounded outline-none">Delete</button>
-        </Form>
-      </div>
     </div>
   )
 }

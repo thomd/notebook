@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+import { ChakraProvider } from '@chakra-ui/react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Decorator, { loader as decoratorLoader } from './routes/Decorator'
 import Error from './Error'
@@ -47,7 +48,7 @@ const router = createBrowserRouter([
             action: newPageAction,
           },
           {
-            path: 'pages/:pageId/delete',
+            path: 'pages/:pageId/delete', // TODO: is also 'delete' possible?
             action: pageDeleteAction,
             errorElement: <div>There was an error deleting the page.</div>,
           },
@@ -59,7 +60,12 @@ const router = createBrowserRouter([
 
 function App() {
   useScrollHeader()
-  return <RouterProvider router={router} />
+
+  return (
+    <ChakraProvider>
+      <RouterProvider router={router} />
+    </ChakraProvider>
+  )
 }
 
 export default App

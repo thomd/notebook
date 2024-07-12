@@ -3,6 +3,7 @@ import { Outlet, useLoaderData } from 'react-router-dom'
 import { Search } from '../components/Search'
 import Navigation from '../components/Navigation'
 import { NewPageForm } from '../components/NewPage'
+import { Footer } from '../components/Footer'
 import { EditButton, DeleteButton } from '../components/Actions'
 import { getPages } from '../pages'
 import { useScrollToTop, useHashEditPageLink, useScrollIntoView } from '../hooks/scroll'
@@ -16,7 +17,7 @@ export async function loader({ request }) {
 
 export default function Decorator() {
   const { pages, q } = useLoaderData()
-  const [pageTitle, setPageTitle] = useState()
+  const [currentPage, setCurrentPage] = useState()
 
   useScrollToTop()
   useHashEditPageLink()
@@ -26,20 +27,20 @@ export default function Decorator() {
     <>
       <div className="menu-wrapper header flex flex-nowrap justify-between items-center">
         <Search q={q} />
-        <EditButton />
-        <DeleteButton pageTitle={pageTitle} />
-        <NewPageForm />
+        <div className="flex flex-nowrap">
+          <EditButton />
+          <DeleteButton pageTitle={currentPage?.title} />
+          <NewPageForm />
+        </div>
       </div>
       <div className="navigation">
         <Navigation pages={pages} />
       </div>
       <div className="content">
-        <Outlet context={[pageTitle, setPageTitle]} />
+        <Outlet context={[currentPage, setCurrentPage]} />
       </div>
       <div className="footer">
-        <a className="text-sm text-gray-400" href="https://github.com/thomd/notebook-notes">
-          https://github.com/thomd/notebook-notes
-        </a>
+        <Footer filename={currentPage?.filename} />
       </div>
     </>
   )

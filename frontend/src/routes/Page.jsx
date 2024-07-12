@@ -21,11 +21,11 @@ export async function action({ request, params }) {
 }
 
 export default function Page() {
-  const [pageTitle, setPageTitle] = useOutletContext() // eslint-disable-line no-unused-vars
+  const [currentPage, setCurrentPage] = useOutletContext() // eslint-disable-line no-unused-vars
   const { page } = useLoaderData()
 
   useEffect(() => {
-    setPageTitle(page.title)
+    setCurrentPage(page)
   })
 
   return (

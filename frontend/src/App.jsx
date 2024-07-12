@@ -48,7 +48,7 @@ const router = createBrowserRouter([
             action: newPageAction,
           },
           {
-            path: 'pages/:pageId/delete', // TODO: is also 'delete' possible?
+            path: 'pages/:pageId/delete',
             action: pageDeleteAction,
             errorElement: <div>There was an error deleting the page.</div>,
           },

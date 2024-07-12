@@ -1,9 +1,9 @@
-import { Outlet, useLoaderData, useNavigation } from 'react-router-dom'
+import { Outlet, Link, useLoaderData } from 'react-router-dom'
 import { Search } from '../components/Search'
 import Navigation from '../components/Navigation'
 import { NewPageForm } from '../components/NewPage'
 import { getPages } from '../pages'
-import { useScrollToTop, useHashPageEditLink, useScrollIntoView } from '../hooks/scroll'
+import { useScrollToTop, useHashEditPageLink, useScrollIntoView } from '../hooks/scroll'
 
 export async function loader({ request }) {
   const url = new URL(request.url)
@@ -14,21 +14,21 @@ export async function loader({ request }) {
 
 export default function Decorator() {
   const { pages, q } = useLoaderData()
-  const navigation = useNavigation()
   useScrollToTop()
-  useHashPageEditLink()
+  useHashEditPageLink()
   useScrollIntoView()
 
   return (
     <>
       <div className="menu-wrapper header flex flex-nowrap justify-between items-center">
         <Search q={q} />
+        <Link to={'edit'}>Edit</Link>
         <NewPageForm />
       </div>
       <div className="navigation">
         <Navigation pages={pages} />
       </div>
-      <div className={'content' + (navigation.state === 'loading' ? ' loading' : '')}>
+      <div className="content">
         <Outlet />
       </div>
       <div className="footer">

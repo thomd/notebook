@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Outlet, useLoaderData } from 'react-router-dom'
 import { Search } from '../components/Search'
-import Navigation from '../components/Navigation'
+import Favorites from '../components/Favorites'
 import { NewPageForm } from '../components/NewPage'
 import { Footer } from '../components/Footer'
 import { EditButton, DeleteButton } from '../components/Actions'
@@ -34,7 +34,7 @@ export default function Decorator() {
         </div>
       </div>
       <div className="navigation">
-        <Navigation pages={pages} />
+        <Favorites pages={pages} />
       </div>
       <div className="content">
         <Outlet context={[currentPage, setCurrentPage]} />

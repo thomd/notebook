@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useLoaderData, useOutletContext } from 'react-router-dom'
 import { getPage, patchPage } from '../pages'
 import MarkdownViewer from '../components/Markdown'
-import Favorite from '../components/Favorite'
+import { Favorite } from '../components/Actions'
 import Title from '../components/Title'
 
 export async function loader({ params }) {

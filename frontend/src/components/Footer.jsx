@@ -3,7 +3,7 @@ export function Footer({ filename }) {
   const url = basePath + '/' + filename
 
   return (
-    <a className="text-sm text-gray-400" href={url} target="_blank">
+    <a className="text-sm text-gray-400" href={url} target="_blank" rel="noreferrer">
       {url}
     </a>
   )

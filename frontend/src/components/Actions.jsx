@@ -1,4 +1,4 @@
-import { Form, useLocation } from 'react-router-dom'
+import { Form, useLocation, useFetcher } from 'react-router-dom'
 import { useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from '@chakra-ui/react'
 import { isReadPage } from '../utils'
 
@@ -23,7 +23,7 @@ export function DeleteButton({ pageTitle }) {
   if (isReadPage(pathname)) {
     return (
       <>
-        <button onClick={onOpen} className="mr-8 py-1 px-3 bg-red-400 hover:bg-red-500 text-white text-base rounded outline-none">
+        <button onClick={onOpen} className="mr-8 py-1 px-3 bg-gray-400 hover:bg-gray-500 text-white text-base rounded outline-none">
           Delete
         </button>
         <Modal isOpen={isOpen} onClose={onClose}>
@@ -46,4 +46,19 @@ export function DeleteButton({ pageTitle }) {
       </>
     )
   }
+}
+
+export function Favorite({ page }) {
+  const fetcher = useFetcher()
+  let favorite = page.favorite
+  if (fetcher.formData) {
+    favorite = fetcher.formData.get('favorite') === 'true'
+  }
+  return (
+    <fetcher.Form method="post" className="inline ml-4">
+      <button name="favorite" value={favorite ? 'false' : 'true'} className="text-gray-400">
+        {favorite ? '★' : '☆'}
+      </button>
+    </fetcher.Form>
+  )
 }

@@ -44,10 +44,10 @@ export function useScrollHeader() {
       } else if (currentScroll < lastScroll && document.body.classList.contains('scroll-down')) {
         document.body.classList.remove('scroll-down')
         document.body.classList.add('scroll-up')
-        setTimeout(() => {
-          document.body.classList.remove('scroll-up')
-          document.body.classList.add('scroll-down')
-        }, 2000)
+        //setTimeout(() => {
+        //document.body.classList.remove('scroll-up')
+        //document.body.classList.add('scroll-down')
+        //}, 2000)
       }
       lastScroll = currentScroll
     })

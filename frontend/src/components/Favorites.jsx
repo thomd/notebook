@@ -1,8 +1,28 @@
 import { Link } from 'react-router-dom'
+import { Menu, MenuButton, MenuList, MenuItem, MenuDivider } from '@chakra-ui/react'
 
-export default function Favorites({ pages }) {
+export function FavoritesMenu({ pages }) {
   const favoritePages = pages.filter((page) => page.favorite === true)
+  return (
+    <Menu>
+      <MenuButton>Favorites</MenuButton>
+      <MenuList>
+        <MenuItem as="a" href="/">
+          Home
+        </MenuItem>
+        <MenuDivider />
+        {favoritePages.map((page) => (
+          <MenuItem key={page.id} as="a" href={`/pages/${page.id}/`}>
+            {page.title}
+          </MenuItem>
+        ))}
+      </MenuList>
+    </Menu>
+  )
+}
 
+export function Favorites({ pages }) {
+  const favoritePages = pages.filter((page) => page.favorite === true)
   return (
     <nav>
       <ul>

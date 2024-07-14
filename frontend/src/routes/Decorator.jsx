@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Outlet, useLoaderData } from 'react-router-dom'
 import { Search } from '../components/Search'
-import Favorites from '../components/Favorites'
+import { FavoritesMenu } from '../components/Favorites'
+import Navigation from '../components/Navigation'
 import { NewPageForm } from '../components/NewPage'
 import { Footer } from '../components/Footer'
 import { EditButton, DeleteButton } from '../components/Actions'
@@ -27,6 +28,7 @@ export default function Decorator() {
     <>
       <div className="menu-wrapper header flex flex-nowrap justify-between items-center">
         <Search q={q} />
+        <FavoritesMenu pages={pages} />
         <div className="flex flex-nowrap">
           <EditButton />
           <DeleteButton pageTitle={currentPage?.title} />
@@ -34,7 +36,7 @@ export default function Decorator() {
         </div>
       </div>
       <div className="navigation">
-        <Favorites pages={pages} />
+        <Navigation content={currentPage?.content} />
       </div>
       <div className="content">
         <Outlet context={[currentPage, setCurrentPage]} />

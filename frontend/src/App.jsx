@@ -8,7 +8,7 @@ import Page, { loader as pageLoader, action as pageAction } from './routes/Page'
 import PageEdit, { action as pageEditAction } from './routes/PageEdit'
 import { action as pageDeleteAction } from './routes/PageDelete'
 import { action as newPageAction } from './routes/PageNew'
-import { useScrollHeader } from './hooks/scroll'
+//import { useScrollHeader } from './hooks/scroll'
 
 const router = createBrowserRouter([
   {
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
 ])
 
 function App() {
-  useScrollHeader()
+  //useScrollHeader()
 
   return (
     <ChakraProvider>

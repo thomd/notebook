@@ -12,7 +12,7 @@ export default function Index() {
   const groupedPages = Object.groupBy(pages, (page) => page.category)
   const categories = Object.keys(groupedPages).sort()
 
-  const numberCols = 3
+  const numberCols = 4
   let columns = []
   for (let i = 0; i < numberCols; i++) {
     columns.push(categories.filter((_, index) => index % numberCols === i))

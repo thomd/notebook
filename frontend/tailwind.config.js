@@ -1,11 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: [
-        "./src/**/*.{js,jsx}",
-    ],
+    content: ["./src/**/*.{js,jsx}"],
     theme: {
-        extend: {},
+        extend: {
+            gridTemplateColumns: {
+                "1fr-5fr": "1fr 5fr",
+            },
+        },
     },
     plugins: [],
-}
-
+};

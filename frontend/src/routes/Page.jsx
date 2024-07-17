@@ -1,9 +1,11 @@
 import { useEffect } from 'react'
 import { useLoaderData, useOutletContext } from 'react-router-dom'
 import { getPage, patchPage } from '../pages'
-import MarkdownViewer from '../components/Markdown'
 import { Favorite } from '../components/Actions'
 import Title from '../components/Title'
+import Navigation from '../components/Navigation'
+import MarkdownViewer from '../components/Markdown'
+import StickyBox from 'react-sticky-box'
 
 export async function loader({ params }) {
   const page = await getPage(params)
@@ -29,12 +31,17 @@ export default function Page() {
   })
 
   return (
-    <div className="page">
-      <div className="mb-4 flex">
-        <Title page={page} />
-        <Favorite page={page} />
+    <div className="grid grid-cols-1fr-5fr">
+      <StickyBox className="self-start">
+        <Navigation content={page.content} />
+      </StickyBox>
+      <div className="page">
+        <div className="mb-4 flex">
+          <Title page={page} />
+          <Favorite page={page} />
+        </div>
+        <MarkdownViewer content={page.content} />
       </div>
-      <MarkdownViewer content={page.content} />
     </div>
   )
 }

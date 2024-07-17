@@ -8,6 +8,7 @@ import { Footer } from '../components/Footer'
 import { EditButton, DeleteButton } from '../components/Actions'
 import { getPages } from '../pages'
 import { useScrollToTop, useHashEditPageLink, useScrollIntoView } from '../hooks/scroll'
+import StickyBox from 'react-sticky-box'
 
 export async function loader({ request }) {
   const url = new URL(request.url)
@@ -35,9 +36,11 @@ export default function Decorator() {
           <NewPageForm />
         </div>
       </div>
-      <div className="navigation">
-        <Navigation content={currentPage?.content} />
-      </div>
+      <StickyBox>
+        <div className="navigation">
+          <Navigation content={currentPage?.content} />
+        </div>
+      </StickyBox>
       <div className="content">
         <Outlet context={[currentPage, setCurrentPage]} />
       </div>

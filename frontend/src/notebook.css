@@ -818,6 +818,7 @@ video {
   grid-template-columns: 1fr 5fr;
   grid-template-rows: 5rem auto 2rem;
   min-height: 100vh;
+  align-items: flex-start;
 }
 
 .header {

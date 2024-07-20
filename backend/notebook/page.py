@@ -20,11 +20,11 @@ def getPages(path):
     pages = []
     for page in path.iterdir():
         if page.is_file():
-            pages.append(getPage(page))
+            pages.append(getPage(page, False))
     return model.Pages(pages=pages, total=len(pages))
 
 
-def getPage(path):
+def getPage(path, addContent=True):
     data = frontmatter.load(str(path))
     response = model.Response(
         id = path.stem,
@@ -32,7 +32,7 @@ def getPage(path):
         title = data.get('title', path.stem),
         category = data.get('category'),
         favorite = data.get('favorite', False),
-        content = data.content
+        content = data.content if addContent else None
     )
     return response
 

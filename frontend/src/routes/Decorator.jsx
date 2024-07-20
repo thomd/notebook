@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Outlet, useLoaderData } from 'react-router-dom'
-import { Search } from '../components/Search'
+import { SearchModal } from '../components/Search'
 import { FavoritesMenu } from '../components/Favorites'
 import { NewPageForm } from '../components/NewPage'
 import { Footer } from '../components/Footer'
@@ -23,19 +23,11 @@ export default function Decorator() {
 
   return (
     <>
-      <div className="header flex flex-nowrap justify-between items-center">
-        <Search q={q} />
-        <FavoritesMenu pages={pages} />
-        <div className="flex flex-nowrap">
-          <EditButton />
-          <DeleteButton pageTitle={currentPage?.title} />
-          <NewPageForm />
-        </div>
-      </div>
-      <div className="content">
+      <SearchModal />
+      <div className="contentarea p-4">
         <Outlet context={[currentPage, setCurrentPage]} />
       </div>
-      <div className="footer">
+      <div className="footer p-4">
         <Footer filename={currentPage?.filename} />
       </div>
     </>

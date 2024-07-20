@@ -16,7 +16,7 @@
       }
     },
     {
-      "files": "src/**/*.{js,jsx}",
+      "files": ["package.json", "src/**/*.{js,jsx}"],
       "options": {
         "tabWidth": 2,
         "trailingComma": "es5",

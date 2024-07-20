@@ -7,36 +7,26 @@
 .root {
   display: grid;
   grid-template-areas:
-    "header"
     "contentarea"
     "footer";
-  grid-template-rows: 5rem auto 2rem;
+  grid-template-rows: auto 3rem;
   min-height: 100vh;
   background-color: #fff;
 }
 
 .header {
   grid-area: header;
-  padding: 1rem;
 }
 
-.content {
+.contentarea {
   grid-area: contentarea;
-  padding: 1rem;
 }
 
 .footer {
   grid-area: footer;
-  padding: 0 1rem;
 }
 
 /* NAVIGATION */
-
-/*nav {*/
-/*position: sticky;*/
-/*top: 6rem;*/
-/*align-self: start;*/
-/*}*/
 
 nav ul {
   list-style: none;

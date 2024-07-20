@@ -31,7 +31,7 @@ export default function PageEdit() {
   }
 
   return (
-    <Form method="post" className="grid grid-cols-2 gap-8 h-full grid-rows-[auto_1fr_auto]">
+    <Form method="post" className="mt-4 grid grid-cols-2 gap-8 h-full grid-rows-[auto_1fr_auto]">
       <input type="hidden" name="favorite" value={page.favorite} />
       <div>
         <input

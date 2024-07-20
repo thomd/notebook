@@ -25,7 +25,7 @@ export default function MarkdownViewer({ content }) {
   return (
     <div className="markdown mb-8">
       <Markdown
-        remarkPlugins={[remarkGfmTable, [remarkHeadingLines, { position: 'after', linkText: '[ Edit ]', className: 'headline' }], remarkMath]}
+        remarkPlugins={[remarkGfmTable, [remarkHeadingLines, { position: 'after', linkText: 'Edit', className: 'headline' }], remarkMath]}
         rehypePlugins={[
           rehypeBlock,
           rehypeKatex,

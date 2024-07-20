@@ -1,33 +1,31 @@
 import { Link } from 'react-router-dom'
-import { Menu, MenuButton, MenuList, MenuItem, MenuDivider } from '@chakra-ui/react'
+import { Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react'
 
-export function FavoritesMenu({ pages }) {
+export function FavoritesMenu({ pages, className }) {
   const favoritePages = pages.filter((page) => page.favorite === true)
   return (
-    <Menu>
-      <MenuButton>Favorites</MenuButton>
-      <MenuList>
-        <MenuItem as="a" href="/">
-          Home
-        </MenuItem>
-        <MenuDivider />
-        {favoritePages.map((page) => (
-          <MenuItem key={page.id} as="a" href={`/pages/${page.id}/`}>
-            {page.title}
-          </MenuItem>
-        ))}
-      </MenuList>
-    </Menu>
+    <div className={`${className} inline`}>
+      <Menu offset={[-150, 20]} autoSelect={false}>
+        <MenuButton className="text-gray-400 hover:text-gray-500">Favorites</MenuButton>
+        <MenuList>
+          {favoritePages.map((page) => (
+            <MenuItem className="hover:bg-white hover:text-gray-500" key={page.id} as="a" href={`/pages/${page.id}/`}>
+              {page.title}
+            </MenuItem>
+          ))}
+        </MenuList>
+      </Menu>
+    </div>
   )
 }
 
-export function Favorites({ pages }) {
+export function FavoritesList({ pages }) {
   const favoritePages = pages.filter((page) => page.favorite === true)
   return (
     <nav>
       <ul>
         <li className="mb-4">
-          <Link to={''}>Home</Link>
+          <Link to={''}>Index</Link>
         </li>
         {favoritePages.map((page) => (
           <li key={page.id}>

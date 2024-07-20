@@ -1,9 +1,11 @@
 :root {
+    /* https://v2.tailwindcss.com/docs/customizing-colors */
+
     --link-color: #f87171;
     --text-color: #111;
 
-    --headline-edit-link-color: #bbb;
-    --headline-edit-link-hover-color: #f87171;
+    --headline-edit-link-color: #D1D5DB;
+    --headline-edit-link-hover-color: #6b7280;
 
     --aside-border-color: #eee;
 
@@ -79,6 +81,10 @@
             margin-left: 2rem;
             font-size: 1rem;
             font-weight: 400;
+            outline-style: solid;
+            padding: 0 0.75rem;
+            border-radius: 0.25rem;
+            height: fit-content;
         }
 
         &:hover {

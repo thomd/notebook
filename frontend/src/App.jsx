@@ -5,6 +5,7 @@ import Decorator, { loader as decoratorLoader } from './routes/Decorator'
 import Error from './Error'
 import Index, { loader as indexLoader } from './routes/Index'
 import Page, { loader as pageLoader, action as pageAction } from './routes/Page'
+import Category, { loader as categoryLoader, action as categoryAction } from './routes/Category'
 import PageEdit, { action as pageEditAction } from './routes/PageEdit'
 import { action as pageDeleteAction } from './routes/PageDelete'
 import { action as newPageAction } from './routes/PageNew'
@@ -24,6 +25,12 @@ const router = createBrowserRouter([
             index: true,
             element: <Index />,
             loader: indexLoader,
+          },
+          {
+            path: 'categories/:categoryId',
+            element: <Category />,
+            loader: categoryLoader,
+            action: categoryAction,
           },
           {
             path: 'pages/:pageId',

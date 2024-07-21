@@ -20,6 +20,7 @@
     "react-markdown": "^9.0.1",
     "react-router-dom": "^6.23.0",
     "react-scripts": "5.0.1",
+    "react-select": "^5.8.0",
     "react-sticky-box": "^2.0.5",
     "rehype-block": "github:thomd/rehype-block",
     "rehype-katex": "^7.0.0",
@@ -45,10 +46,21 @@
     "css:sass": "npx sass src/markdown.scss src/markdown.css --no-source-map --watch"
   },
   "eslintConfig": {
-    "extends": ["react-app", "react-app/jest"]
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
-    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

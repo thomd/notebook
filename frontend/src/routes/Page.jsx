@@ -36,11 +36,9 @@ export default function Page() {
   return (
     <>
       <div className="mt-4 grid grid-cols-1fr-5fr">
-        <div className="mt-[68px]">
-          <StickyBox className="self-start" offsetTop={100} offsetBottom={30}>
-            <Navigation content={page.content} />
-          </StickyBox>
-        </div>
+        <StickyBox className="self-start" offsetTop={30} offsetBottom={30}>
+          <Navigation content={page.content} />
+        </StickyBox>
         <div className="page">
           <div className="header flex flex-nowrap justify-between items-center mb-10">
             <div className="flex flex-nowrap">
@@ -50,7 +48,7 @@ export default function Page() {
             <div className="flex flex-nowrap">
               <FavoritesMenu pages={pages} className="mr-8" />
               <EditButton className="mr-5" />
-              <DeleteButton pageTitle={currentPage?.title} />
+              <DeleteButton className="mr-4" pageTitle={currentPage?.title} />
             </div>
           </div>
           <MarkdownViewer content={page.content} />

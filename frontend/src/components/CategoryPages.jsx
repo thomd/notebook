@@ -1,13 +1,11 @@
 import { Link } from 'react-router-dom'
 
-export default function Category({ category, groupedPages }) {
+export default function CategoryPages({ category, categoryPages }) {
   return (
     <div>
-      <h2 className="font-bold mb-1 pb-1 border-b border-gray-300">
-        {category !== 'undefined' ? category : "Uncategorized" }
-      </h2>
+      <h2 className="font-bold mb-1 pb-1 border-b border-gray-300">{category !== 'undefined' ? category : 'Uncategorized'}</h2>
       <ul>
-        {groupedPages[category].map((page) => (
+        {categoryPages[category].map((page) => (
           <li key={page.id}>
             <Link to={`pages/${page.id}/`}>
               {page.title}
@@ -19,4 +17,3 @@ export default function Category({ category, groupedPages }) {
     </div>
   )
 }
-

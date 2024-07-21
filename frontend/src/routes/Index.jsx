@@ -1,10 +1,6 @@
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData, Link } from 'react-router-dom'
 import { getPages } from '../pages'
-import Category from '../components/Category'
-import { Search } from '../components/Search'
-import { FavoritesMenu } from '../components/Favorites'
 import { NewPageForm } from '../components/NewPage'
-import { EditButton, DeleteButton } from '../components/Actions'
 
 export async function loader({ request }) {
   const pages = await getPages()
@@ -13,8 +9,8 @@ export async function loader({ request }) {
 
 export default function Index() {
   const { pages } = useLoaderData()
-  const groupedPages = Object.groupBy(pages, (page) => page.category)
-  const categories = Object.keys(groupedPages).sort()
+  const categoryPages = Object.groupBy(pages, (page) => page.category)
+  const categories = Object.keys(categoryPages).sort()
 
   const numberCols = 4
   let columns = []
@@ -28,10 +24,24 @@ export default function Index() {
         <NewPageForm />
       </div>
       <div className="grid gap-24" style={{ gridTemplateColumns: 'repeat(' + numberCols + ', minmax(0, 1fr))' }}>
-        {columns.map((column, index) => (
-          <div key={'col-' + index} className="grid gap-8 auto-rows-min">
-            {column.map((category) => (
-              <Category key={category} category={category} groupedPages={groupedPages} />
+        {columns.map((column, i) => (
+          <div key={`col-${i}`} className="grid gap-8 auto-rows-min">
+            {column.map((category, j) => (
+              <div key={`col-${i}-${j}`}>
+                <Link className="font-bold mb-1 pb-1 border-b hover:text-gray-600" to={`/category/${categoryPages[category][0].cid}`}>
+                  {category !== 'undefined' ? category : 'Uncategorized'}
+                </Link>
+                <ul>
+                  {categoryPages[category].map((page) => (
+                    <li key={page.id}>
+                      <Link to={`/pages/${page.id}/`}>
+                        {page.title}
+                        {page.favorite && <span className="ml-2">★</span>}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
           </div>
         ))}

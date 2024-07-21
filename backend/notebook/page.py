@@ -12,9 +12,8 @@ def pagesDir():
 def createFilename(title):
     return slugify(title) + '.md'
 
-def createId(title):
-    return slugify(title)
-
+def createId(entity):
+    return slugify(entity) if entity != None else None
 
 def getPages(path):
     pages = []
@@ -31,6 +30,7 @@ def getPage(path, addContent=True):
         filename = path.name,
         title = data.get('title', path.stem),
         category = data.get('category'),
+        cid = createId(data.get('category')),
         favorite = data.get('favorite', False),
         content = data.content if addContent else None
     )
@@ -47,6 +47,7 @@ def getPageFragment(path, start, end):
         filename = path.name,
         title = data.get('title', path.stem),
         category = data.get('category'),
+        cid = createId(data.get('category')),
         favorite = data.get('favorite', False),
         content = fragment
     )

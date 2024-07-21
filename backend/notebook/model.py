@@ -9,6 +9,7 @@ class Page(BaseModel):
 
 class Response(Page):
     id: str = Field(min_length=2, max_length=100, pattern=r'^[a-z0-9-]+$')
+    cid: Optional[str] = None
     filename: str = Field(pattern=r'^[a-z0-9-]+\.md$')
 
 class PageUpdate(BaseModel):

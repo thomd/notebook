@@ -21,7 +21,7 @@ def test_get_pages(setup_pages_dir):
     response = client.post('/pages', content=json.dumps({'title': 'Test', 'content': '# Test', 'category': 'Test', 'favorite': True}))
     response = client.get('/pages')
     assert response.status_code == 200
-    assert response.json() == {'pages': [{'category': 'Test', 'favorite': True, 'filename': 'test.md', 'id': 'test', 'title': 'Test'}], 'total': 1}
+    assert response.json() == {'pages': [{'category': 'Test', 'cid': 'test', 'favorite': True, 'filename': 'test.md', 'id': 'test', 'title': 'Test'}], 'total': 1}
     client.delete('/pages/test')
 
 def test_get_multiple_pages(setup_pages_dir):
@@ -70,7 +70,7 @@ def test_create_new_page_with_content(setup_pages_dir):
 def test_create_new_page_with_category(setup_pages_dir):
     response = client.post('/pages', content=json.dumps({'title': 'Test', 'content': '# Test', 'category': 'Test'}))
     assert response.status_code == 201
-    assert response.json() == {'category': 'Test', 'content': '# Test', 'favorite': False, 'filename': 'test.md', 'id': 'test', 'title': 'Test'}
+    assert response.json() == {'category': 'Test', 'cid': 'test', 'content': '# Test', 'favorite': False, 'filename': 'test.md', 'id': 'test', 'title': 'Test'}
     with open(f'{os.environ.get("PAGES_DIR")}/test.md') as f:
         metadata, content = frontmatter.parse(f.read())
     assert content == '# Test'
@@ -79,13 +79,13 @@ def test_create_new_page_with_category(setup_pages_dir):
     assert 'favorite' not in metadata
     response = client.get('/pages/test')
     assert response.status_code == 200
-    assert response.json() == {'category': 'Test', 'content': '# Test', 'favorite': False, 'filename': 'test.md', 'id': 'test', 'title': 'Test'}
+    assert response.json() == {'category': 'Test', 'cid': 'test', 'content': '# Test', 'favorite': False, 'filename': 'test.md', 'id': 'test', 'title': 'Test'}
     client.delete('/pages/test')
 
 def test_create_new_page_with_favorite(setup_pages_dir):
     response = client.post('/pages', content=json.dumps({'title': 'Test', 'content': '# Test', 'category': 'Test', 'favorite': True}))
     assert response.status_code == 201
-    assert response.json() == {'category': 'Test', 'content': '# Test', 'favorite': True, 'filename': 'test.md', 'id': 'test', 'title': 'Test'}
+    assert response.json() == {'category': 'Test', 'cid': 'test', 'content': '# Test', 'favorite': True, 'filename': 'test.md', 'id': 'test', 'title': 'Test'}
     with open(f'{os.environ.get("PAGES_DIR")}/test.md') as f:
         metadata, content = frontmatter.parse(f.read())
     assert content == '# Test'
@@ -94,7 +94,7 @@ def test_create_new_page_with_favorite(setup_pages_dir):
     assert metadata['favorite'] == True
     response = client.get('/pages/test')
     assert response.status_code == 200
-    assert response.json() == {'category': 'Test', 'content': '# Test', 'favorite': True, 'filename': 'test.md', 'id': 'test', 'title': 'Test'}
+    assert response.json() == {'category': 'Test', 'cid': 'test', 'content': '# Test', 'favorite': True, 'filename': 'test.md', 'id': 'test', 'title': 'Test'}
     client.delete('/pages/test')
 
 def test_delete_existing_page(setup_pages_dir):
@@ -158,7 +158,7 @@ def test_patch_page_category(setup_pages_dir):
     assert response.json() == {'content': '', 'favorite': False, 'filename': 'test.md', 'id': 'test', 'title': 'Test'}
     response = client.patch('/pages/test', content=json.dumps({"category": "Test"}))
     assert response.status_code == 200
-    assert response.json() == {'category': 'Test', 'content': '', 'favorite': False, 'filename': 'test.md', 'id': 'test', 'title': 'Test'}
+    assert response.json() == {'category': 'Test', 'cid': 'test', 'content': '', 'favorite': False, 'filename': 'test.md', 'id': 'test', 'title': 'Test'}
     with open(f'{os.environ.get("PAGES_DIR")}/test.md') as f:
         metadata, content = frontmatter.parse(f.read())
     assert content == ''

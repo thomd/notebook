@@ -97,6 +97,8 @@ def updatePage(path, page):
         del data['favorite']
     if updates.get('favorite') == True:
         data['favorite'] = updates.get('favorite')
+    if 'category' in data:
+        del data['category']
     if updates.get('category'):
         data['category'] = updates.get('category')
 
@@ -132,6 +134,8 @@ def updatePageWithFragment(path, start, end, page):
         del data['favorite']
     if updates.get('favorite') == True:
         data['favorite'] = updates.get('favorite')
+    if 'category' in data:
+        del data['category']
     if updates.get('category'):
         data['category'] = updates.get('category')
 

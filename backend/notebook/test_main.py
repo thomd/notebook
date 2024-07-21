@@ -167,6 +167,19 @@ def test_patch_page_category(setup_pages_dir):
     assert 'favorite' not in metadata
     client.delete('/pages/test')
 
+def test_patch_delete_page_category(setup_pages_dir):
+    client.post('/pages', content=json.dumps({'title': 'Test', 'content': '# Test', 'category': 'Test', 'favorite': True}))
+    response = client.patch('/pages/test', content=json.dumps({"category": ""}))
+    assert response.status_code == 200
+    assert response.json() == {'content': '# Test', 'favorite': False, 'filename': 'test.md', 'id': 'test', 'title': 'Test'}
+    with open(f'{os.environ.get("PAGES_DIR")}/test.md') as f:
+        metadata, content = frontmatter.parse(f.read())
+    assert content == '# Test'
+    assert metadata['title'] == 'Test'
+    assert 'category' not in metadata
+    assert 'favorite' not in metadata
+    client.delete('/pages/test')
+
 def test_patch_page_favorite(setup_pages_dir):
     response = client.post('/pages', content=json.dumps({"title": "Test"}))
     assert response.json() == {'content': '', 'favorite': False, 'filename': 'test.md', 'id': 'test', 'title': 'Test'}

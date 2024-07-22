@@ -1,7 +1,7 @@
 import React from 'react'
 import { ChakraProvider } from '@chakra-ui/react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Decorator, { loader as decoratorLoader } from './routes/Decorator'
+import Decorator from './routes/Decorator'
 import Error from './Error'
 import Index, { loader as indexLoader } from './routes/Index'
 import Page, { loader as pageLoader, action as pageAction } from './routes/Page'
@@ -16,7 +16,6 @@ const router = createBrowserRouter([
     path: '/',
     element: <Decorator />,
     errorElement: <Error />,
-    loader: decoratorLoader,
     children: [
       {
         errorElement: <Error />,

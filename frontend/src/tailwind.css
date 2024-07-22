@@ -14,10 +14,6 @@
   background-color: #fff;
 }
 
-.header {
-  grid-area: header;
-}
-
 .contentarea {
   grid-area: contentarea;
 }

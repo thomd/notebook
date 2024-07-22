@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react'
 
 export function FavoritesMenu({ pages, className }) {

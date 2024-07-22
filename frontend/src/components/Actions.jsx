@@ -23,7 +23,6 @@ export function EditButton({ className }) {
 export function DeleteButton({ pageTitle, className }) {
   const { pathname } = useLocation()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const navigate = useNavigate()
   const initialRef = useRef()
   const [disabled, setDisabled] = useState(true)
 

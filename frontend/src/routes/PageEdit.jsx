@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Form, useLoaderData, redirect, useNavigate } from 'react-router-dom'
 import CategorySelect from '../components/CategorySelect'
 import { patchPage } from '../pages'
+import { useHotkeys } from 'react-hotkeys-hook'
 import * as prettier from 'prettier'
 import * as parserMarkdown from 'prettier/parser-markdown'
 
@@ -31,9 +32,11 @@ export default function PageEdit() {
     setContent(prettifiedContent)
   }
 
-  const cancel = (ev) => {
+  const cancel = () => {
     navigate(-1)
   }
+
+  useHotkeys('escape', cancel, { enableOnFormTags: ['TEXTAREA'] })
 
   return (
     <Form method="post" className="mt-4 grid grid-cols-2 gap-8 h-full grid-rows-[auto_1fr_auto]">

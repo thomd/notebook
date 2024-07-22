@@ -23,7 +23,7 @@ export function EditButton({ className }) {
 export function DeleteButton({ pageTitle, className }) {
   const { pathname } = useLocation()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const initialRef = useRef()
+  const inputRef = useRef()
   const [disabled, setDisabled] = useState(true)
 
   const openDeleteModal = () => {
@@ -36,9 +36,9 @@ export function DeleteButton({ pageTitle, className }) {
       <button onClick={onOpen} className="px-3 bg-white hover:text-gray-500 text-gray-400 text-base rounded outline">
         Delete
       </button>
-      <Modal isOpen={isOpen} onClose={onClose} initialFocusRef={initialRef}>
+      <Modal isOpen={isOpen} onClose={onClose} initialFocusRef={inputRef}>
         <ModalOverlay />
-        <ModalContent ref={initialRef}>
+        <ModalContent ref={inputRef}>
           <ModalCloseButton />
           <ModalHeader />
           <ModalBody>

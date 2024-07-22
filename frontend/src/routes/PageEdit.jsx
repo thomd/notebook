@@ -36,7 +36,8 @@ export default function PageEdit() {
     navigate(-1)
   }
 
-  useHotkeys('escape', cancel, { enableOnFormTags: ['TEXTAREA'] })
+  //useHotkeys('escape', cancel, { enableOnFormTags: ['TEXTAREA'] })
+  useHotkeys('escape', cancel)
 
   return (
     <Form method="post" className="mt-4 grid grid-cols-2 gap-8 h-full grid-rows-[auto_1fr_auto]">

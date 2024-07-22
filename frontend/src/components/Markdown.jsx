@@ -2,7 +2,6 @@ import Markdown from 'react-markdown'
 import rehypeKatex from 'rehype-katex'
 import rehypeSlug from 'rehype-slug'
 import remarkMath from 'remark-math'
-import rehypeRaw from 'rehype-raw'
 import { gfmTableFromMarkdown, gfmTableToMarkdown } from 'mdast-util-gfm-table'
 import { gfmTable } from 'micromark-extension-gfm-table'
 import remarkHeadingLines from 'remark-heading-lines'
@@ -27,21 +26,20 @@ export default function MarkdownViewer({ content }) {
       <Markdown
         remarkPlugins={[remarkGfmTable, [remarkHeadingLines, { position: 'after', linkText: 'Edit', className: 'headline' }], remarkMath]}
         rehypePlugins={[
-          rehypeBlock,
+          [rehypeBlock, { blockSymbol: ':::' }],
           rehypeKatex,
           rehypeSlug,
           [
             rehypeTextmarker,
             [
               { textPattern: /≈([^≈]+)≈/g, className: 'yellow-marker', tags: ['p', 'code'] },
-              { textPattern: / (# .+)/g, className: 'grey-marker', tags: ['code'] },
-              { textPattern: /`(.+?)`/g, className: 'white-marker', tags: ['mark'] },
-              { textPattern: /^(# .+)/g, className: 'grey-marker', tags: ['code'] },
+              { textPattern: / (# .+)/g, className: 'grey-comment', tags: ['code'] },
+              { textPattern: /`(.+?)`/g, className: 'white-marker', tags: ['mark', 'code.language-ascii'] },
+              { textPattern: /^(# .+)/g, className: 'grey-comment', tags: ['code'] },
               { textPattern: /\b(TODO)\b/, className: 'red-marker' },
               { textPattern: /\[([^\]]+)\]/g, htmlTag: 'kbd', tags: ['p', 'li'] },
             ],
           ],
-          rehypeRaw,
         ]}
         remarkRehypeOptions={{ allowDangerousHtml: true }}>
         {content}

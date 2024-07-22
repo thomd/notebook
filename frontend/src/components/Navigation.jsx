@@ -7,7 +7,7 @@ export default function Navigation({ content }) {
   useNavigationObserver()
   return (
     <Markdown
-      rehypePlugins={[rehypeSlug, [rehypeNavigation, { extract: true, wrapperTag: 'nav', maxDepth: 2 }]]}
+      rehypePlugins={[rehypeSlug, [rehypeNavigation, { extract: true, wrapperTag: 'nav', maxDepth: 2, fullMonty: false }]]}
       remarkRehypeOptions={{ allowDangerousHtml: true }}>
       {content}
     </Markdown>

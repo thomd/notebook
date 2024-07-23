@@ -642,8 +642,16 @@ video {
   grid-auto-rows: min-content;
 }
 
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .grid-cols-page {
   grid-template-columns: 1fr 5fr;
+}
+
+.grid-rows-\[auto_1fr_auto\] {
+  grid-template-rows: auto 1fr auto;
 }
 
 .grid-rows-index {
@@ -652,6 +660,10 @@ video {
 
 .grid-rows-page {
   grid-template-rows: 5rem auto 4rem;
+}
+
+.grid-rows-page-edit {
+  grid-template-rows: auto 1fr auto;
 }
 
 .flex-nowrap {
@@ -725,6 +737,11 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-green-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(74 222 128 / var(--tw-bg-opacity));
 }
 
 .p-8 {

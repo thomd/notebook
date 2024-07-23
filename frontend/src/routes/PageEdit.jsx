@@ -39,8 +39,8 @@ export default function PageEdit() {
   useHotkeys('escape', cancel)
 
   return (
-    <div className="">
-      <Form method="post">
+    <div className="grid min-h-screen p-8">
+      <Form method="post" className="grid grid-cols-2 gap-8 h-full grid-rows-page-edit">
         <input type="hidden" name="favorite" value={page.favorite} />
         <div>
           <input

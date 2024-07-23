@@ -24,7 +24,7 @@ export default function MarkdownViewer({ content }) {
   return (
     <div className="markdown mb-8">
       <Markdown
-        remarkPlugins={[remarkGfmTable, [remarkHeadingLines, { position: 'after', linkText: 'Edit', className: 'headline' }], remarkMath]}
+        remarkPlugins={[remarkGfmTable, [remarkHeadingLines, { position: 'after', linkText: '[ Edit ]', className: 'headline' }], remarkMath]}
         rehypePlugins={[
           [rehypeBlock, { blockSymbol: ':::' }],
           rehypeKatex,
@@ -32,7 +32,7 @@ export default function MarkdownViewer({ content }) {
           [
             rehypeTextmarker,
             [
-              { textPattern: /≈([^≈]+)≈/g, className: 'yellow-marker', tags: ['p', 'code'] },
+              { textPattern: /≈([^≈]+)≈/g, className: 'yellow-marker', tags: ['p', 'code', 'li', 'td'] },
               { textPattern: / (# .+)/g, className: 'grey-comment', tags: ['code'] },
               { textPattern: /`(.+?)`/g, className: 'white-marker', tags: ['mark', 'code.language-ascii'] },
               { textPattern: /^(# .+)/g, className: 'grey-comment', tags: ['code'] },

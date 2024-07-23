@@ -24,6 +24,12 @@
 
 /* NAVIGATION */
 
+.navigation {
+  background: #f2f1ed;
+  box-shadow: inset -10px 0px 20px -10px #bbb;
+  border-right: 1px solid #bbb;
+}
+
 nav ul {
   list-style: none;
 }

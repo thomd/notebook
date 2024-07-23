@@ -1,5 +1,5 @@
 :root {
-  /* https://v2.tailwindcss.com/docs/customizing-colors */
+  /* Tailwind Colors: https://v2.tailwindcss.com/docs/customizing-colors */
   --link-color: #f87171;
   --text-color: #111;
   --headline-edit-link-color: #d1d5db;
@@ -44,8 +44,7 @@
 .markdown h1,
 .markdown h2,
 .markdown h3 {
-  padding-bottom: 1rem;
-  padding-top: 2rem;
+  padding: 2rem 0 1rem;
 }
 .markdown h1 {
   font-size: 1.8rem;
@@ -70,11 +69,11 @@
 }
 .markdown .headline a {
   display: none;
-  margin-left: 1rem;
+  margin-left: 2rem;
   font-size: 1rem;
   font-weight: 400;
-  padding: 0 0.75rem;
   height: fit-content;
+  padding: 2rem 0 1rem;
 }
 .markdown .headline:hover a {
   display: inline-block;

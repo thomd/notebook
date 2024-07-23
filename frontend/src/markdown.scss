@@ -1,5 +1,5 @@
 :root {
-    /* https://v2.tailwindcss.com/docs/customizing-colors */
+    /* Tailwind Colors: https://v2.tailwindcss.com/docs/customizing-colors */
 
     --link-color: #f87171;
     --text-color: #111;
@@ -52,8 +52,7 @@
     h1,
     h2,
     h3 {
-        padding-bottom: 1rem;
-        padding-top: 2rem;
+        padding: 2rem 0 1rem;
     }
 
     h1 {
@@ -82,11 +81,11 @@
 
         a {
             display: none;
-            margin-left: 1rem;
+            margin-left: 2rem;
             font-size: 1rem;
             font-weight: 400;
-            padding: 0 0.75rem;
             height: fit-content;
+            padding: 2rem 0 1rem;
         }
 
         &:hover {

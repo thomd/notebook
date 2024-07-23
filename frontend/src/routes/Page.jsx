@@ -54,7 +54,7 @@ export default function Page() {
           </div>
         </div>
         <MarkdownViewer content={page.content} className="px-8" />
-        <Footer filename={page?.filename} className="px-8 py-4" />
+        <Footer filename={page?.filename} className="flex items-end px-8 py-6" />
       </div>
     </div>
   )

@@ -7,7 +7,7 @@ module.exports = {
                 page: "1fr 5fr",
             },
             gridTemplateRows: {
-                page: "5rem auto 4rem",
+                5age: "5rem auto 5rem",
                 index: "6rem auto 4rem",
                 "page-edit": "auto 1fr auto",
             },

@@ -2,44 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* NAVIGATION */
-
-.navigation {
-  background: #f2f1ed;
-  box-shadow: inset -10px 0px 20px -10px #bbb;
-  border-right: 1px solid #bbb;
-}
-
-nav ul {
-  list-style: none;
-}
-
-nav > ul {
-  margin: 0;
-  padding: 0;
-}
-
-nav li {
-  padding-left: 1rem;
-}
-
-nav li.active > a {
-  color: #333;
-  font-weight: 500;
-}
-
-nav a {
-  text-decoration: none;
-  display: block;
-  color: #ccc;
-  transition: all 50ms ease-in-out;
-}
-
-nav a:hover,
-nav a:focus {
-  color: #666;
-}
-
 /* SEARCH */
 
 input[type="search"] {

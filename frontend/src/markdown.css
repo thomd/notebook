@@ -1,7 +1,8 @@
 :root {
   /* Tailwind Colors: https://v2.tailwindcss.com/docs/customizing-colors */
-  --link-color: #f87171;
+  --link-color: #3f8c08;
   --text-color: #111;
+  --first-headline-color: #3f8c08;
   --headline-edit-link-color: #d1d5db;
   --headline-edit-link-hover-color: #6b7280;
   --aside-border-color: #eee;
@@ -50,7 +51,7 @@
   font-size: 1.8rem;
   line-height: 1.75rem;
   font-weight: 600;
-  color: #3f8c08;
+  color: var(--first-headline-color);
 }
 .markdown h2 {
   font-size: 1.4rem;
@@ -216,4 +217,43 @@
   font-size: 1rem;
   border-radius: 4px;
   box-shadow: 1px 1px 3px 0 #eee;
+}
+
+.navigation {
+  background: #f2f1ed;
+  box-shadow: inset -10px 0px 20px -10px #bbb;
+  border-right: 1px solid #bbb;
+}
+.navigation ul {
+  list-style: none;
+}
+.navigation > ul {
+  margin: 0;
+  padding: 0;
+}
+.navigation li {
+  padding-left: 1rem;
+  padding-top: 0.5rem;
+}
+.navigation li.active > a {
+  color: #000;
+}
+.navigation li a {
+  text-decoration: none;
+  display: block;
+  color: #666;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  transition: all 50ms ease-in-out;
+}
+.navigation li a:hover, .navigation li a:focus {
+  color: #000;
+}
+.navigation li li {
+  padding-left: 0.5rem;
+  padding-top: 0;
+}
+.navigation li li a {
+  color: #999;
+  font-weight: 400;
 }

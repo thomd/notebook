@@ -12,12 +12,7 @@ export default function Decorator() {
   return (
     <>
       <SearchModal />
-      <div className="contentarea">
-        <Outlet context={[currentPage, setCurrentPage]} />
-      </div>
-      <div className="footer">
-        <Footer filename={currentPage?.filename} />
-      </div>
+      <Outlet context={[currentPage, setCurrentPage]} />
     </>
   )
 }

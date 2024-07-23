@@ -2,26 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* APPLICATION LAYOUT */
-
-.root {
-  display: grid;
-  grid-template-areas:
-    "contentarea"
-    "footer";
-  grid-template-rows: auto 3rem;
-  min-height: 100vh;
-  background-color: #fff;
-}
-
-.contentarea {
-  grid-area: contentarea;
-}
-
-.footer {
-  grid-area: footer;
-}
-
 /* NAVIGATION */
 
 .navigation {

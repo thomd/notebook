@@ -41,6 +41,12 @@
 .markdown aside ul li {
   margin: 0.5rem 0;
 }
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  padding-bottom: 1rem;
+  padding-top: 2rem;
+}
 .markdown h1 {
   font-size: 1.8rem;
   line-height: 1.75rem;
@@ -61,10 +67,6 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding-bottom: 1rem;
-}
-.markdown .headline:not(:first-child) {
-  padding-top: 2rem;
 }
 .markdown .headline a {
   display: none;

@@ -7,6 +7,7 @@ import Navigation from '../components/Navigation'
 import { FavoritesMenu } from '../components/Favorites'
 import { EditButton, DeleteButton } from '../components/Actions'
 import MarkdownViewer from '../components/Markdown'
+import { Footer } from '../components/Footer'
 import StickyBox from 'react-sticky-box'
 
 export async function loader({ params }) {
@@ -34,28 +35,27 @@ export default function Page() {
   })
 
   return (
-    <>
-      <div className="grid grid-cols-1fr-5fr">
-        <div className="navigation">
-          <StickyBox className="self-start" offsetTop={30} offsetBottom={30}>
-            <Navigation content={page.content} />
-          </StickyBox>
-        </div>
-        <div className="page p-8">
-          <div className="header flex flex-nowrap justify-between items-center mb-10">
-            <div className="flex flex-nowrap">
-              <Breadcrumb page={page} />
-              <Favorite page={page} className="ml-5" />
-            </div>
-            <div className="flex flex-nowrap">
-              <FavoritesMenu pages={pages} className="mr-8" />
-              <EditButton className="mr-5" />
-              <DeleteButton pageTitle={currentPage?.title} />
-            </div>
-          </div>
-          <MarkdownViewer content={page.content} />
-        </div>
+    <div className="grid grid-cols-page min-h-screen">
+      <div className="navigation">
+        <StickyBox className="self-start" offsetTop={30} offsetBottom={30}>
+          <Navigation content={page.content} />
+        </StickyBox>
       </div>
-    </>
+      <div className="grid grid-rows-page">
+        <div className="px-8 flex flex-nowrap justify-between items-center">
+          <div className="flex flex-nowrap">
+            <Breadcrumb page={page} />
+            <Favorite page={page} className="ml-5" />
+          </div>
+          <div className="flex flex-nowrap">
+            <FavoritesMenu pages={pages} className="mr-8" />
+            <EditButton className="mr-5" />
+            <DeleteButton pageTitle={currentPage?.title} />
+          </div>
+        </div>
+        <MarkdownViewer content={page.content} className="px-8" />
+        <Footer filename={page?.filename} className="px-8 py-4" />
+      </div>
+    </div>
   )
 }

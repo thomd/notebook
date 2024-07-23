@@ -49,6 +49,13 @@
         }
     }
 
+    h1,
+    h2,
+    h3 {
+        padding-bottom: 1rem;
+        padding-top: 2rem;
+    }
+
     h1 {
         font-size: 1.8rem;
         line-height: 1.75rem;
@@ -72,11 +79,6 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        padding-bottom: 1rem;
-
-        &:not(:first-child) {
-            padding-top: 2rem;
-        }
 
         a {
             display: none;

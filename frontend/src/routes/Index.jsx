@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useLoaderData, Link, useOutletContext } from 'react-router-dom'
 import { getPages } from '../pages'
 import { NewPageForm } from '../components/NewPage'
+import { Footer } from '../components/Footer'
 
 export async function loader({ request }) {
   const pages = await getPages()
@@ -25,11 +26,11 @@ export default function Index() {
   })
 
   return (
-    <>
-      <div className="mb-10 flex">
+    <div className="grid grid-rows-index min-h-screen">
+      <div className="flex justify-start items-center px-8">
         <NewPageForm />
       </div>
-      <div className="grid gap-10" style={{ gridTemplateColumns: 'repeat(' + numberCols + ', minmax(0, 1fr))' }}>
+      <div className="grid gap-10 p-8" style={{ gridTemplateColumns: 'repeat(' + numberCols + ', minmax(0, 1fr))' }}>
         {columns.map((column, i) => (
           <div key={`col-${i}`} className="grid gap-8 auto-rows-min">
             {column.map((category, j) => (
@@ -52,6 +53,7 @@ export default function Index() {
           </div>
         ))}
       </div>
-    </>
+      <Footer className="px-8 py-4" />
+    </div>
   )
 }

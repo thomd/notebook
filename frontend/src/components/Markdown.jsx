@@ -20,9 +20,9 @@ function remarkGfmTable(options = {}) {
   toMarkdownExtensions.push({ extensions: [gfmTableToMarkdown(options)] })
 }
 
-export default function MarkdownViewer({ content }) {
+export default function MarkdownViewer({ content, className }) {
   return (
-    <div className="markdown mb-8">
+    <div className={`markdown ${className}`}>
       <Markdown
         remarkPlugins={[remarkGfmTable, [remarkHeadingLines, { position: 'after', linkText: '[ Edit ]', className: 'headline' }], remarkMath]}
         rehypePlugins={[

@@ -4,7 +4,11 @@ module.exports = {
     theme: {
         extend: {
             gridTemplateColumns: {
-                "1fr-5fr": "1fr 5fr",
+                page: "1fr 5fr",
+            },
+            gridTemplateRows: {
+                page: "5rem auto 4rem",
+                index: "6rem auto 4rem",
             },
         },
     },

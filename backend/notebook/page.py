@@ -98,10 +98,10 @@ def updatePage(path, page):
         del data['favorite']
     if updates.get('favorite') == True:
         data['favorite'] = updates.get('favorite')
-    if 'category' in data:
-        del data['category']
     if updates.get('category'):
         data['category'] = updates.get('category')
+    if updates.get('category') == '' and 'category' in data:
+        del data['category']
 
     # finally we write the file ...
     with path.open('w', encoding='utf-8') as file:
@@ -135,10 +135,10 @@ def updatePageWithFragment(path, start, end, page):
         del data['favorite']
     if updates.get('favorite') == True:
         data['favorite'] = updates.get('favorite')
-    if 'category' in data:
-        del data['category']
     if updates.get('category'):
         data['category'] = updates.get('category')
+    if updates.get('category') == '' and 'category' in data:
+        del data['category']
 
     # finally we write the file ...
     with path.open('w', encoding='utf-8') as file:

@@ -44,7 +44,7 @@ export default function Page() {
       <div className="grid grid-rows-page">
         <div className="px-8 flex flex-nowrap justify-between items-center">
           <div className="flex flex-nowrap">
-            <Breadcrumb page={page} />
+            <Breadcrumb pages={pages} page={page} />
             <Favorite page={page} className="ml-5" />
           </div>
           <div className="flex flex-nowrap">

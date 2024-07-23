@@ -3,8 +3,8 @@ import { Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react'
 export function FavoritesMenu({ pages, className }) {
   const favoritePages = pages.filter((page) => page.favorite === true)
   return (
-    <div className={`${className} inline`}>
-      <Menu offset={[-150, 20]} autoSelect={false}>
+    <div className={`${className || ''} inline`}>
+      <Menu offset={[-10, 10]} autoSelect={false}>
         <MenuButton className="text-lg text-gray-400 hover:text-gray-500">Favorites</MenuButton>
         <MenuList>
           {favoritePages.map((page) => (

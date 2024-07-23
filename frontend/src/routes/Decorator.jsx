@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { SearchModal } from '../components/Search'
-import { Footer } from '../components/Footer'
 import { useHashEditPageLink, useScrollIntoView } from '../hooks/scroll'
 
 export default function Decorator() {

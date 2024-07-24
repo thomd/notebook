@@ -4,8 +4,8 @@ export function Footer({ filename, className }) {
 
   return (
     <p className={`text-sm text-gray-400 ${className || ''}`}>
-      Source:{' '}
-      <a className="text-sm text-gray-400 hover:text-gray-600" href={url} target="_blank" rel="noreferrer">
+      Source:
+      <a className="text-sm text-gray-400 hover:text-gray-600 ml-2" href={url} target="_blank" rel="noreferrer">
         {url}
       </a>
     </p>

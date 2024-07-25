@@ -1,7 +1,6 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Form, useLoaderData, redirect, useNavigate } from 'react-router-dom'
 import CategorySelect from '../components/CategorySelect'
-import Counter from '../components/Counter'
 import { patchPage } from '../pages'
 import { useHotkeys } from 'react-hotkeys-hook'
 import * as prettier from 'prettier'
@@ -18,9 +17,22 @@ export default function PageEdit() {
   const navigate = useNavigate()
   const [content, setContent] = useState(page.content === '' ? '# ' + page.title : page.content)
   const inputRef = useRef()
+  const [characterCount, setCharacterCount] = useState('')
+  const [linesCount, setLinesCount] = useState('')
+
+  const count = (inputRef) => {
+    setCharacterCount(new Intl.NumberFormat('de-DE').format(inputRef.current.value.length))
+    setLinesCount(new Intl.NumberFormat('de-DE').format(inputRef.current.value.split('\n').length))
+  }
+
+  useEffect(() => {
+    console.log(inputRef)
+    count(inputRef)
+  }, [inputRef])
 
   const handleChange = (ev) => {
     setContent(ev.target.value)
+    count(inputRef)
   }
 
   const prettify = async (ev) => {
@@ -80,10 +92,23 @@ export default function PageEdit() {
             </button>
           </div>
           <div>
-            <Counter inputRef={inputRef} className="mr-4" />
+            <Counter characterCount={characterCount} linesCount={linesCount} />
           </div>
         </div>
       </Form>
+    </div>
+  )
+}
+
+function Counter({ characterCount, linesCount }) {
+  return (
+    <div className="text-sm text-gray-400 flex flex-col items-end">
+      <div>
+        <span className="text-gray-500">{characterCount}</span> Words
+      </div>
+      <div>
+        <span className="text-gray-500">{linesCount}</span> Lines
+      </div>
     </div>
   )
 }

@@ -557,6 +557,10 @@ video {
   margin-bottom: 0.25rem;
 }
 
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
 .ml-2 {
   margin-left: 0.5rem;
 }
@@ -591,6 +595,14 @@ video {
 
 .mt-\[9px\] {
   margin-top: 9px;
+}
+
+.ml-8 {
+  margin-left: 2rem;
+}
+
+.mr-4 {
+  margin-right: 1rem;
 }
 
 .block {
@@ -658,8 +670,12 @@ video {
   grid-template-rows: 5rem auto 5rem;
 }
 
-.grid-rows-page-edit {
+.grid-rows-pageedit {
   grid-template-rows: auto 1fr auto;
+}
+
+.flex-col {
+  flex-direction: column;
 }
 
 .flex-nowrap {

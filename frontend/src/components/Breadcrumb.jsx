@@ -5,7 +5,7 @@ import { useHotkeys } from 'react-hotkeys-hook'
 export default function Breadcrumb({ pages, page }) {
   const navigate = useNavigate()
 
-  useHotkeys('shift+i', () => {
+  useHotkeys(['shift+i', 'escape'], () => {
     navigate('/')
   })
 

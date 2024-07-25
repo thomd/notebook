@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Form, useLoaderData, redirect, useNavigate } from 'react-router-dom'
 import CategorySelect from '../components/CategorySelect'
+import Counter from '../components/Counter'
 import { patchPage } from '../pages'
 import { useHotkeys } from 'react-hotkeys-hook'
 import * as prettier from 'prettier'
@@ -16,9 +17,10 @@ export default function PageEdit() {
   const { pages, page } = useLoaderData()
   const navigate = useNavigate()
   const [content, setContent] = useState(page.content === '' ? '# ' + page.title : page.content)
+  const inputRef = useRef()
 
-  const handleChange = (event) => {
-    setContent(event.target.value)
+  const handleChange = (ev) => {
+    setContent(ev.target.value)
   }
 
   const prettify = async (ev) => {
@@ -40,7 +42,7 @@ export default function PageEdit() {
 
   return (
     <div className="grid min-h-screen p-8">
-      <Form method="post" className="grid grid-cols-2 gap-8 h-full grid-rows-page-edit">
+      <Form method="post" className="grid grid-cols-2 gap-8 h-full grid-rows-pageedit">
         <input type="hidden" name="favorite" value={page.favorite} />
         <div>
           <input
@@ -57,6 +59,7 @@ export default function PageEdit() {
         </div>
         <div className="col-span-2">
           <textarea
+            ref={inputRef}
             name="content"
             autoFocus
             value={content}
@@ -64,16 +67,21 @@ export default function PageEdit() {
             className="px-3 py-[6px] font-mono text-sm block w-full h-full text-gray-900 border-2 border-gray-300 focus:border-gray-400 focus:outline-none focus:ring-0"
           />
         </div>
-        <div className="col-span-2">
-          <button type="button" onClick={cancel} className="py-1 px-3 bg-white text-gray-500 text-base rounded border border-gray-400">
-            Cancel
-          </button>
-          <button type="submit" className="ml-4 py-1 px-3 bg-gray-400 hover:bg-gray-500 text-white text-base rounded outline-none">
-            Save
-          </button>
-          <button type="button" onClick={prettify} className="ml-4 py-1 px-3 bg-gray-400 hover:bg-gray-500 text-white text-base rounded outline-none">
-            Prettify
-          </button>
+        <div className="col-span-2 flex justify-between items-center">
+          <div>
+            <button type="button" onClick={cancel} className="py-1 px-3 bg-white text-gray-500 text-base rounded border border-gray-400">
+              Cancel
+            </button>
+            <button type="submit" className="ml-8 py-1 px-3 bg-gray-400 hover:bg-gray-500 text-white text-base rounded outline-none">
+              Save
+            </button>
+            <button type="button" onClick={prettify} className="ml-8 py-1 px-3 bg-gray-400 hover:bg-gray-500 text-white text-base rounded outline-none">
+              Prettify
+            </button>
+          </div>
+          <div>
+            <Counter inputRef={inputRef} className="mr-4" />
+          </div>
         </div>
       </Form>
     </div>

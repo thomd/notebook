@@ -6,6 +6,7 @@ import { gfmTableFromMarkdown, gfmTableToMarkdown } from 'mdast-util-gfm-table'
 import { gfmTable } from 'micromark-extension-gfm-table'
 import remarkHeadingLines from 'remark-heading-lines'
 import remarkWikiLink from 'remark-wiki-link'
+import remarkDeflist from 'remark-deflist'
 import rehypeTextmarker from 'rehype-textmarker'
 import rehypeBlock from 'rehype-block'
 import 'katex/dist/katex.min.css'
@@ -29,6 +30,7 @@ export default function MarkdownViewer({ content, className }) {
           remarkGfmTable,
           [remarkHeadingLines, { position: 'after', linkText: '[ Edit ]', className: 'headline' }],
           [remarkWikiLink, { path: '/pages/', slugger: true }],
+          remarkDeflist,
           remarkMath,
         ]}
         rehypePlugins={[
@@ -38,10 +40,10 @@ export default function MarkdownViewer({ content, className }) {
           [
             rehypeTextmarker,
             [
-              { textPattern: /≈([^≈]+)≈/g, className: 'yellow-marker', tags: ['p', 'code', 'li', 'td'] },
-              { textPattern: /^(# .+)/g, className: 'grey-comment', tags: ['code'] },
+              { textPattern: /^(# .+)/gm, className: 'grey-comment', tags: ['code'] },
               { textPattern: /( # .+| \/\/ .+)/g, className: 'grey-comment', tags: ['code'] },
               { textPattern: /`(.+?)`/g, className: 'white-marker', tags: ['mark', 'code.language-ascii'] },
+              { textPattern: /≈([^≈]+)≈/g, className: 'yellow-marker', tags: ['p', 'code', 'li', 'td'] },
               { textPattern: /\b(TODO)\b/, className: 'red-marker' },
               { textPattern: /\[([^\]]+)\]/g, htmlTag: 'kbd', tags: ['p', 'li'] },
             ],

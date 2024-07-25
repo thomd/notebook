@@ -12,7 +12,6 @@ export function useNavigationObserver() {
         }
       })
     })
-    console.log('call observer')
     document.querySelectorAll('h1[id], h2[id]').forEach((section) => {
       observer.observe(section)
     })

@@ -26,7 +26,6 @@ export default function PageEdit() {
   }
 
   useEffect(() => {
-    console.log(inputRef)
     count(inputRef)
   }, [inputRef])
 

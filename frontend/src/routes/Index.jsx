@@ -35,9 +35,9 @@ export default function Index() {
           <div key={`col-${i}`} className="grid gap-8 auto-rows-min">
             {column.map((category, j) => (
               <div key={`col-${i}-${j}`}>
-                <Link className="font-bold mb-1 pb-1 border-b hover:text-gray-600 block border-gray-400" to={`/category/${categoryPages[category][0].cid}`}>
+                <h2 className="font-bold mb-1 pb-1 border-b hover:text-gray-600 block border-gray-400">
                   {category !== 'undefined' ? category : 'Uncategorized'}
-                </Link>
+                </h2>
                 <ul>
                   {categoryPages[category].map((page) => (
                     <li key={page.id}>

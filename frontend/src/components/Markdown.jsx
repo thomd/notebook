@@ -9,6 +9,7 @@ import remarkWikiLink from 'remark-wiki-link'
 import remarkDeflist from 'remark-deflist'
 import rehypeTextmarker from 'rehype-textmarker'
 import rehypeBlock from 'rehype-block'
+import rehypeRaw from 'rehype-raw'
 import 'katex/dist/katex.min.css'
 
 function remarkGfmTable(options = {}) {
@@ -48,6 +49,7 @@ export default function MarkdownViewer({ content, className }) {
               { textPattern: /\[([^\]]+)\]/g, htmlTag: 'kbd', tags: ['p', 'li'] },
             ],
           ],
+          rehypeRaw,
         ]}
         remarkRehypeOptions={{ allowDangerousHtml: true }}>
         {content}

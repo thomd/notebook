@@ -27,6 +27,8 @@
     font-style: normal;
 }
 
+// MARKDOWN CONTENT
+
 .markdown {
     padding-right: 20%;
     position: relative;
@@ -273,6 +275,8 @@
     }
 }
 
+// LEFT NAVIGATION
+
 .navigation {
     background: #f2f1ed;
     box-shadow: inset -10px 0px 20px -10px #bbb;
@@ -288,8 +292,7 @@
     }
 
     li {
-        padding-left: 1rem;
-        padding-top: 0.5rem;
+        padding: 0.5rem 1rem 0;
 
         &.active > a {
             color: #000;
@@ -302,6 +305,9 @@
             font-size: 0.8125rem;
             font-weight: 600;
             transition: all 50ms ease-in-out;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
 
             &:hover,
             &:focus {
@@ -310,8 +316,7 @@
         }
 
         li {
-            padding-left: 0.5rem;
-            padding-top: 0;
+            padding: 0 0 0 0.5rem;
 
             a {
                 color: #999;

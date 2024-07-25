@@ -593,10 +593,6 @@ video {
   margin-top: 9px;
 }
 
-.ml-1 {
-  margin-left: 0.25rem;
-}
-
 .block {
   display: block;
 }
@@ -651,7 +647,7 @@ video {
 }
 
 .grid-cols-page {
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 260px 5fr;
 }
 
 .grid-rows-index {

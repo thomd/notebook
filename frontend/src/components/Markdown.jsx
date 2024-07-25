@@ -5,6 +5,7 @@ import remarkMath from 'remark-math'
 import { gfmTableFromMarkdown, gfmTableToMarkdown } from 'mdast-util-gfm-table'
 import { gfmTable } from 'micromark-extension-gfm-table'
 import remarkHeadingLines from 'remark-heading-lines'
+import remarkWikiLink from 'remark-wiki-link'
 import rehypeTextmarker from 'rehype-textmarker'
 import rehypeBlock from 'rehype-block'
 import 'katex/dist/katex.min.css'
@@ -24,7 +25,12 @@ export default function MarkdownViewer({ content, className }) {
   return (
     <div className={`markdown ${className}`}>
       <Markdown
-        remarkPlugins={[remarkGfmTable, [remarkHeadingLines, { position: 'after', linkText: '[ Edit ]', className: 'headline' }], remarkMath]}
+        remarkPlugins={[
+          remarkGfmTable,
+          [remarkHeadingLines, { position: 'after', linkText: '[ Edit ]', className: 'headline' }],
+          [remarkWikiLink, { path: '/pages/', slugger: true }],
+          remarkMath,
+        ]}
         rehypePlugins={[
           [rehypeBlock, { blockSymbol: ':::' }],
           rehypeKatex,

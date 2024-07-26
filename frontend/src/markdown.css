@@ -191,6 +191,7 @@
   text-align: left;
   padding: 0.2rem 0.5rem;
   font-size: 0.875rem;
+  vertical-align: top;
 }
 .markdown table tr th > code,
 .markdown table tr td > code {

@@ -7,7 +7,7 @@ export function EditButton({ className }) {
   const { pathname } = useLocation()
   const navigate = useNavigate()
 
-  useHotkeys('shift+e', () => {
+  useHotkeys('e', () => {
     navigate(`${pathname}edit`)
   })
 
@@ -29,7 +29,7 @@ export function DeleteButton({ pageTitle, className }) {
   const openDeleteModal = () => {
     onOpen()
   }
-  useHotkeys('shift+d', openDeleteModal, { keydown: false, keyup: true })
+  useHotkeys('d', openDeleteModal, { keydown: false, keyup: true })
 
   return (
     <div className={className}>

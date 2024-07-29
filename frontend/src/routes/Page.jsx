@@ -10,6 +10,7 @@ import MarkdownViewer from '../components/Markdown'
 import { Footer } from '../components/Footer'
 import StickyBox from 'react-sticky-box'
 import { useHotkeys } from 'react-hotkeys-hook'
+import { ScrollRestoration } from 'react-router-dom'
 
 export async function loader({ params }) {
   const pages = await getPages()
@@ -49,6 +50,7 @@ export default function Page() {
       <div className="grid grid-rows-page">
         <div className="px-8 flex flex-nowrap justify-between items-center">
           <div className="flex flex-nowrap">
+            <ScrollRestoration />
             <Breadcrumb pages={pages} page={page} />
             <Favorite page={page} className="ml-5" />
           </div>

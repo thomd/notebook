@@ -45,7 +45,7 @@ function CategoriesMenu({ pages, page }) {
         <MenuButton className="text-lg text-gray-400 hover:text-gray-500">{page.category}</MenuButton>
         <MenuList>
           {categoryPages.map((categoryPage) => (
-            <MenuItem className="hover:bg-white hover:text-gray-500" key={categoryPage.id} as="a" href={`/pages/${categoryPage.id}/`}>
+            <MenuItem className="!py-1 hover:bg-white !text-gray-400 hover:!text-gray-600" key={categoryPage.id} as="a" href={`/pages/${categoryPage.id}/`}>
               {categoryPage.title}
             </MenuItem>
           ))}

@@ -29,7 +29,7 @@ export default function MarkdownViewer({ content, className }) {
       <Markdown
         remarkPlugins={[
           remarkGfmTable,
-          [remarkHeadingLines, { position: 'after', linkText: '[ Edit ]', className: 'headline' }],
+          [remarkHeadingLines, { position: 'after', linkText: '[ Edit ]', className: 'headline h{depth}' }],
           [remarkWikiLink, { path: '/pages/', slugger: true }],
           remarkDeflist,
           remarkMath,

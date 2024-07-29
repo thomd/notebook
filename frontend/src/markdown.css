@@ -50,7 +50,7 @@
 .markdown h1,
 .markdown h2,
 .markdown h3 {
-  padding: 2rem 0 1rem;
+  padding: 3rem 0 1rem;
 }
 .markdown h1 {
   font-size: 1.8rem;
@@ -59,14 +59,22 @@
   color: var(--first-headline-color);
 }
 .markdown h2 {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   line-height: 1.5rem;
   font-weight: 600;
 }
 .markdown h3 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 1.5rem;
   font-weight: 600;
+}
+.markdown .h1 + .h2 h2,
+.markdown .h1 + .h2 a {
+  padding-top: 1rem;
+}
+.markdown .h2 + .h3 h3,
+.markdown .h2 + .h3 a {
+  padding-top: 1rem;
 }
 .markdown .headline {
   display: flex;
@@ -79,7 +87,7 @@
   font-size: 0.875rem;
   font-weight: 400;
   height: fit-content;
-  padding: 2rem 0 1rem;
+  padding: 3rem 0 1rem;
 }
 .markdown .headline:hover a {
   display: inline-block;
@@ -123,6 +131,7 @@
   margin-block-end: 0;
 }
 .markdown p {
+  margin-top: 1rem;
   margin-bottom: 1rem;
   font-size: 0.875rem;
 }

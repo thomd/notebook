@@ -9,6 +9,7 @@ import { EditButton, DeleteButton } from '../components/Actions'
 import MarkdownViewer from '../components/Markdown'
 import { Footer } from '../components/Footer'
 import StickyBox from 'react-sticky-box'
+import { useHotkeys } from 'react-hotkeys-hook'
 
 export async function loader({ params }) {
   const pages = await getPages()
@@ -29,6 +30,10 @@ export async function action({ request, params }) {
 export default function Page() {
   const [currentPage, setCurrentPage] = useOutletContext() // eslint-disable-line no-unused-vars
   const { pages, page } = useLoaderData()
+
+  useHotkeys('q', () => {
+    window.scrollTo(0, 0)
+  })
 
   useEffect(() => {
     setCurrentPage(page)

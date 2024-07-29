@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom'
 export function useScrollToTop() {
   useEffect(() => {
     window.scrollTo(0, 0)
-    document.body.classList.remove('scroll-up', 'scroll-down')
+    //document.body.classList.remove('scroll-up', 'scroll-down')
   }, [])
 }
 

@@ -43,7 +43,7 @@ export default function Page() {
   return (
     <div className="grid grid-cols-page min-h-screen">
       <div className="navigation">
-        <StickyBox className="self-start" offsetTop={30} offsetBottom={30}>
+        <StickyBox className="self-start" offsetTop={130} offsetBottom={30}>
           <Navigation content={page.content} />
         </StickyBox>
       </div>

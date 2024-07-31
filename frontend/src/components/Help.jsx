@@ -23,6 +23,9 @@ export function HelpModal({ className }) {
             <div className="text-gray-600 pb-8" ref={initialRef}>
               <ul className="mb-8">
                 <li className="mb-2">
+                  <kbd className="px-1.5 py-0.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">h</kbd> Help
+                </li>
+                <li className="mb-2">
                   <kbd className="px-1.5 py-0.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">e</kbd> Edit Page
                 </li>
                 <li className="mb-2">

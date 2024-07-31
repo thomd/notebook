@@ -10,7 +10,9 @@ else
 fi
 
 export REMOTE_PAGES_REPO="$HOME/.gitrepos/wiki-pages.git"
-export LOCAL_PAGES_REPO=".pages"
-export PAGES_DIR=".pages"
+#export LOCAL_PAGES_REPO=".pages"
+export LOCAL_PAGES_REPO="/Users/thomasduerr/develop/notebook/notebook-tools/mediawiki-to-markdown/pages"
+#export PAGES_DIR=".pages"
+export PAGES_DIR="/Users/thomasduerr/develop/notebook/notebook-tools/mediawiki-to-markdown/pages"
 
 uvicorn notebook.main:app --reload

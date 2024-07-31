@@ -1,14 +1,17 @@
 :root {
   /* Tailwind Colors: https://v2.tailwindcss.com/docs/customizing-colors */
-  --link-color: #3f8c08;
+  --link-color: #417bb2;
   --text-color: #111;
-  --first-headline-color: #3f8c08;
+  --first-headline-color: #111;
+  --first-headline-border-color: #ddd;
   --headline-edit-link-color: #d1d5db;
   --headline-edit-link-hover-color: #6b7280;
-  --aside-border-color: #eee;
+  --blockquote-border-color: #eee;
+  --blockquote-color: #9ca3af;
   --code-background-color: #f6f6f6;
-  --inline-code-background-color: #f3f3f3;
+  --inline-code-background-color: #f6f6f6;
   --code-text-color: #000;
+  --navigation-background-color: #fff;
 }
 
 ::selection {
@@ -25,18 +28,16 @@
 .markdown {
   padding-right: 20%;
   position: relative;
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Noto Sans, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
 }
 .markdown aside {
   position: absolute;
   left: 81%;
   width: 18%;
-  padding: 0.5rem 0 0.5rem 0.75rem;
-  margin: -0.5rem 0;
-  border-left: 3px solid var(--aside-border-color);
+  padding-left: 2rem;
 }
 .markdown aside p {
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
 }
 .markdown aside ul {
   list-style-type: none;
@@ -45,28 +46,28 @@
 .markdown aside ul li {
   margin: 0.75rem 0;
   line-height: 1.3;
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
 }
 .markdown h1,
 .markdown h2,
 .markdown h3 {
-  padding: 3rem 0 1rem;
+  padding: 4rem 0 1rem;
 }
 .markdown h1 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   line-height: 1.75rem;
   font-weight: 600;
   color: var(--first-headline-color);
 }
 .markdown h2 {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   line-height: 1.5rem;
   font-weight: 600;
 }
 .markdown h3 {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   line-height: 1.5rem;
-  font-weight: 600;
+  font-weight: 400;
 }
 .markdown .h1 + .h2 h2,
 .markdown .h1 + .h2 a {
@@ -75,6 +76,11 @@
 .markdown .h2 + .h3 h3,
 .markdown .h2 + .h3 a {
   padding-top: 1rem;
+}
+.markdown .h1 {
+  border-bottom: 1px solid var(--first-headline-border-color);
+  padding-left: 2rem;
+  margin-left: -2rem;
 }
 .markdown .headline {
   display: flex;
@@ -87,7 +93,7 @@
   font-size: 0.875rem;
   font-weight: 400;
   height: fit-content;
-  padding: 3rem 0 1rem;
+  padding: 4rem 0 1rem;
 }
 .markdown .headline:hover a {
   display: inline-block;
@@ -142,19 +148,20 @@
   padding: 2px 4px;
   margin: -3px 0;
   background-color: var(--inline-code-background-color);
-  border-radius: 2px;
+  border-radius: 3px;
 }
 .markdown blockquote {
   display: block;
   margin-block-start: 1rem;
   margin-block-end: 1rem;
-  margin-inline-start: 0;
+  margin-inline-start: 0.5rem;
   margin-inline-end: 0;
-  border-left: 6px solid #fee;
+  border-left: 2px solid var(--blockquote-border-color);
   padding-left: 1rem;
 }
 .markdown blockquote p {
   font-style: italic;
+  color: var(--blockquote-color);
 }
 .markdown a {
   color: var(--link-color);
@@ -162,7 +169,7 @@
 .markdown pre {
   margin: 1rem 0 1rem -2rem;
   background-color: var(--code-background-color);
-  padding: 0.3rem 0.6rem 0.3rem 2.3rem;
+  padding: 0.5rem 1rem 0.5rem 2rem;
   line-height: 0;
 }
 .markdown pre > code {
@@ -212,12 +219,12 @@
   border-radius: 2px;
 }
 .markdown mark.yellow-marker {
-  background-color: rgba(255, 255, 0, 0.3);
+  background-color: rgba(255, 255, 0, 0.25);
   padding: 1px 3px;
   margin: 0 -3px;
 }
 .markdown mark.red-marker {
-  background-color: rgba(255, 0, 0, 0.7);
+  background-color: rgba(255, 0, 0, 0.6);
   color: #fff;
   padding: 2px 5px;
   margin: 0 5px 0 0;
@@ -265,14 +272,13 @@
   box-sizing: content-box;
   height: 0;
   overflow: visible;
-  border-color: var(--aside-border-color);
+  border-color: var(--code-background-color);
   margin: 2rem 0 2rem -1rem;
 }
 
 .navigation {
-  background: #f2f1ed;
-  box-shadow: inset -10px 0px 20px -10px #bbb;
-  border-right: 1px solid #bbb;
+  background: var(--navigation-background-color);
+  padding-top: 8rem;
 }
 .navigation ul {
   list-style: none;
@@ -282,7 +288,7 @@
   padding: 0;
 }
 .navigation li {
-  padding: 0.5rem 1rem 0;
+  padding: 1rem 1rem 0;
 }
 .navigation li.active > a {
   color: #000;
@@ -302,7 +308,7 @@
   color: #000;
 }
 .navigation li li {
-  padding: 0 0 0 0.5rem;
+  padding: 0.25rem 0 0 0.5rem;
 }
 .navigation li li a {
   color: #999;

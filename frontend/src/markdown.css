@@ -26,61 +26,9 @@
   font-style: normal;
 }
 .markdown {
-  padding-right: 20%;
+  padding-right: 2rem;
   position: relative;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Noto Sans, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
-}
-.markdown aside {
-  position: absolute;
-  left: 81%;
-  width: 18%;
-  padding-left: 2rem;
-}
-.markdown aside p {
-  font-size: 0.75rem;
-}
-.markdown aside ul {
-  list-style-type: none;
-  margin-inline-start: 0;
-}
-.markdown aside ul li {
-  margin: 0.75rem 0;
-  line-height: 1.3;
-  font-size: 0.75rem;
-}
-.markdown h1,
-.markdown h2,
-.markdown h3 {
-  padding: 4rem 0 1rem;
-}
-.markdown h1 {
-  font-size: 2rem;
-  line-height: 1.75rem;
-  font-weight: 600;
-  color: var(--first-headline-color);
-}
-.markdown h2 {
-  font-size: 1.6rem;
-  line-height: 1.5rem;
-  font-weight: 600;
-}
-.markdown h3 {
-  font-size: 1.3rem;
-  line-height: 1.5rem;
-  font-weight: 400;
-}
-.markdown .h1 + .h2 h2,
-.markdown .h1 + .h2 a {
-  padding-top: 1rem;
-}
-.markdown .h2 + .h3 h3,
-.markdown .h2 + .h3 a {
-  padding-top: 1rem;
-}
-.markdown .h1 {
-  border-bottom: 1px solid var(--first-headline-border-color);
-  padding-left: 2rem;
-  margin-left: -2rem;
 }
 .markdown .headline {
   display: flex;
@@ -101,6 +49,77 @@
 }
 .markdown .headline:hover a:hover {
   color: var(--headline-edit-link-hover-color);
+}
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4 {
+  padding: 4rem 0 1rem;
+}
+.markdown h1 {
+  font-size: 1.8rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  color: var(--first-headline-color);
+}
+.markdown h2 {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  font-weight: 600;
+}
+.markdown h3 {
+  font-size: 1.3rem;
+  line-height: 1.5rem;
+  font-weight: 400;
+  padding-top: 3rem;
+}
+.markdown .h3 a {
+  padding-top: 3rem;
+}
+.markdown h4 {
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+  font-weight: 400;
+  padding-top: 2rem;
+}
+.markdown .h4 a {
+  padding-top: 2rem;
+}
+.markdown .h1 + .h2 h2,
+.markdown .h1 + .h2 a {
+  padding-top: 1rem;
+}
+.markdown .h2 + .h3 h3,
+.markdown .h2 + .h3 a {
+  padding-top: 1rem;
+}
+.markdown .h1 {
+  border-bottom: 1px solid var(--first-headline-border-color);
+  padding-left: 1rem;
+  margin-left: -1rem;
+}
+.markdown aside {
+  position: absolute;
+  left: 81%;
+  width: 18%;
+  padding-left: 1rem;
+  border-left: 6px solid var(--code-background-color);
+  margin: 0.5rem 0;
+}
+.markdown aside p {
+  font-size: 0.75rem;
+}
+.markdown aside ul {
+  list-style-type: none;
+  margin-inline-start: 0;
+}
+.markdown aside ul li {
+  margin: 0.75rem 0;
+  line-height: 1.3;
+  font-size: 0.75rem;
+}
+.markdown aside + * {
+  margin-right: 16rem !important;
 }
 .markdown ul {
   display: block;
@@ -167,9 +186,9 @@
   color: var(--link-color);
 }
 .markdown pre {
-  margin: 1rem 0 1rem -2rem;
+  margin: 1rem 0 1rem -1rem;
   background-color: var(--code-background-color);
-  padding: 0.5rem 1rem 0.5rem 2rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   line-height: 0;
 }
 .markdown pre > code {
@@ -197,7 +216,7 @@
 }
 .markdown table {
   margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 .markdown table tr {
   border-bottom: 1px solid #ccc;

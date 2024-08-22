@@ -1,6 +1,5 @@
-import { useState, useRef, useEffect } from 'react'
-import { Form, useNavigation, useSubmit } from 'react-router-dom'
-import { useDisclosure, ModalOverlay, Modal, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, Input } from '@chakra-ui/react'
+import { useRef } from 'react'
+import { useDisclosure, ModalOverlay, Modal, ModalContent, ModalHeader, ModalCloseButton, ModalBody } from '@chakra-ui/react'
 import { useHotkeys } from 'react-hotkeys-hook'
 
 export function HelpModal({ className }) {

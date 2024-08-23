@@ -64,8 +64,8 @@ export default function Page() {
             <DeleteButton pageTitle={currentPage?.title} />
           </div>
         </div>
-        <MarkdownViewer content={page.content} className="px-8" />
-        <Footer filename={page?.filename} className="flex items-end px-8 py-6" />
+        <MarkdownViewer content={page.content} className="px-8 mb-12" />
+        <Footer filename={page?.filename} className="p-8" />
       </div>
     </div>
   )

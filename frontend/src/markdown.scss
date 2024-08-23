@@ -408,50 +408,45 @@
         padding: 0;
 
         & > li:first-child {
-            padding: 1rem 1rem 0;
+            padding-top: 1.5rem;
         }
-    }
 
-    li {
-        padding: 1rem 1rem 0;
+        & > li {
+            padding: 0 1rem 1rem;
 
-        &:not(:has(ul)) {
-            padding: 0 1rem 0;
-
-            a {
-                color: #999;
-                font-weight: 400;
+            &:not(:has(ul)) {
+                padding-bottom: 0;
             }
-        }
 
-        &.active > a {
-            color: #000;
-        }
-
-        a {
-            text-decoration: none;
-            display: inline-block;
-            color: #666;
-            font-size: 0.8125rem;
-            font-weight: 600;
-            transition: all 50ms ease-in-out;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-
-            &:hover,
-            &:focus {
+            &.active > a {
                 color: #000;
             }
-        }
-
-        li {
-            padding: 0 0 0 0.5rem;
 
             a {
+                text-decoration: none;
                 display: inline-block;
-                color: #999;
-                font-weight: 400;
+                color: #666;
+                font-size: 0.8125rem;
+                font-weight: 600;
+                transition: all 50ms ease-in-out;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+
+                &:hover,
+                &:focus {
+                    color: #000;
+                }
+            }
+
+            li {
+                padding: 0 0 0 0.5rem;
+
+                a {
+                    display: inline-block;
+                    color: #999;
+                    font-weight: 400;
+                }
             }
         }
     }

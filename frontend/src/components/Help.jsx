@@ -34,6 +34,9 @@ export function HelpModal({ className }) {
                   <kbd className="px-1.5 py-0.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">q</kbd> Scroll Page to Top
                 </li>
                 <li className="mb-2">
+                  <kbd className="px-1.5 py-0.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">w</kbd> Scroll Page to Bottom
+                </li>
+                <li className="mb-2">
                   <kbd className="px-1.5 py-0.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">esc</kbd> Open Index
                 </li>
               </ul>

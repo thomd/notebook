@@ -100,12 +100,12 @@
 }
 .markdown aside {
   position: relative;
-  left: 81%;
-  width: 17%;
+  left: 60rem;
+  width: 16rem;
 }
 .markdown aside > * {
   position: absolute;
-  padding-left: 1rem !important;
+  padding: 0 1rem !important;
   border-left: 6px solid var(--code-background-color);
   margin: 0.5rem 0;
 }
@@ -126,7 +126,7 @@
   font-size: 0.75rem;
 }
 .markdown .h1:has(+ aside) {
-  margin-right: 16rem;
+  margin-right: 20rem;
 }
 .markdown .h1 + aside {
   top: -4rem;
@@ -196,9 +196,9 @@
   color: var(--link-color);
 }
 .markdown pre {
-  margin: 1rem 0 1rem -1rem;
+  margin: 1rem -2rem;
   background-color: var(--code-background-color);
-  padding: 0.5rem 1rem 0.5rem 1rem;
+  padding: 0.5rem 2rem;
   line-height: 0;
 }
 .markdown pre > code {
@@ -307,24 +307,35 @@
 
 .navigation {
   background: var(--navigation-background-color);
+  box-shadow: inset -10px 0px 20px -10px #ddd;
   padding-top: 8rem;
 }
 .navigation ul {
   list-style: none;
 }
-.navigation > ul {
+.navigation nav > ul {
   margin: 0;
   padding: 0;
 }
+.navigation nav > ul > li:first-child {
+  padding: 1rem 1rem 0;
+}
 .navigation li {
   padding: 1rem 1rem 0;
+}
+.navigation li:not(:has(ul)) {
+  padding: 0 1rem 0;
+}
+.navigation li:not(:has(ul)) a {
+  color: #999;
+  font-weight: 400;
 }
 .navigation li.active > a {
   color: #000;
 }
 .navigation li a {
   text-decoration: none;
-  display: block;
+  display: inline-block;
   color: #666;
   font-size: 0.8125rem;
   font-weight: 600;
@@ -337,9 +348,10 @@
   color: #000;
 }
 .navigation li li {
-  padding: 0.25rem 0 0 0.5rem;
+  padding: 0 0 0 0.5rem;
 }
 .navigation li li a {
+  display: inline-block;
   color: #999;
   font-weight: 400;
 }

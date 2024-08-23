@@ -35,7 +35,7 @@ export default function MarkdownViewer({ content, className }) {
           remarkMath,
         ]}
         rehypePlugins={[
-          [rehypeBlock, { blockSymbol: ':::' }],
+          [rehypeBlock, { blockSymbol: ':::', wrapperTag: 'div' }],
           rehypeKatex,
           rehypeSlug,
           [

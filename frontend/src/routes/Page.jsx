@@ -36,6 +36,10 @@ export default function Page() {
     window.scrollTo(0, 0)
   })
 
+  useHotkeys('w', () => {
+    window.scrollTo(0, document.body.scrollHeight)
+  })
+
   useEffect(() => {
     setCurrentPage(page)
   })

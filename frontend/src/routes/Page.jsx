@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useLoaderData, useOutletContext } from 'react-router-dom'
 import { getPages, getPage, patchPage } from '../pages'
 import { Favorite } from '../components/Actions'
@@ -8,7 +8,6 @@ import { FavoritesMenu } from '../components/Favorites'
 import { EditButton, DeleteButton } from '../components/Actions'
 import MarkdownViewer from '../components/Markdown'
 import { Footer } from '../components/Footer'
-import StickyBox from 'react-sticky-box'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { ScrollRestoration } from 'react-router-dom'
 
@@ -28,6 +27,8 @@ export async function action({ request, params }) {
   })
 }
 
+const [minWidth, maxWidth, defaultWidth] = [200, 500, 350]
+
 export default function Page() {
   const [currentPage, setCurrentPage] = useOutletContext() // eslint-disable-line no-unused-vars
   const { pages, page } = useLoaderData()
@@ -44,13 +45,45 @@ export default function Page() {
     setCurrentPage(page)
   })
 
+  const isResized = useRef(false)
+  const [width, setWidth] = useState(parseInt(localStorage.getItem('sidebarWidth')) || defaultWidth)
+
+  useEffect(() => {
+    localStorage.setItem('sidebarWidth', width)
+  }, [width])
+
+  useEffect(() => {
+    window.addEventListener('mousemove', (ev) => {
+      console.log(isResized.current)
+      if (!isResized.current) {
+        return false
+      }
+      ev.stopPropagation()
+      ev.preventDefault()
+      const currentWidth = ev.clientX
+      if (currentWidth <= minWidth) {
+        setWidth(32)
+      } else {
+        setWidth(currentWidth)
+      }
+    })
+
+    window.addEventListener('mouseup', (ev) => {
+      isResized.current = false
+    })
+  }, [])
+
+  const startNavigationResize = (ev) => {
+    isResized.current = true
+    ev.stopPropagation()
+    ev.preventDefault()
+    return false
+  }
+
   return (
-    <div className="grid grid-cols-page min-h-screen">
-      <div className="navigation">
-        <StickyBox className="self-start" offsetTop={130} offsetBottom={30}>
-          <Navigation content={page.content} />
-        </StickyBox>
-      </div>
+    <div className="grid min-h-screen" style={{ gridTemplateColumns: `${width}px 4px 1fr` }}>
+      <Navigation content={page.content} />
+      <div className="cursor-col-resize hover:bg-gray-300" onMouseDown={startNavigationResize} />
       <div className="grid grid-rows-page">
         <div className="px-8 flex flex-nowrap justify-between items-center">
           <div className="flex flex-nowrap">

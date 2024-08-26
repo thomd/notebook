@@ -11,7 +11,6 @@
   --code-background-color: #f6f6f6;
   --inline-code-background-color: #f6f6f6;
   --code-text-color: #000;
-  --navigation-background-color: #fff;
 }
 
 ::selection {
@@ -196,9 +195,9 @@
   color: var(--link-color);
 }
 .markdown pre {
-  margin: 1rem -2rem;
+  margin: 1rem -2.25rem;
   background-color: var(--code-background-color);
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 2.25rem;
   line-height: 0;
 }
 .markdown pre > code {
@@ -306,9 +305,10 @@
 }
 
 .navigation {
-  background: var(--navigation-background-color);
   box-shadow: inset -10px 0px 20px -10px #ddd;
-  padding-top: 8rem;
+}
+.navigation + div {
+  z-index: 1;
 }
 .navigation ul {
   list-style: none;
@@ -325,13 +325,14 @@
 }
 .navigation nav > ul > li:not(:has(ul)) {
   padding-bottom: 0;
+  margin-bottom: 0.25rem;
 }
 .navigation nav > ul > li.active > a {
   color: #000;
 }
 .navigation nav > ul > li a {
   text-decoration: none;
-  display: inline-block;
+  display: block;
   color: #666;
   font-size: 0.8125rem;
   font-weight: 600;
@@ -345,9 +346,10 @@
 }
 .navigation nav > ul > li li {
   padding: 0 0 0 0.5rem;
+  margin-top: 0.25rem;
 }
 .navigation nav > ul > li li a {
-  display: inline-block;
+  display: block;
   color: #999;
   font-weight: 400;
 }

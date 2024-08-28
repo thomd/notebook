@@ -91,22 +91,32 @@ export default function Page() {
   return (
     <div className="grid min-h-screen" style={{ gridTemplateColumns: `${width}px 4px 1fr` }}>
       <Navigation content={page.content} />
-      <div className="cursor-col-resize hover:bg-gray-300" onMouseDown={startNavigationResize} />
+      <ResizeHandle startNavigationResize={startNavigationResize} />
       <div className="grid grid-rows-page">
-        <div className="px-8 flex flex-nowrap justify-between items-center">
-          <div className="flex flex-nowrap">
-            <ScrollRestoration />
-            <Breadcrumb pages={pages} page={page} />
-            <Favorite page={page} className="ml-5" />
-          </div>
-          <div className="flex flex-nowrap">
-            <FavoritesMenu pages={pages} className="mr-8" />
-            <EditButton className="mr-5" />
-            <DeleteButton pageTitle={currentPage?.title} />
-          </div>
-        </div>
+        <Header pages={pages} page={page} currentPage={currentPage} className="px-8" />
         <MarkdownViewer content={page.content} className="px-8 mb-12" />
         <Footer filename={page?.filename} className="p-8" />
+      </div>
+    </div>
+  )
+}
+
+function ResizeHandle({ startNavigationResize }) {
+  return <div className="cursor-col-resize hover:bg-gray-300" onMouseDown={startNavigationResize} />
+}
+
+function Header({ pages, page, currentPage, className }) {
+  return (
+    <div className={`${className} flex flex-nowrap justify-between items-center`}>
+      <div className="flex flex-nowrap">
+        <ScrollRestoration />
+        <Breadcrumb pages={pages} page={page} />
+        <Favorite page={page} className="ml-5" />
+      </div>
+      <div className="flex flex-nowrap">
+        <FavoritesMenu pages={pages} className="mr-8" />
+        <EditButton className="mr-5" />
+        <DeleteButton pageTitle={currentPage?.title} />
       </div>
     </div>
   )

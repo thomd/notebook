@@ -34,7 +34,6 @@
 .markdown {
     padding-right: 2rem;
     position: relative;
-    //font-family: "Helvetica Neue", Arial, sans-serif;
     font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -139,15 +138,16 @@
     }
 
     aside {
-        position: relative;
-        left: 60rem;
-        width: 16rem;
+        position: absolute;
+        display: flex;
+        justify-content: flex-end;
+        width: calc(100% - 4rem);
 
         & > * {
-            position: absolute;
             padding: 0 1rem !important;
             border-left: 6px solid var(--code-background-color);
             margin: 0.5rem 0;
+            width: 14rem;
         }
 
         & + * {
@@ -172,11 +172,14 @@
     }
 
     .h1:has(+ aside) {
-        margin-right: 20rem;
+        margin-right: 16rem;
     }
 
     .h1 + aside {
-        top: -4rem;
+        div {
+            position: relative;
+            top: -4rem;
+        }
     }
 
     ul {
@@ -393,6 +396,11 @@
 
 .navigation {
     box-shadow: inset -10px 0px 20px -10px #ddd;
+
+    & > svg {
+        position: fixed;
+        top: 2rem;
+    }
 
     & + div {
         z-index: 1;

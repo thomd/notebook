@@ -98,15 +98,16 @@
   margin-left: -1rem;
 }
 .markdown aside {
-  position: relative;
-  left: 60rem;
-  width: 16rem;
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  width: calc(100% - 4rem);
 }
 .markdown aside > * {
-  position: absolute;
   padding: 0 1rem !important;
   border-left: 6px solid var(--code-background-color);
   margin: 0.5rem 0;
+  width: 14rem;
 }
 .markdown aside + * {
   margin-right: 16rem !important;
@@ -125,9 +126,10 @@
   font-size: 0.75rem;
 }
 .markdown .h1:has(+ aside) {
-  margin-right: 20rem;
+  margin-right: 16rem;
 }
-.markdown .h1 + aside {
+.markdown .h1 + aside div {
+  position: relative;
   top: -4rem;
 }
 .markdown ul {
@@ -306,6 +308,10 @@
 
 .navigation {
   box-shadow: inset -10px 0px 20px -10px #ddd;
+}
+.navigation > svg {
+  position: fixed;
+  top: 2rem;
 }
 .navigation + div {
   z-index: 1;

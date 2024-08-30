@@ -75,22 +75,26 @@ export default function Page() {
     })
   }, [])
 
+  const showNavigation = () => {
+    collapsed.current = false
+    resizing.current = false
+    setWidth(defaultWidth)
+  }
+
   const startNavigationResize = (ev) => {
     if (collapsed.current === true) {
-      collapsed.current = false
-      resizing.current = false
-      setWidth(defaultWidth)
+      showNavigation()
     } else {
       resizing.current = true
       ev.stopPropagation()
       ev.preventDefault()
-      return false
     }
+    return false
   }
 
   return (
     <div className="grid min-h-screen" style={{ gridTemplateColumns: `${width}px 4px 1fr` }}>
-      <Navigation content={page.content} />
+      <Navigation content={page.content} showNavigation={showNavigation} collapsed={collapsed} />
       <ResizeHandle startNavigationResize={startNavigationResize} />
       <div className="grid grid-rows-page">
         <Header pages={pages} page={page} currentPage={currentPage} className="px-8" />

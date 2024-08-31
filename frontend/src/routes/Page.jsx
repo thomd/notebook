@@ -27,7 +27,7 @@ export async function action({ request, params }) {
   })
 }
 
-const [collapsedWidth, minWidth, maxWidth, defaultWidth] = [32, 120, 500, 320]
+const [collapsedWidth, minWidth, maxWidth, defaultWidth] = [32, 120, 500, 300]
 
 export default function Page() {
   const [currentPage, setCurrentPage] = useOutletContext() // eslint-disable-line no-unused-vars
@@ -41,6 +41,14 @@ export default function Page() {
     window.scrollTo(0, document.body.scrollHeight)
   })
 
+  useHotkeys('n', () => {
+    if (collapsed) {
+      showNavigation()
+    } else {
+      hideNavigation()
+    }
+  })
+
   useEffect(() => {
     setCurrentPage(page)
   })
@@ -48,6 +56,28 @@ export default function Page() {
   const resizing = useRef(false)
   const [width, setWidth] = useState(parseInt(localStorage.getItem('sidebarWidth')) || defaultWidth)
   const [collapsed, setCollapsed] = useState(localStorage.getItem('sidebarCollapsed') === 'true' || false)
+
+  const showNavigation = () => {
+    setCollapsed(false)
+    setWidth(defaultWidth)
+  }
+
+  const hideNavigation = () => {
+    setCollapsed(true)
+    setWidth(collapsedWidth)
+  }
+
+  const startNavigationResize = (ev) => {
+    if (collapsed === true) {
+      resizing.current = false
+      showNavigation()
+    } else {
+      resizing.current = true
+      ev.stopPropagation()
+      ev.preventDefault()
+    }
+    return false
+  }
 
   useEffect(() => {
     window.addEventListener('mousemove', (ev) => {
@@ -58,8 +88,7 @@ export default function Page() {
       ev.preventDefault()
       const currentWidth = ev.clientX
       if (currentWidth < minWidth) {
-        setCollapsed(true)
-        setWidth(collapsedWidth)
+        hideNavigation()
       } else if (currentWidth > maxWidth) {
         setWidth(maxWidth)
       } else {
@@ -76,23 +105,6 @@ export default function Page() {
     localStorage.setItem('sidebarWidth', width)
     localStorage.setItem('sidebarCollapsed', collapsed)
   }, [width, collapsed])
-
-  const showNavigation = () => {
-    setCollapsed(false)
-    resizing.current = false
-    setWidth(defaultWidth)
-  }
-
-  const startNavigationResize = (ev) => {
-    if (collapsed === true) {
-      showNavigation()
-    } else {
-      resizing.current = true
-      ev.stopPropagation()
-      ev.preventDefault()
-    }
-    return false
-  }
 
   return (
     <div className="grid min-h-screen" style={{ gridTemplateColumns: `${width}px 4px 1fr` }}>

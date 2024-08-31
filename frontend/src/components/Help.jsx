@@ -24,25 +24,25 @@ export function HelpModal({ className }) {
                 <h1 className="mb-4 font-bold">Keyboard Shortcuts</h1>
                 <ul className="mb-8">
                   <li className="mb-2">
-                    <kbd className="px-1.5 py-0.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">h</kbd> Help
+                    <kbd className="px-1.5 py-0.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">H</kbd> Help
                   </li>
                   <li className="mb-2">
-                    <kbd className="px-1.5 py-0.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">e</kbd> Edit Page
+                    <kbd className="px-1.5 py-0.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">E</kbd> Edit Page
                   </li>
                   <li className="mb-2">
-                    <kbd className="px-1.5 py-0.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">d</kbd> Delete Page
+                    <kbd className="px-1.5 py-0.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">D</kbd> Delete Page
                   </li>
                   <li className="mb-2">
-                    <kbd className="px-1.5 py-0.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">q</kbd> Scroll Page to Top
+                    <kbd className="px-1.5 py-0.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">Q</kbd> Scroll Page to Top
                   </li>
                   <li className="mb-2">
-                    <kbd className="px-1.5 py-0.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">w</kbd> Scroll Page to Bottom
+                    <kbd className="px-1.5 py-0.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">W</kbd> Scroll Page to Bottom
                   </li>
                   <li className="mb-2">
                     <kbd className="px-1.5 py-0.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">esc</kbd> Open Index
                   </li>
                   <li className="mb-2">
-                    <kbd className="px-1.5 py-0.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">n</kbd> Toggle Page Navigation
+                    <kbd className="px-1.5 py-0.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">N</kbd> Toggle Page Navigation
                   </li>
                 </ul>
               </section>

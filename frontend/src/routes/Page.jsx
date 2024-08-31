@@ -27,7 +27,7 @@ export async function action({ request, params }) {
   })
 }
 
-const [collapsedWidth, minWidth, maxWidth, defaultWidth] = [32, 140, 500, 350]
+const [collapsedWidth, minWidth, maxWidth, defaultWidth] = [32, 120, 500, 320]
 
 export default function Page() {
   const [currentPage, setCurrentPage] = useOutletContext() // eslint-disable-line no-unused-vars
@@ -47,11 +47,7 @@ export default function Page() {
 
   const resizing = useRef(false)
   const [width, setWidth] = useState(parseInt(localStorage.getItem('sidebarWidth')) || defaultWidth)
-  const collapsed = useRef(false)
-
-  useEffect(() => {
-    localStorage.setItem('sidebarWidth', width)
-  }, [width])
+  const [collapsed, setCollapsed] = useState(localStorage.getItem('sidebarCollapsed') === 'true' || false)
 
   useEffect(() => {
     window.addEventListener('mousemove', (ev) => {
@@ -60,13 +56,14 @@ export default function Page() {
       }
       ev.stopPropagation()
       ev.preventDefault()
-      if (ev.clientX < minWidth) {
-        collapsed.current = true
+      const currentWidth = ev.clientX
+      if (currentWidth < minWidth) {
+        setCollapsed(true)
         setWidth(collapsedWidth)
-      } else if (ev.clientX > maxWidth) {
+      } else if (currentWidth > maxWidth) {
         setWidth(maxWidth)
       } else {
-        setWidth(ev.clientX)
+        setWidth(currentWidth)
       }
     })
 
@@ -75,14 +72,19 @@ export default function Page() {
     })
   }, [])
 
+  useEffect(() => {
+    localStorage.setItem('sidebarWidth', width)
+    localStorage.setItem('sidebarCollapsed', collapsed)
+  }, [width, collapsed])
+
   const showNavigation = () => {
-    collapsed.current = false
+    setCollapsed(false)
     resizing.current = false
     setWidth(defaultWidth)
   }
 
   const startNavigationResize = (ev) => {
-    if (collapsed.current === true) {
+    if (collapsed === true) {
       showNavigation()
     } else {
       resizing.current = true

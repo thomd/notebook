@@ -27,7 +27,8 @@ export default function Index() {
 
   return (
     <div className="grid grid-rows-index min-h-screen">
-      <div className="flex justify-start items-center px-8">
+      <div className="flex justify-between items-center px-8">
+        <h1 className="-ml-4 mt-32 text-headline font-bold text-stone-100">Notebook</h1>
         <NewPageForm pages={pages} />
       </div>
       <div className="grid gap-10 p-8" style={{ gridTemplateColumns: 'repeat(' + numberCols + ', minmax(0, 1fr))' }}>

@@ -12,6 +12,9 @@ module.exports = {
                 pageedit: "auto 1fr auto",
             },
         },
+        fontSize: {
+            headline: "16rem",
+        },
     },
     plugins: [],
 };

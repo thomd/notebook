@@ -42,7 +42,7 @@ export function HelpModal({ className }) {
                     <kbd className="px-1.5 py-0.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">esc</kbd> Open Index
                   </li>
                   <li className="mb-2">
-                    <kbd className="px-1.5 py-0.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">n</kbd> Toggle Navigation
+                    <kbd className="px-1.5 py-0.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">n</kbd> Toggle Page Navigation
                   </li>
                 </ul>
               </section>

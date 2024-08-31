@@ -1,8 +1,8 @@
 :root {
-  /* Tailwind Colors: https://v2.tailwindcss.com/docs/customizing-colors */
   --link-color: #417bb2;
   --text-color: #111;
-  --first-headline-color: #111;
+  --first-headline-color: #0c4a6e;
+  --second-headline-color: #075985;
   --first-headline-border-color: #ddd;
   --headline-edit-link-color: #d1d5db;
   --headline-edit-link-hover-color: #6b7280;
@@ -65,6 +65,7 @@
   font-size: 1.5rem;
   line-height: 1.5rem;
   font-weight: 600;
+  color: var(--second-headline-color);
 }
 .markdown h3 {
   font-size: 1.3rem;
@@ -99,9 +100,8 @@
 }
 .markdown aside {
   position: absolute;
-  display: flex;
-  justify-content: flex-end;
-  width: calc(100% - 4rem);
+  width: 16rem;
+  right: 0;
 }
 .markdown aside > * {
   padding: 0 1rem !important;

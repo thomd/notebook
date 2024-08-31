@@ -1,14 +1,17 @@
 import { useState } from 'react'
 import { Form } from 'react-router-dom'
 
-export function NewPageForm({ className }) {
+export function NewPageForm({ pages, className }) {
   const [title, setTitle] = useState('')
   const [newtitle, setNewTitle] = useState('')
-  let disabled = newtitle === ''
+  const [disabled, setDisabled] = useState(true)
+  const exist = (title) => pages.some((page) => page.title.toLowerCase() === title.toLowerCase())
 
   const handleInputChange = (ev) => {
-    setNewTitle(ev.target.value)
-    setTitle(ev.target.value)
+    const title = ev.target.value
+    setNewTitle(title)
+    setTitle(title)
+    setDisabled(title === '' || exist(title))
   }
 
   const handleFormSubmit = (ev) => {
@@ -29,7 +32,7 @@ export function NewPageForm({ className }) {
       <button
         type="submit"
         disabled={disabled}
-        className="ml-4 py-1 px-3 bg-gray-400 hover:bg-gray-500 text-white text-base rounded outline-none disabled:bg-white disabled:text-gray-500 disabled:text-base disabled:rounded disabled:border disabled:border-gray-400">
+        className="ml-4 py-1 px-3 bg-emerald-500 hover:bg-emerald-600 text-white text-base rounded outline-none disabled:bg-white disabled:text-gray-500 disabled:text-base disabled:rounded disabled:border disabled:border-gray-400">
         New Page
       </button>
     </Form>

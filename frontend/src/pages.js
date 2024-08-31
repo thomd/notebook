@@ -33,8 +33,10 @@ export async function createPage(updates) {
     },
     body: JSON.stringify(updates),
   })
-  const data = await response.json()
-  return data ?? null
+  return {
+    status: response.status,
+    data: await response.json(),
+  }
 }
 
 export async function patchPage(params, updates) {

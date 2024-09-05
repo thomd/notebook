@@ -36,10 +36,10 @@ export default function Index() {
           <div key={`col-${i}`} className="grid gap-8 auto-rows-min">
             {column.map((category, j) => (
               <div key={`col-${i}-${j}`}>
-                <h2 className="font-bold mb-1 pb-1 border-b hover:text-gray-600 block border-gray-400">
+                <h1 className="font-light text-xl mb-1 pl-2 pb-1 border-b block border-gray-400 text-gray-400">
                   {category !== 'undefined' ? category : 'Uncategorized'}
-                </h2>
-                <ul>
+                </h1>
+                <ul className="pl-2">
                   {categoryPages[category].map((page) => (
                     <li key={page.id}>
                       <Link to={`/pages/${page.id}/`}>

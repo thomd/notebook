@@ -1,11 +1,12 @@
 :root {
-  --link-color: #417bb2;
   --text-color: #111;
-  --first-headline-color: #075985;
-  --second-headline-color: #111;
+  --link-color: #075985;
+  --link-hover-color: #0369a1;
+  --first-headline-color: #111;
+  --second-headline-color: #333;
   --first-headline-border-color: #ddd;
-  --headline-edit-link-color: #d1d5db;
-  --headline-edit-link-hover-color: #6b7280;
+  --headline-edit-link-color: #ccc;
+  --headline-edit-link-hover-color: #0369a1;
   --blockquote-border-color: #eee;
   --blockquote-color: #9ca3af;
   --code-background-color: #f6f6f6;
@@ -56,9 +57,9 @@
   padding: 4rem 0 1rem;
 }
 .markdown h1 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   line-height: 1.75rem;
-  font-weight: 600;
+  font-weight: 400;
   color: var(--first-headline-color);
 }
 .markdown h2 {
@@ -195,6 +196,9 @@
 }
 .markdown a {
   color: var(--link-color);
+}
+.markdown a:hover {
+  color: var(--link-hover-color);
 }
 .markdown pre {
   margin: 1rem -2.25rem;

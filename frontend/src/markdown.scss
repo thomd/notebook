@@ -2,14 +2,16 @@
     // Tailwind Colors:
     //    https://tailwindcss.com/docs/customizing-colors
 
-    --link-color: #417bb2;
     --text-color: #111;
 
-    --first-headline-color: #075985;
-    --second-headline-color: #111;
+    --link-color: #075985; // sky-800
+    --link-hover-color: #0369a1; // sky-700
+
+    --first-headline-color: #111;
+    --second-headline-color: #333;
     --first-headline-border-color: #ddd;
-    --headline-edit-link-color: #d1d5db;
-    --headline-edit-link-hover-color: #6b7280;
+    --headline-edit-link-color: #ccc;
+    --headline-edit-link-hover-color: #0369a1; // sky-700
 
     --blockquote-border-color: #eee;
     --blockquote-color: #9ca3af;
@@ -81,9 +83,9 @@
     }
 
     h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
         line-height: 1.75rem;
-        font-weight: 600;
+        font-weight: 400;
         color: var(--first-headline-color);
     }
 
@@ -261,6 +263,10 @@
 
     a {
         color: var(--link-color);
+
+        &:hover {
+            color: var(--link-hover-color);
+        }
     }
 
     pre {

@@ -18,16 +18,24 @@ keys](https://github.com/settings/keys) on Github (do not enter a passphrase for
         sudo vim /etc/hosts
         sudo dscacheutil -flushcache
 
-3. Start the application with
+3. Build application
+
+    Configure environment in `.env` file. Then run
+
+        docker compose build
+
+4. Start the application with
 
         docker compose up -d
+        docker compose ps
         open http://notebook
+
+5. Stop the application with
+
+        docker compose down
 
 The repository containing all the notebook pages as markdown files will be cloned into the docker volume `~/.notebook/notebook-pages`.
 
 ## Development
 
-    docker compose build
-    docker compose up -d
-    docker compose ps
-    docker compose down
+Follow development instructions in [backend/README.md](./backend/README.md) and [frontend/README.md](./frontend/README.md)

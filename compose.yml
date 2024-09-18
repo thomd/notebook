@@ -3,14 +3,14 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: frontend
+    container_name: notebook-frontend
     ports:
       - "80:80"
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: backend
+    container_name: notebook-backend
     environment:
       REMOTE_PAGES_REPO: ${REMOTE_PAGES_REPO}
       REMOTE_REPO_USERNAME: ${REMOTE_REPO_USERNAME}
@@ -24,6 +24,18 @@ services:
     restart: "no"
     secrets:
       - notebook_ssh_key
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.1
+    ports:
+     - "9200:9200"
+    container_name: notebook-elasticsearch
+    environment:
+      SERVER_NAME: "elasticsearch"
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+      network.bind_host: 0.0.0.0
+      network.host: 0.0.0.0
+      discovery.type: single-node
+      xpack.security.enabled: false
 secrets:
   notebook_ssh_key:
     file: ~/.ssh/notebook

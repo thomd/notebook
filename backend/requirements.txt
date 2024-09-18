@@ -6,3 +6,4 @@ python-slugify==8.0.4
 markdown==3.6
 python-frontmatter==1.1.0
 pytest==8.2.0
+elasticsearch==8.15.1

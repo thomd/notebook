@@ -2,7 +2,7 @@
 
 A simple **wiki-like** application to manage my personal notes (mainly it-development and science stuff) as **markdown files**.
 
-> [!NOTE]
+> [!IMPORTANT]
 > This application was developed and tested on **MacOS** only.
 
 ## Setup
@@ -41,4 +41,4 @@ The repository containing all the notebook pages as markdown files will be clone
 
 ## Development
 
-Follow development instructions in [Backend](./backend/README.md) and [Frontend](./frontend/README.md).
+Follow development instructions in [backend](./backend/README.md) and [frontend](./frontend/README.md).

@@ -7,6 +7,8 @@ from notebook import log
 
 origins = [
     "http://localhost:3000",
+    "http://localhost",
+    "http://notebook",
 ]
 
 app = FastAPI()

@@ -6,7 +6,7 @@ The app is served using a [nginx](https://nginx.org) webserver.
 
 ## Development
 
-    npm start
+    ./develop
     open http://localhost:3000
 
 ## Styling

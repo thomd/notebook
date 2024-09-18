@@ -4,6 +4,8 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     container_name: frontend
+    environment:
+      REACT_APP_BACKEND_PORT: "8008"
     ports:
       - "80:80"
   backend:
@@ -12,8 +14,9 @@ services:
       dockerfile: Dockerfile
     container_name: backend
     environment:
-      PORT: "8008"
-      REMOTE_PAGES_REPO: "git@github.com:thomd/notebook-pages.git"
+      REMOTE_PAGES_REPO: ${REMOTE_PAGES_REPO}
+      REMOTE_REPO_USERNAME: ${REMOTE_REPO_USERNAME}
+      REMOTE_REPO_EMAIL: ${REMOTE_REPO_EMAIL}
       LOCAL_PAGES_REPO: "/data"
       PAGES_DIR: "/data/pages"
     ports:

@@ -16,7 +16,7 @@ Either run the following commands
 
 or run
 
-    ./develop.sh
+    ./develop
 
 ## Test
 

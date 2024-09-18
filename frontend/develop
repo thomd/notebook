@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+tmux splitw -v -l 40% "npm run css:tailwind"
+tmux splitw -v -l 50% "npm run css:sass"
+tmux selectp -t 1
+
+killpanes() {
+  tmux kill-pane -t 3
+  tmux kill-pane -t 2
+}
+trap 'killpanes' EXIT
+
+REACT_APP_BACKEND_PORT=8000 npm start
+

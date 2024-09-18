@@ -2,7 +2,8 @@
 
 A simple **wiki-like** application to manage my personal notes (mainly it-development and science stuff) as **markdown files**.
 
-This application was developed and tested on **MacOS** only.
+> [!NOTE]
+> This application was developed and tested on **MacOS** only.
 
 ## Setup
 
@@ -20,7 +21,9 @@ keys](https://github.com/settings/keys) on Github (do not enter a passphrase for
 
 3. Build application
 
-    Configure environment in `.env` file. Then run
+    Configure environment in `.env` file.
+
+    Then run
 
         docker compose build
 
@@ -38,4 +41,4 @@ The repository containing all the notebook pages as markdown files will be clone
 
 ## Development
 
-Follow development instructions in [backend/README.md](./backend/README.md) and [frontend/README.md](./frontend/README.md)
+Follow development instructions in [Backend](./backend/README.md) and [Frontend](./frontend/README.md).

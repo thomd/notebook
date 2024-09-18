@@ -10,5 +10,5 @@ killpanes() {
 }
 trap 'killpanes' EXIT
 
-REACT_APP_BACKEND_PORT=8000 npm start
+npm start
 

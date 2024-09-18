@@ -1,7 +1,7 @@
 import { matchSorter } from 'match-sorter'
 import sortBy from 'sort-by'
 
-const baseUrl = `http://localhost:${process.env.REACT_APP_BACKEND_PORT}`
+const baseUrl = `http://localhost:8000`
 
 export async function getPages(query) {
   const response = await fetch(`${baseUrl}/pages`)

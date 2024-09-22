@@ -38,10 +38,16 @@ export function SearchModal() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = useRef(null)
   const [search, openSearch] = useState(<SearchOverlay />)
-  useHotkeys('shift+/', () => {
-    openSearch(<SearchOverlay />)
-    onOpen()
-  })
+
+  useHotkeys(
+    ['shift+/', 's'],
+    () => {
+      openSearch(<SearchOverlay />)
+      onOpen()
+    },
+    { preventDefault: true }
+  )
+
   return (
     <Modal isCentered initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
       {search}

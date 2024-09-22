@@ -9,7 +9,7 @@ export function HelpModal({ className }) {
   const openHelpModal = () => {
     onOpen()
   }
-  useHotkeys(['h'], openHelpModal)
+  useHotkeys(['h', 'shift+?'], openHelpModal)
 
   return (
     <div className={className}>
@@ -23,9 +23,6 @@ export function HelpModal({ className }) {
               <section>
                 <h1 className="mb-4 font-bold">Keyboard Shortcuts</h1>
                 <ul className="mb-8">
-                  <li className="mb-2">
-                    <kbd className="px-1.5 py-0.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">H</kbd> Help
-                  </li>
                   <li className="mb-2">
                     <kbd className="px-1.5 py-0.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">E</kbd> Edit Page
                   </li>
@@ -43,6 +40,9 @@ export function HelpModal({ className }) {
                   </li>
                   <li className="mb-2">
                     <kbd className="px-1.5 py-0.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">N</kbd> Toggle Page Navigation
+                  </li>
+                  <li className="mb-2">
+                    <kbd className="px-1.5 py-0.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">/</kbd> Search
                   </li>
                 </ul>
               </section>

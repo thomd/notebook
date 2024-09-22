@@ -1,5 +1,26 @@
 #!/usr/bin/env bash
 
+#docker run -d --rm --name dev-nb-es -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -e "xpack.security.enabled=false" -it docker.elastic.co/elasticsearch/elasticsearch:7.15.1
+
+#docker run -d --rm --name dev-nb-es -p 9200:9200 -p 9300:9300 \
+  #-e "SERVER_NAME='elasticsearch'" \
+  #-e "ES_JAVA_OPTS='-Xms512m -Xmx512m'" \
+  #-e "network.bind_host=0.0.0.0" \
+  #-e "network.host=0.0.0.0" \
+  #-e "discovery.type=single-node" \
+  #-e "xpack.security.enabled=false" \
+  #-e "http.cors.enabled=true" \
+  #-e "http.cors.allow-origin='http://localhost:3000'" \
+  #-e "http.cors.allow-headers='X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization,x-elastic-client-meta'" \
+  #-it docker.elastic.co/elasticsearch/elasticsearch:7.15.1
+
+#stopcontainer() {
+#docker stop dev-nb-es
+#}
+#trap 'stopcontainer' EXIT
+
+#sleep 10
+
 if test -d .venv; then
   source .venv/bin/activate
 else
@@ -16,3 +37,4 @@ export LOCAL_PAGES_REPO="/Users/thomasduerr/develop/notebook/notebook-tools/medi
 export PAGES_DIR="/Users/thomasduerr/develop/notebook/notebook-tools/mediawiki-to-markdown/pages"
 
 uvicorn notebook.main:app --reload
+

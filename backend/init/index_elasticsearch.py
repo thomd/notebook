@@ -15,9 +15,10 @@ if not es.indices.exists(index='notebooks'):
             page = pg.getPage(page)
             pagecount += 1
             document = {
-                "title": page.title,
-                "category": page.category,
-                "content": page.content
+                'title': page.title,
+                'category': page.category,
+                'content': page.content,
+                'url': f'/pages/{page.id}'
             }
             result = es.index(index='notebooks', body=document)
             log.info(f"ingested document '{page.title}' ({result['_id']})")

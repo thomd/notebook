@@ -48,27 +48,14 @@ export function HelpModal({ className }) {
               </section>
               <section>
                 <h1 className="mb-4 mt-12 font-bold">Tools</h1>
-                <ul className="mb-8">
-                  <li className="mb-1">
-                    Star: ★ <code className="bg-gray-200 py-[1px] px-1">&amp;#x2605;</code>
-                  </li>
-                  <li className="mb-1">Dot ●, ○ </li>
-                  <li className="mb-1">
-                    Command: ⌘ <code className="bg-gray-200 py-[1px] px-1">&amp;#8984;</code>
-                  </li>
-                  <li className="mb-1">Shift: ⇧</li>
-                  <li className="mb-1"> Option: ⌥ </li>
-                  <li className="mb-1">Control: ⌃</li>
-                  <li className="mb-1">Caps Lock: ⇪</li>
-                </ul>
                 <ul>
                   <li className="mb-1">
-                    <a className="text-[#3f8c08]" href="https://tinyurl.com">
+                    <a className="hover:text-sky-700 text-sky-800" href="https://tinyurl.com" target="_blank" rel="noreferrer">
                       URL Shortener
                     </a>
                   </li>
                   <li className="mb-1">
-                    <a className="text-[#3f8c08]" href="https://asciiflow.com">
+                    <a className="hover:text-sky-700 text-sky-800" href="https://asciiflow.com" target="_blank" rel="noreferrer">
                       ASCII Diagrams
                     </a>
                   </li>

@@ -15,7 +15,7 @@ git: build
 
 elasticsearch:
 	@if $$(docker inspect -f '{{.State.Status}}' dev-es 2> /dev/null | grep -q "running"); then docker stop dev-es; fi
-	@docker run -d --rm --name dev-es -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -e "xpack.security.enabled=false" elasticsearch:8.9.0
+	@docker run -d --rm --name dev-es -p 9200:9200 -e "discovery.type=single-node" -e "xpack.security.enabled=false" elasticsearch:8.9.0
 	@until $$(curl -s http://localhost:9200 >/dev/null); do echo "Waiting for Elasticsearch..."; sleep 5; done
 
 index: build elasticsearch

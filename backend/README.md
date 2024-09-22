@@ -1,5 +1,10 @@
 # Notebook Backend
 
+## Routes
+
+    open http://localhost:8000/docs
+    open http://localhost:8000/redoc
+
 ## Development
 
 Either run the following commands
@@ -16,16 +21,17 @@ Either run the following commands
 
 or run
 
-    ./develop
+    make start
+    make stop
 
 ## Test
 
-Start `uvicorn` server in background or separate terminal (see above) and run
+Either start `uvicorn` server in background or separate terminal (see above) and run
 
     source .venv/bin/activate
     nodemon -w notebook -e py -x pytest -vv
 
-## Routes
+or run
 
-    open http://localhost:8000/docs
-    open http://localhost:8000/redoc
+    make test
+

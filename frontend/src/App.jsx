@@ -1,14 +1,13 @@
 import React from 'react'
 import { ChakraProvider } from '@chakra-ui/react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Decorator from './routes/Decorator'
+import Decorator from './pages/Decorator'
 import Error from './Error'
-import Index, { loader as indexLoader } from './routes/Index'
-import Page, { loader as pageLoader, action as pageAction } from './routes/Page'
-import PageEdit, { action as pageEditAction } from './routes/PageEdit'
-import { action as pageDeleteAction } from './routes/PageDelete'
-import { action as newPageAction } from './routes/PageNew'
-//import { useScrollHeader } from './hooks/scroll'
+import Index, { loader as indexLoader } from './pages/Index'
+import Page, { loader as pageLoader, action as pageAction } from './pages/Page'
+import PageEdit, { action as pageEditAction } from './pages/PageEdit'
+import { action as pageDeleteAction } from './pages/PageDelete'
+import { action as newPageAction } from './pages/PageNew'
 
 const router = createBrowserRouter([
   {
@@ -58,8 +57,6 @@ const router = createBrowserRouter([
 ])
 
 function App() {
-  //useScrollHeader()
-
   return (
     <ChakraProvider>
       <RouterProvider router={router} />

@@ -7,22 +7,24 @@
 
 ## Development
 
-Either run the following commands
+1. Edit `.env` file
 
-    python -m venv .venv
-    source .venv/bin/activate
-    pip install -r requirements.txt
-    pip install ipython
+2. Either run the following commands
 
-    export REMOTE_PAGES_REPO="$HOME/.gitrepos/wiki-pages.git"
-    export LOCAL_PAGES_REPO=".pages"
-    export PAGES_DIR=".pages"
-    uvicorn notebook.main:app --reload
+        python -m venv .venv
+        source .venv/bin/activate
+        pip install -r requirements.txt
+        pip install ipython
 
-or run
+        export REMOTE_PAGES_REPO="$HOME/.gitrepos/wiki-pages.git"
+        export LOCAL_PAGES_REPO=".pages"
+        export PAGES_DIR=".pages"
+        uvicorn notebook.main:app --reload
 
-    make start
-    make stop
+    or run
+
+        make start
+        make stop
 
 ## Test
 

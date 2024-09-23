@@ -4,22 +4,20 @@ import { useHotkeys } from 'react-hotkeys-hook'
 
 export function HelpModal({ className }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const initialRef = useRef(null)
 
-  const openHelpModal = () => {
+  useHotkeys(['h', 'shift+?'], () => {
     onOpen()
-  }
-  useHotkeys(['h', 'shift+?'], openHelpModal)
+  })
 
   return (
     <div className={className}>
-      <Modal isCentered initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
+      <Modal isCentered isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Help</ModalHeader>
-          <ModalCloseButton />
+          <ModalCloseButton style={{ boxShadow: 'none' }} />
           <ModalBody>
-            <div className="text-gray-600 pb-8" ref={initialRef}>
+            <div className="text-gray-600 pb-8">
               <section>
                 <h1 className="mb-4 font-bold">Keyboard Shortcuts</h1>
                 <ul className="mb-8">

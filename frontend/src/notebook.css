@@ -545,12 +545,12 @@ video {
   --tw-contain-style:  ;
 }
 
-.relative {
-  position: relative;
-}
-
 .col-span-2 {
   grid-column: span 2 / span 2;
+}
+
+.m-8 {
+  margin: 2rem;
 }
 
 .-ml-4 {
@@ -667,10 +667,6 @@ video {
 
 .w-3 {
   width: 0.75rem;
-}
-
-.w-52 {
-  width: 13rem;
 }
 
 .w-full {
@@ -863,14 +859,6 @@ video {
   padding-left: 0.5rem;
 }
 
-.pl-8 {
-  padding-left: 2rem;
-}
-
-.pr-2 {
-  padding-right: 0.5rem;
-}
-
 .pt-32 {
   padding-top: 8rem;
 }
@@ -905,6 +893,10 @@ video {
 
 .font-light {
   font-weight: 300;
+}
+
+.font-medium {
+  font-weight: 500;
 }
 
 .font-semibold {
@@ -978,11 +970,6 @@ video {
   --tw-ring-color: rgb(209 213 219 / var(--tw-ring-opacity));
 }
 
-.blur {
-  --tw-blur: blur(8px);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
 .filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
@@ -991,37 +978,12 @@ html {
   -webkit-font-smoothing: auto !important;
 }
 
-/* SEARCH */
+/* SEARCH FILTER */
 
-input[type="search"] {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='%23999' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' /%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: 0.5rem 0.6rem;
-  background-size: 1rem;
-}
-
-input[type="search"].loading {
-  background-image: none;
-}
-
-.search-spinner {
-  width: 1rem;
-  height: 1rem;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'%3E%3Cpath stroke='%23000' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M20 4v5h-.582m0 0a8.001 8.001 0 00-15.356 2m15.356-2H15M4 20v-5h.581m0 0a8.003 8.003 0 0015.357-2M4.581 15H9' /%3E%3C/svg%3E");
-  animation: spin 1s infinite linear;
-  position: absolute;
-  left: 0.5rem;
-  top: 0.5rem;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+.search-filter em {
+  color: #111;
+  font-weight: 600;
+  font-style: unset;
 }
 
 .placeholder\:text-gray-300::placeholder {

@@ -11,6 +11,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "framer-motion": "^11.0.28",
+    "html-react-parser": "^5.1.16",
     "match-sorter": "^6.3.4",
     "mdast-util-gfm-table": "^2.0.0",
     "micromark-extension-gfm-table": "^2.0.0",

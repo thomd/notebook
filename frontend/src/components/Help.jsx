@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import { useDisclosure, ModalOverlay, Modal, ModalContent, ModalHeader, ModalCloseButton, ModalBody } from '@chakra-ui/react'
 import { useHotkeys } from 'react-hotkeys-hook'
 

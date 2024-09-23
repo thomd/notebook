@@ -1,63 +1,59 @@
-import { useState, useRef, useEffect } from 'react'
-import { Form, useNavigation, useSubmit } from 'react-router-dom'
+import { useState, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { useDisclosure, ModalOverlay, Modal, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, Input } from '@chakra-ui/react'
 import { useHotkeys } from 'react-hotkeys-hook'
-
-export function Search({ q }) {
-  const navigation = useNavigation()
-  const submit = useSubmit()
-  const searching = navigation.location && new URLSearchParams(navigation.location.search).has('q')
-
-  useEffect(() => {
-    document.getElementById('q').value = q
-  }, [q])
-
-  return (
-    <Form className="relative">
-      <input
-        id="q"
-        className={'block w-52 border-0 py-1 pr-2 pl-8 text-gray-900 shadow-sm ring-1 ring-gray-300 outline-none' + (searching ? ' loading' : '')}
-        placeholder="Search"
-        type="search"
-        name="q"
-        defaultValue={q}
-        onChange={(event) => {
-          const isFirstSearch = q == null
-          submit(event.currentTarget.form, {
-            replace: !isFirstSearch,
-          })
-        }}
-      />
-      <div className="search-spinner" hidden={!searching} />
-    </Form>
-  )
-}
+import parse from 'html-react-parser'
+import { search } from '../search'
 
 export function SearchModal() {
-  const SearchOverlay = () => <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px) hue-rotate(90deg)" />
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = useRef(null)
-  const [search, openSearch] = useState(<SearchOverlay />)
+  const [results, setResults] = useState([])
 
-  useHotkeys(
-    ['shift+/', 's'],
-    () => {
-      openSearch(<SearchOverlay />)
-      onOpen()
-    },
-    { preventDefault: true }
-  )
+  const openSearchModal = () => {
+    setResults([])
+    onOpen()
+  }
+  useHotkeys(['shift+/', 's'], openSearchModal, { keydown: false, keyup: true })
+
+  const handleInput = async (ev) => {
+    const query = ev.target.value
+    if (query.length > 1) {
+      const res = await searchIndex(query)
+      setResults(res)
+    }
+  }
+
+  const handleLinkClick = (ev) => {
+    onClose()
+  }
 
   return (
-    <Modal isCentered initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
-      {search}
+    <Modal size="full" initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay />
       <ModalContent>
         <ModalHeader>Search</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <FormControl>
-            <Input ref={initialRef} placeholder="Search" />
+            <Input ref={initialRef} placeholder="Search" style={{ boxShadow: 'none' }} onChange={handleInput} />
           </FormControl>
+          <div className="text-gray-600 m-8">
+            <ol>
+              {results.map((result, i) => (
+                <li key={`res-${i}`}>
+                  <Link to={result.url} onClick={handleLinkClick} className="hover:text-sky-700 text-sky-800 font-medium">
+                    {result.title}
+                  </Link>
+                  <ul className="search-filter text-gray-400 mb-4 font-mono text-sm">
+                    {result.result.map((res, j) => (
+                      <li key={`res-${i}-${j}`}>{parse(res)}</li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ol>
+          </div>
         </ModalBody>
       </ModalContent>
     </Modal>

@@ -15,8 +15,15 @@ git: build
 
 elasticsearch:
 	@if $$(docker inspect -f '{{.State.Status}}' dev-es 2> /dev/null | grep -q "running"); then docker stop dev-es; fi
-	@docker run -d --rm --name dev-es -p 9200:9200 -e "discovery.type=single-node" -e "xpack.security.enabled=false" elasticsearch:8.9.0
-	@until $$(curl -s http://localhost:9200 >/dev/null); do echo "Waiting for Elasticsearch..."; sleep 5; done
+	@docker run -d --rm --name dev-es -p 9200:9200 \
+		-e "discovery.type=single-node" \
+		-e "xpack.security.enabled=false" \
+		-e "http.cors.enabled=true" \
+		-e 'http.cors.allow-origin="http://localhost:3000"' \
+		-e 'http.cors.allow-headers="X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization,x-elastic-client-meta"' \
+		-e "http.cors.allow-credentials=true" \
+		elasticsearch:8.9.0
+	@until $$(curl -s http://localhost:9200 >/dev/null); do echo "Waiting for Elasticsearch..."; sleep 3; done
 
 index: build elasticsearch
 	@docker run -t --rm --network="host" -v $(PWD):/code --env-file .env notebook-backend python -m init.index_elasticsearch

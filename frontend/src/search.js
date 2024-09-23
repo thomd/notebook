@@ -31,16 +31,19 @@ export async function searchIndex(input) {
   const hits = await data.hits.hits
   const results = hits.map((result) => {
     return {
-      result: result.highlight.content,
+      result: result.highlight ? result.highlight.content : [],
       url: result._source.url,
       category: result._source.category,
       title: result._source.title,
     }
   })
-  console.log('search results: ', results)
   return results
 }
 
-export async function updateDocument(input) {}
+export async function updateDocument(input) {
+  // TODO
+}
 
-export async function deleteDocument(input) {}
+export async function deleteDocument(input) {
+  // TODO
+}

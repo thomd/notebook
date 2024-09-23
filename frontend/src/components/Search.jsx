@@ -1,13 +1,13 @@
 import { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { useDisclosure, ModalOverlay, Modal, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, Input } from '@chakra-ui/react'
+import { useDisclosure, ModalOverlay, Modal, ModalContent, ModalCloseButton } from '@chakra-ui/react'
 import { useHotkeys } from 'react-hotkeys-hook'
 import parse from 'html-react-parser'
-import { search } from '../search'
+import { searchIndex } from '../search'
 
 export function SearchModal() {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const initialRef = useRef(null)
+  const input = useRef(null)
   const [results, setResults] = useState([])
 
   const openSearchModal = () => {
@@ -29,23 +29,28 @@ export function SearchModal() {
   }
 
   return (
-    <Modal size="full" initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
+    <Modal size="full" initialFocusRef={input} isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Search</ModalHeader>
         <ModalCloseButton />
-        <ModalBody>
-          <FormControl>
-            <Input ref={initialRef} placeholder="Search" style={{ boxShadow: 'none' }} onChange={handleInput} />
-          </FormControl>
-          <div className="text-gray-600 m-8">
+        <h1 className="ml-4 -mt-20 !text-headline font-bold text-stone-100">Search</h1>
+        <div className="relative -top-40">
+          <input
+            ref={input}
+            className="mx-8 pl-2 font-light text-xl border-b block border-gray-400 text-gray-400 outline-none w-[calc(100vw-6rem)] bg-transparent"
+            onChange={handleInput}
+          />
+          <div className="text-gray-600 m-8 mt-16">
             <ol>
               {results.map((result, i) => (
                 <li key={`res-${i}`}>
-                  <Link to={result.url} onClick={handleLinkClick} className="hover:text-sky-700 text-sky-800 font-medium">
+                  <Link
+                    to={result.url}
+                    onClick={handleLinkClick}
+                    className="hover:text-sky-700 text-sky-800 font-medium py-1 px-2 -my-1 -mx-2 focus:bg-stone-200 outline-none">
                     {result.title}
                   </Link>
-                  <ul className="search-filter text-gray-400 mb-4 font-mono text-sm">
+                  <ul className="search-filter text-gray-400 mb-6 font-mono text-sm">
                     {result.result.map((res, j) => (
                       <li key={`res-${i}-${j}`}>{parse(res)}</li>
                     ))}
@@ -54,7 +59,7 @@ export function SearchModal() {
               ))}
             </ol>
           </div>
-        </ModalBody>
+        </div>
       </ModalContent>
     </Modal>
   )

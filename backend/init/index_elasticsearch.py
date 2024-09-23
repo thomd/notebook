@@ -2,6 +2,12 @@ from pathlib import Path
 from elasticsearch import Elasticsearch
 from notebook import page as pg
 from notebook import log
+from markdown import markdown
+
+def remove_html_tags(text):
+    import re
+    clean = re.compile('<.*?>')
+    return re.sub(clean, '', text)
 
 es = Elasticsearch('http://localhost:9200')
 
@@ -14,10 +20,11 @@ if not es.indices.exists(index='notebooks'):
         if page.is_file():
             page = pg.getPage(page)
             pagecount += 1
+            content = remove_html_tags(markdown(page.content))
             document = {
                 'title': page.title,
                 'category': page.category,
-                'content': page.content,
+                'content': content,
                 'url': f'/pages/{page.id}'
             }
             result = es.index(index='notebooks', body=document)

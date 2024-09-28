@@ -5,7 +5,7 @@ export function NewPageForm({ pages, className }) {
   const [title, setTitle] = useState('')
   const [newtitle, setNewTitle] = useState('')
   const [disabled, setDisabled] = useState(true)
-  const exist = (title) => pages.some((page) => page.title.toLowerCase() === title.toLowerCase())
+  const exist = (title) => pages.some((page) => page.title.toLowerCase() === title.toLowerCase().trim())
 
   const handleInputChange = (ev) => {
     const title = ev.target.value

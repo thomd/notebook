@@ -7,7 +7,7 @@ from notebook import log
 
 def pagesDir():
     ''' to make API testable, endpoints determine pages location in each call '''
-    return os.environ.get("PAGES_DIR")
+    return os.environ.get("LOCAL_PAGES_REPO") + '/' + os.environ.get("PAGES_DIR")
 
 def createFilename(title):
     return slugify(title) + '.md'
@@ -69,6 +69,7 @@ def createPage(path, page):
 
 
 def deletePage(path):
+    # TODO remobe page from es-index
     path.unlink()
     repository.commit()
 
@@ -109,6 +110,8 @@ def updatePage(path, page):
 
     # ... commit ...
     repository.commit()
+
+    # TODO ... update es-document ...
 
     # ... and return the page data
     return getPage(path)

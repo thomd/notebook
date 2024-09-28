@@ -2,3 +2,7 @@ Dockerfile
 .dockerignore
 README.md
 .pages
+.venv
+.DS_Store
+.pytest_cache
+backend.todo.md

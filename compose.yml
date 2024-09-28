@@ -11,12 +11,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     container_name: notebook-backend
-    environment:
-      REMOTE_PAGES_REPO: ${REMOTE_PAGES_REPO}
-      REMOTE_REPO_USERNAME: ${REMOTE_REPO_USERNAME}
-      REMOTE_REPO_EMAIL: ${REMOTE_REPO_EMAIL}
-      LOCAL_PAGES_REPO: "/data"
-      PAGES_DIR: "/data/pages"
+    env_file: .env.prod
     ports:
       - '8000:8000'
     volumes:
@@ -25,7 +20,7 @@ services:
     secrets:
       - notebook_ssh_key
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.1
+    image: elasticsearch:8.9.0
     ports:
      - "9200:9200"
     container_name: notebook-elasticsearch

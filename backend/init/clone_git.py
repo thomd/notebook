@@ -5,9 +5,9 @@ from notebook import log
 import os
 
 REMOTE_PAGES_REPO = os.environ.get('REMOTE_PAGES_REPO')
-LOCAL_PAGES_REPO = os.environ.get('LOCAL_PAGES_REPO')
 REMOTE_REPO_USERNAME = os.environ.get('REMOTE_REPO_USERNAME')
 REMOTE_REPO_EMAIL = os.environ.get('REMOTE_REPO_EMAIL')
+LOCAL_PAGES_REPO = os.environ.get('LOCAL_PAGES_REPO')
 
 if REMOTE_PAGES_REPO and LOCAL_PAGES_REPO:
     try:

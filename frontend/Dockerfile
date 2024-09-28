@@ -3,6 +3,8 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 COPY . .
+ARG REMOTE_PAGES_REPO_URL
+ENV REACT_APP_REMOTE_PAGES_REPO_URL=$REMOTE_PAGES_REPO_URL
 RUN npm run build
 
 FROM nginx:latest as prod

@@ -3,9 +3,12 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        - REMOTE_PAGES_REPO_URL=${REMOTE_PAGES_REPO_URL}
     container_name: notebook-frontend
     ports:
       - "80:80"
+    env_file: .env
     depends_on:
       - backend
   backend:

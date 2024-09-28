@@ -1,5 +1,5 @@
 export function Footer({ filename, className }) {
-  const basePath = 'https://github.com/thomd/notebook-notes'
+  const basePath = process.env.REACT_APP_REMOTE_PAGES_REPO_URL
   const url = filename ? basePath + '/' + filename : basePath
 
   return (

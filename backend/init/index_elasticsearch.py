@@ -3,13 +3,15 @@ from elasticsearch import Elasticsearch
 from notebook import page as pg
 from notebook import log
 from markdown import markdown
+import os
 
 def remove_html_tags(text):
     import re
     clean = re.compile('<.*?>')
     return re.sub(clean, '', text)
 
-es = Elasticsearch('http://localhost:9200')
+url = 'http://elasticsearch:9200' if os.environ.get('NOTEBOOK_MODE') == 'production' else 'http://localhost:9200'
+es = Elasticsearch(url)
 
 if not es.indices.exists(index='notebooks'):
     es.indices.create(index='notebooks', body={})

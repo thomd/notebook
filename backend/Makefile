@@ -21,7 +21,7 @@ git: build
 
 elasticsearch:
 	@if [ $$(docker inspect -f '{{.State.Status}}' dev-es 2> /dev/null) ]; then docker stop dev-es; fi
-	@docker run -d --rm --name dev-es -p 9200:9200 \
+	@docker run -d --rm --name dev-es -p 9201:9200 \
 		-e "discovery.type=single-node" \
 		-e "xpack.security.enabled=false" \
 		-e "http.cors.enabled=true" \

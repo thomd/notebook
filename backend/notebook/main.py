@@ -58,8 +58,9 @@ def create_page(page: model.Page):
     if path.exists():
         raise HTTPException(status_code=409, detail=f"Page '{path.stem}' does already exist")
     else:
-        es.createDocument(path)
-        return pg.createPage(path, page)
+        response = pg.createPage(path, page)
+        es.createDocument(response.id, response.title, response.category, response.content)
+        return response
 
 
 # curl -H "Content-Type: application/json" -X PUT -d '{"title": "Foo", "content": "# Foo"}' http://localhost:8000/pages/foo -s | jq
@@ -84,8 +85,9 @@ def update_page(page_id: str, page: model.PageUpdate):
     if page.title != None and page_id != pg.createId(page.title) and Path(f'{pg.pagesDir()}/{pg.createFilename(page.title)}').exists():
         raise HTTPException(status_code=500, detail=f"Page '{pg.createId(page.title)}' does already exist")
     elif path.exists():
-        es.updateDocument(path)
-        return pg.updatePage(path, page)
+        response = pg.updatePage(path, page)
+        es.updateDocument(response.id, response.title, response.category, response.content)
+        return response
     else:
         raise HTTPException(status_code=404, detail=f"Page '{page_id}' does not exist")
 
@@ -101,8 +103,9 @@ def update_page(page_id: str, start: int, end: int, page: model.PageUpdate):
     if page.title != None and page_id != pg.createId(page.title) and Path(f'{pg.pagesDir()}/{pg.createFilename(page.title)}').exists():
         raise HTTPException(status_code=500, detail=f"Page '{pg.createId(page.title)}' does already exist")
     elif path.exists():
-        es.updateDocument(path)
-        return pg.updatePageWithFragment(path, start, end, page)
+        response = pg.updatePageWithFragment(path, start, end, page)
+        es.updateDocument(response.id, response.title, response.category, response.content)
+        return response
     else:
         raise HTTPException(status_code=404, detail=f"Page '{page_id}' does not exist")
 

@@ -7,24 +7,18 @@
 
 ## Development
 
-1. Edit `.env` file
+Either edit `.env.dev` file and start FastAPI & ElasticSearch backend with
 
-2. Either run the following commands
+    make backend
+    ...
+    make clean
 
-        python -m venv .venv
-        source .venv/bin/activate
-        pip install -r requirements.txt
-        pip install ipython
+or 
 
-        export REMOTE_PAGES_REPO="$HOME/.gitrepos/wiki-pages.git"
-        export LOCAL_PAGES_REPO=".pages"
-        export PAGES_DIR=".pages"
-        uvicorn notebook.main:app --reload
-
-    or run
-
-        make start
-        make stop
+    . .venv/bin/activate
+    python -m init.clone_git
+    make index
+    uvicorn notebook.main:app --host 0.0.0.0 --port 8000 --reload
 
 ## Test
 

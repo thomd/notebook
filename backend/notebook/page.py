@@ -69,7 +69,6 @@ def createPage(path, page):
 
 
 def deletePage(path):
-    # TODO remobe page from es-index
     path.unlink()
     repository.commit()
 
@@ -110,8 +109,6 @@ def updatePage(path, page):
 
     # ... commit ...
     repository.commit()
-
-    # TODO ... update es-document ...
 
     # ... and return the page data
     return getPage(path)

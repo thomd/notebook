@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
 from notebook import page as pg
+from notebook import search as es
 from notebook import model
 from notebook import log
 
@@ -57,13 +58,14 @@ def create_page(page: model.Page):
     if path.exists():
         raise HTTPException(status_code=409, detail=f"Page '{path.stem}' does already exist")
     else:
+        es.createDocument(path)
         return pg.createPage(path, page)
 
 
 # curl -H "Content-Type: application/json" -X PUT -d '{"title": "Foo", "content": "# Foo"}' http://localhost:8000/pages/foo -s | jq
 @app.put("/pages/{page_id}", response_model=model.Response, response_model_exclude_none=True)
 def replace_page(page_id: str, page: model.Page):
-    """ PUT is used to replace the existing paghe. It is likely to be rarely used. """
+    """ PUT is used to replace the existing page. It is likely to be rarely used. """
     path = Path(f"{pg.pagesDir()}/{page_id}.md")
     if not path.exists():
         raise HTTPException(status_code=404, detail=f"Page '{page_id}' does not exist")
@@ -82,6 +84,7 @@ def update_page(page_id: str, page: model.PageUpdate):
     if page.title != None and page_id != pg.createId(page.title) and Path(f'{pg.pagesDir()}/{pg.createFilename(page.title)}').exists():
         raise HTTPException(status_code=500, detail=f"Page '{pg.createId(page.title)}' does already exist")
     elif path.exists():
+        es.updateDocument(path)
         return pg.updatePage(path, page)
     else:
         raise HTTPException(status_code=404, detail=f"Page '{page_id}' does not exist")
@@ -98,6 +101,7 @@ def update_page(page_id: str, start: int, end: int, page: model.PageUpdate):
     if page.title != None and page_id != pg.createId(page.title) and Path(f'{pg.pagesDir()}/{pg.createFilename(page.title)}').exists():
         raise HTTPException(status_code=500, detail=f"Page '{pg.createId(page.title)}' does already exist")
     elif path.exists():
+        es.updateDocument(path)
         return pg.updatePageWithFragment(path, start, end, page)
     else:
         raise HTTPException(status_code=404, detail=f"Page '{page_id}' does not exist")
@@ -108,6 +112,7 @@ def update_page(page_id: str, start: int, end: int, page: model.PageUpdate):
 def delete_page(page_id: str):
     path = Path(f"{pg.pagesDir()}/{page_id}.md")
     if path.exists():
+        es.deleteDocument(path)
         pg.deletePage(path)
     else:
         raise HTTPException(status_code=404, detail=f"Page '{page_id}' does not exist")

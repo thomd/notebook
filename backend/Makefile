@@ -2,7 +2,7 @@ SHELL = /bin/bash
 include .env.dev
 export
 
-backend: build git index
+backend: clean build git index
 	@docker run -d -t --rm --name dev-backend -v $(REMOTE_PAGES_REPO):/$(REMOTE_PAGES_REPO) -v $(LOCAL_PAGES_REPO):$(LOCAL_PAGES_REPO) -p 8000:8000 --env-file .env.dev notebook-backend
 	@docker logs -f dev-backend
 
@@ -20,8 +20,7 @@ git: build
 	fi
 
 elasticsearch:
-	@if [ $$(docker inspect -f '{{.State.Status}}' dev-es 2> /dev/null) ]; then docker stop dev-es; fi
-	@docker run -d --rm --name dev-es -p 9201:9200 \
+	@docker run -d --rm --name dev-es -p 9200:9200 \
 		-e "discovery.type=single-node" \
 		-e "xpack.security.enabled=false" \
 		-e "http.cors.enabled=true" \

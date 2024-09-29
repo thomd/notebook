@@ -9,7 +9,48 @@ url = 'http://elasticsearch:9200' if os.environ.get('NOTEBOOK_MODE') == 'product
 client = Elasticsearch(url)
 
 if not client.indices.exists(index='notebooks'):
-    client.indices.create(index='notebooks', body={})
+    mapping = {
+        "settings": {
+            "analysis": {
+                "tokenizer": {
+                    "edge_ngram_tokenizer": {
+                        "type": "edge_ngram",
+                        "min_gram": 3,
+                        "max_gram": 20,
+                        "token_chars": ["letter", "digit"]
+                    }
+                },
+                "analyzer": {
+                    "edge_ngram_analyzer": {
+                        "type": "custom",
+                        "tokenizer": "edge_ngram_tokenizer",
+                        "filter": ["lowercase"]
+                    },
+                    "search_analyzer": {
+                        "type": "standard"
+                    }
+                }
+            }
+      },
+      "mappings": {
+            "properties": {
+                "title": {
+                    "type": "text",
+                    "analyzer": "edge_ngram_analyzer"
+                },
+                "category": {
+                    "type": "text",
+                    "analyzer": "standard"
+                },
+                "content": {
+                    "type": "text",
+                    "analyzer": "edge_ngram_analyzer",
+                    "search_analyzer": "search_analyzer"
+                }
+            }
+        }
+    }
+    client.indices.create(index='notebooks', body=mapping)
     log.info(f"created ealsticesearch index 'notebooks'")
     path = Path(pg.pagesDir())
     pagecount = 0

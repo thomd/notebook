@@ -7,18 +7,22 @@
 
 ## Development
 
-Either edit `.env.dev` file and start FastAPI & ElasticSearch backend with
+1. Edit `.env.dev` file 
 
-    make backend
-    ...
-    make clean
+2. Then either start FastAPI & ElasticSearch backend with
 
-or 
+        make backend
+        ...
+        make clean
 
-    . .venv/bin/activate
-    python -m init.clone_git
-    make index
-    uvicorn notebook.main:app --host 0.0.0.0 --port 8000 --reload
+    or with
+
+        source .venv/bin/activate
+        while read e; do export "$e"; done < <(grep -v '^#' .env.dev | sed /^$/d)
+        python -m init.clone_git
+        make elasticsearch
+        python -m init.index_elasticsearch
+        uvicorn notebook.main:app --host 0.0.0.0 --port 8000 --reload
 
 ## Test
 

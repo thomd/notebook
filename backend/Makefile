@@ -31,7 +31,6 @@ elasticsearch:
 	@until $$(curl -s http://localhost:9200 >/dev/null); do echo "Waiting for Elasticsearch..."; sleep 1; done
 
 index: build elasticsearch
-	@docker run -t --rm --network="host" -v $(LOCAL_PAGES_REPO):/$(LOCAL_PAGES_REPO) --env-file .env.dev notebook-backend env
 	@docker run -t --rm --network="host" -v $(LOCAL_PAGES_REPO):/$(LOCAL_PAGES_REPO) --env-file .env.dev notebook-backend python -m init.index_elasticsearch
 
 test: build

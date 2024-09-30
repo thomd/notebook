@@ -7,8 +7,10 @@ A simple **wiki-like** application to manage my personal notes (mainly it-develo
 
 ## Setup
 
-1. Accessing the private git repository on Github containing the [notebook-pages](https://github.com/thomd/notebook-pages), upload a public key to [SSH
-keys](https://github.com/settings/keys) on Github (do not enter a passphrase for the key):
+1. Create a git repository for notebook pages like for example [notebook-example-pages](https://github.com/thomd/notebook-rexample-pages).
+
+1. If the pages repository is a private git repository on Github, then upload a public key to [SSH keys](https://github.com/settings/keys) 
+on Github (do not enter a passphrase for the key):
 
         cd ~/.ssh
         ssh-keygen -f notebook
@@ -36,8 +38,6 @@ keys](https://github.com/settings/keys) on Github (do not enter a passphrase for
 5. Stop the application with
 
         docker compose down
-
-The repository containing all the notebook pages as markdown files will be cloned into the docker volume `~/.notebook/notebook-pages`.
 
 ## Development
 

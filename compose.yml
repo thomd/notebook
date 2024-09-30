@@ -40,7 +40,7 @@ services:
       discovery.type: single-node
       xpack.security.enabled: false
       http.cors.enabled: true
-      http.cors.allow-origin: "http://localhost"
+      http.cors.allow-origin: "http://localhost, http://notebook"
       http.cors.allow-headers: "X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization,x-elastic-client-meta"
       http.cors.allow-credentials: true
     healthcheck:

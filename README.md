@@ -2,8 +2,7 @@
 
 A simple **wiki-like** application to manage my personal notes (mainly it-development and science stuff) as **markdown files**.
 
-> [!IMPORTANT]
-> This application was developed and tested on **MacOS** only.
+This application was developed and tested on **MacOS** only.
 
 ## Setup
 

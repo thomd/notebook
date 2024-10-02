@@ -1,4 +1,4 @@
-const baseUrl = `http://localhost:9200`
+const baseURL = process.env.REACT_APP_NOTEBOOK_MODE === 'production' ? 'http://localhost:9200' : 'http://localhost:9202'
 
 export async function searchIndex(input) {
   const query = {
@@ -20,7 +20,7 @@ export async function searchIndex(input) {
       ],
     },
   }
-  const response = await fetch(`${baseUrl}/notebooks/_search`, {
+  const response = await fetch(`${baseURL}/notebooks/_search`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

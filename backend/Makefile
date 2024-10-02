@@ -3,7 +3,7 @@ include .env.dev
 export
 
 backend: clean build git index
-	@docker run -d -t --rm --name dev-backend -v $(REMOTE_PAGES_REPO):/$(REMOTE_PAGES_REPO) -v $(LOCAL_PAGES_REPO):$(LOCAL_PAGES_REPO) -p 8000:8000 --env-file .env.dev notebook-backend
+	@docker run -d -t --rm --name dev-backend -v $(REMOTE_PAGES_REPO):/$(REMOTE_PAGES_REPO) -v $(LOCAL_PAGES_REPO):$(LOCAL_PAGES_REPO) -p 8002:8000 --env-file .env.dev notebook-backend
 	@docker logs -f dev-backend
 
 clean:
@@ -20,7 +20,7 @@ git: build
 	fi
 
 elasticsearch:
-	@docker run -d --rm --name dev-es -p 9200:9200 \
+	@docker run -d --rm --name dev-es -p 9202:9200 \
 		-e "discovery.type=single-node" \
 		-e "xpack.security.enabled=false" \
 		-e "http.cors.enabled=true" \
@@ -28,7 +28,7 @@ elasticsearch:
 		-e 'http.cors.allow-headers="X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization,x-elastic-client-meta"' \
 		-e "http.cors.allow-credentials=true" \
 		elasticsearch:8.9.0
-	@until $$(curl -s http://localhost:9200 >/dev/null); do echo "Waiting for Elasticsearch..."; sleep 1; done
+	@until $$(curl -s http://localhost:9202 >/dev/null); do echo "Waiting for Elasticsearch..."; sleep 1; done
 
 index: build elasticsearch
 	@docker run -t --rm --network="host" -v $(LOCAL_PAGES_REPO):/$(LOCAL_PAGES_REPO) --env-file .env.dev notebook-backend python -m init.index_elasticsearch

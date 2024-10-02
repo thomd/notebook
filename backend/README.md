@@ -1,28 +1,21 @@
 # Notebook Backend
 
-## Routes
-
-    open http://localhost:8000/docs
-    open http://localhost:8000/redoc
-
 ## Development
 
-1. Edit `.env.dev` file 
+Edit `.env.dev` file.
 
-2. Then either start FastAPI & ElasticSearch backend with
+Then either start FastAPI & ElasticSearch backend with
 
-        make backend
-        ...
-        make clean
+    make backend
 
-    or with
+or with
 
-        source .venv/bin/activate
-        while read e; do export "$e"; done < <(grep -v '^#' .env.dev | sed /^$/d)
-        python -m init.clone_git
-        make elasticsearch
-        python -m init.index_elasticsearch
-        uvicorn notebook.main:app --host 0.0.0.0 --port 8000 --reload
+    source .venv/bin/activate
+    while read e; do export "$e"; done < <(grep -v '^#' .env.dev | sed /^$/d)
+    python -m init.clone_git
+    make elasticsearch
+    python -m init.index_elasticsearch
+    uvicorn notebook.main:app --host 0.0.0.0 --port 8002 --reload
 
 ## Test
 

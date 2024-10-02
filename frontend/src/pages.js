@@ -1,10 +1,10 @@
 import { matchSorter } from 'match-sorter'
 import sortBy from 'sort-by'
 
-const baseUrl = `http://localhost:8000`
+const baseURL = process.env.REACT_APP_NOTEBOOK_MODE === 'production' ? 'http://localhost:8000' : 'http://localhost:8002'
 
 export async function getPages(query) {
-  const response = await fetch(`${baseUrl}/pages`)
+  const response = await fetch(`${baseURL}/pages`)
   const data = await response.json()
   let pages = await data.pages
   if (!pages) pages = []
@@ -16,7 +16,7 @@ export async function getPages(query) {
 
 export async function getPage(params) {
   let { pageId, start, end } = params
-  let url = `${baseUrl}/pages/${pageId}`
+  let url = `${baseURL}/pages/${pageId}`
   if (start && end) {
     url += `/${start}/${end}`
   }
@@ -26,7 +26,7 @@ export async function getPage(params) {
 }
 
 export async function createPage(updates) {
-  const response = await fetch(`${baseUrl}/pages`, {
+  const response = await fetch(`${baseURL}/pages`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ export async function createPage(updates) {
 
 export async function patchPage(params, updates) {
   let { pageId, start, end } = params
-  let url = `${baseUrl}/pages/${pageId}`
+  let url = `${baseURL}/pages/${pageId}`
   if (start && end) {
     url += `/${start}/${end}`
   }
@@ -57,7 +57,7 @@ export async function patchPage(params, updates) {
 }
 
 export async function deletePage(pageId) {
-  const response = await fetch(`${baseUrl}/pages/${pageId}`, {
+  const response = await fetch(`${baseURL}/pages/${pageId}`, {
     method: 'DELETE',
   })
   return response.status === '204' ? true : false

@@ -1088,14 +1088,23 @@ html {
   color: rgb(3 105 161 / var(--tw-text-opacity));
 }
 
+.focus\:rounded:focus {
+  border-radius: 0.25rem;
+}
+
 .focus\:border-gray-400:focus {
   --tw-border-opacity: 1;
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
 }
 
-.focus\:bg-stone-200:focus {
+.focus\:bg-sky-700:focus {
   --tw-bg-opacity: 1;
-  background-color: rgb(231 229 228 / var(--tw-bg-opacity));
+  background-color: rgb(3 105 161 / var(--tw-bg-opacity));
+}
+
+.focus\:text-gray-50:focus {
+  --tw-text-opacity: 1;
+  color: rgb(249 250 251 / var(--tw-text-opacity));
 }
 
 .focus\:outline-none:focus {

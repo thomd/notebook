@@ -2,7 +2,9 @@ import { useEffect } from 'react'
 import { useLoaderData, Link, useOutletContext } from 'react-router-dom'
 import { getPages } from '../pages'
 import { NewPageForm } from '../components/NewPage'
+import { FavoritesMenu, whiteCircle, blackCircle } from '../components/Favorites'
 import { Footer } from '../components/Footer'
+import parse from 'html-react-parser'
 
 export async function loader({ request }) {
   const pages = await getPages()
@@ -29,6 +31,7 @@ export default function Index() {
     <div className="grid grid-rows-index min-h-screen">
       <div className="flex justify-between items-center px-8">
         <h1 className="-ml-4 mt-32 text-headline font-bold text-stone-100">Notebook</h1>
+        <FavoritesMenu pages={pages} className="font-medium" />
         <NewPageForm pages={pages} />
       </div>
       <div className="grid gap-10 p-8" style={{ gridTemplateColumns: 'repeat(' + numberCols + ', minmax(0, 1fr))' }}>
@@ -44,7 +47,7 @@ export default function Index() {
                     <li key={page.id}>
                       <Link to={`/pages/${page.id}/`}>
                         {page.title}
-                        {page.favorite && <span className="ml-2">★</span>}
+                        {page.favorite && <span className="ml-2 text-orange-600">{parse(blackCircle)}</span>}
                       </Link>
                     </li>
                   ))}

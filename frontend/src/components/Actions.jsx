@@ -2,6 +2,8 @@ import { useRef, useState } from 'react'
 import { Form, useLocation, useFetcher, useNavigate } from 'react-router-dom'
 import { useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, FormControl, Input } from '@chakra-ui/react'
 import { useHotkeys } from 'react-hotkeys-hook'
+import { whiteCircle, blackCircle } from '../components/Favorites'
+import parse from 'html-react-parser'
 
 export function EditButton({ className }) {
   const { pathname } = useLocation()
@@ -72,9 +74,15 @@ export function Favorite({ page, className }) {
 
   return (
     <fetcher.Form method="post" className={`${className} inline`}>
-      <button name="favorite" value={favorite ? 'false' : 'true'} className="text-lg text-gray-400">
-        {favorite ? '★' : '☆'}
-      </button>
+      {favorite ? (
+        <button name="favorite" value="false" className="text-lg text-orange-600">
+          {parse(blackCircle)}
+        </button>
+      ) : (
+        <button name="favorite" value="true" className="text-lg text-gray-300">
+          {parse(whiteCircle)}
+        </button>
+      )}
     </fetcher.Form>
   )
 }

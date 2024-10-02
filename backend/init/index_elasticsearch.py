@@ -5,7 +5,7 @@ from notebook import search as es
 from notebook import log
 import os
 
-url = 'http://elasticsearch:9200' if os.environ.get('NOTEBOOK_MODE') == 'production' else 'http://localhost:9200'
+url = os.environ.get('BASE_URL_ELASTICSEARCH')
 client = Elasticsearch(url)
 
 if not client.indices.exists(index='notebooks'):
@@ -15,7 +15,7 @@ if not client.indices.exists(index='notebooks'):
                 "tokenizer": {
                     "edge_ngram_tokenizer": {
                         "type": "edge_ngram",
-                        "min_gram": 3,
+                        "min_gram": 2,
                         "max_gram": 20,
                         "token_chars": ["letter", "digit"]
                     }
@@ -63,7 +63,7 @@ if not client.indices.exists(index='notebooks'):
                 'title': p.title,
                 'category': p.category,
                 'content': content,
-                'url': f'/pages/{p.id}'
+                'url': f'/pages/{p.id}/'
             }
             result = client.index(index='notebooks', id=p.id, body=document)
             log.info(f"ingested document '{p.title}' ({result['_id']})")

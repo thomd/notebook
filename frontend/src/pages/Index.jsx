@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useLoaderData, Link, useOutletContext } from 'react-router-dom'
-import { getPages } from '../pages'
+import { getPages } from '../services/pages'
 import { NewPageForm } from '../components/NewPage'
-import { FavoritesMenu, whiteCircle, blackCircle } from '../components/Favorites'
+import { FavoritesMenu, blackCircle } from '../components/Favorites'
 import { Footer } from '../components/Footer'
 import parse from 'html-react-parser'
 

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { Form, useLoaderData, redirect, useNavigate } from 'react-router-dom'
 import CategorySelect from '../components/CategorySelect'
-import { patchPage } from '../pages'
+import { patchPage } from '../services/pages'
 import { useHotkeys } from 'react-hotkeys-hook'
 import * as prettier from 'prettier'
 import * as parserMarkdown from 'prettier/parser-markdown'

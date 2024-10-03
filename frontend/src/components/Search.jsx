@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useDisclosure, ModalOverlay, Modal, ModalContent, ModalCloseButton } from '@chakra-ui/react'
 import { useHotkeys } from 'react-hotkeys-hook'
 import parse from 'html-react-parser'
-import { searchIndex } from '../search'
+import { searchIndex } from '../services/search'
 
 export function SearchModal() {
   const { isOpen, onOpen, onClose } = useDisclosure()

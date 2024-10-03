@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import { useLoaderData, useOutletContext } from 'react-router-dom'
-import { getPages, getPage, patchPage } from '../pages'
+import { getPages, getPage, patchPage } from '../services/pages'
 import { Favorite } from '../components/Actions'
 import Breadcrumb from '../components/Breadcrumb'
 import Navigation from '../components/Navigation'

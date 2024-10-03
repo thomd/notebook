@@ -15,7 +15,7 @@ if not client.indices.exists(index='notebooks'):
                 "tokenizer": {
                     "edge_ngram_tokenizer": {
                         "type": "edge_ngram",
-                        "min_gram": 2,
+                        "min_gram": 3,
                         "max_gram": 20,
                         "token_chars": ["letter", "digit"]
                     }

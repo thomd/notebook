@@ -15,12 +15,17 @@ on Github (do not enter a passphrase for the key):
         ssh-keygen -f notebook
         cat notebook.pub | pbcopy
 
-2. Add a record `127.0.0.1 notebook` into your local hosts file and flush DNS cache:
+1. Add a record `127.0.0.1 notebook` into your local hosts file and flush DNS cache:
 
         sudo vim /etc/hosts
         sudo dscacheutil -flushcache
 
-3. Build application
+1. Install locally-trusted SSL certificate:
+
+        mkcert -install
+        (cd frontend; mkcert notebook)
+
+1. Build application
 
     Configure environment in `.env` file.
 
@@ -28,13 +33,13 @@ on Github (do not enter a passphrase for the key):
 
         docker compose build
 
-4. Start the application with
+1. Start the application with
 
         docker compose up -d
         docker compose ps
-        open http://notebook
+        open https://notebook
 
-5. Stop the application with
+1. Stop the application with
 
         docker compose down
 

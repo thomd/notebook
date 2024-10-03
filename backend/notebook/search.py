@@ -22,7 +22,7 @@ def createDocument(id, title, category, content):
         'url': f'/pages/{id}'
     }
     result = client.index(index='notebooks', id=id, document=document)
-    log.info(f"ingested document '{title}' ({result['_id']})")
+    log.info(f"created document {result['_id']}")
 
 def updateDocument(id, title, category, content):
     document = {
@@ -32,9 +32,13 @@ def updateDocument(id, title, category, content):
         'url': f'/pages/{id}'
     }
     result = client.update(index='notebooks', id=id, doc=document)
-    log.info(f"updated document '{title}' ({result['_id']})")
+    log.info(f"updated document {result['_id']}")
 
 def deleteDocument(path):
     p = pg.getPage(path)
     result = client.delete(index='notebooks', id=p.id)
-    log.info(f"deleted document '{p.title}' ({result['_id']})")
+    log.info(f"deleted document {result['_id']}")
+
+def deleteDocumentById(id):
+    result = client.delete(index='notebooks', id=id)
+    log.info(f"deleted document {result['_id']}")

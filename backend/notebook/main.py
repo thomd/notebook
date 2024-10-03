@@ -63,30 +63,21 @@ def create_page(page: model.Page):
         return response
 
 
-# curl -H "Content-Type: application/json" -X PUT -d '{"title": "Foo", "content": "# Foo"}' http://localhost:8000/pages/foo -s | jq
-@app.put("/pages/{page_id}", response_model=model.Response, response_model_exclude_none=True)
-def replace_page(page_id: str, page: model.Page):
-    """ PUT is used to replace the existing page. It is likely to be rarely used. """
-    path = Path(f"{pg.pagesDir()}/{page_id}.md")
-    if not path.exists():
-        raise HTTPException(status_code=404, detail=f"Page '{page_id}' does not exist")
-    elif path.name != pg.createFilename(page.title) and Path(f'{pg.pagesDir()}/{pg.createFilename(page.title)}').exists():
-        raise HTTPException(status_code=500, detail=f"Page '{pg.createId(page.title)}' does already exist")
-    else:
-        return pg.putPage(path, page)
-
-
 # curl -H "Content-Type: application/json" -X PATCH -d '{"title": "Other Foo"}' http://localhost:8000/pages/foo -s | jq
 @app.patch("/pages/{page_id}", response_model=model.Response, response_model_exclude_none=True)
 def update_page(page_id: str, page: model.PageUpdate):
     """ PATCH is used to partially replace existing page attributes. """
     path = Path(f'{pg.pagesDir()}/{page_id}.md')
-    # if we change the title to an existing page, we would unintentionally overwrite it
+    # if we change the title to an already existing page, we would unintentionally overwrite it
     if page.title != None and page_id != pg.createId(page.title) and Path(f'{pg.pagesDir()}/{pg.createFilename(page.title)}').exists():
         raise HTTPException(status_code=500, detail=f"Page '{pg.createId(page.title)}' does already exist")
     elif path.exists():
         response = pg.updatePage(path, page)
-        es.updateDocument(response.id, response.title, response.category, response.content)
+        if page.title != None and page_id != response.id:
+            es.createDocument(response.id, response.title, response.category, response.content)
+            es.deleteDocumentById(page_id)
+        else:
+            es.updateDocument(response.id, response.title, response.category, response.content)
         return response
     else:
         raise HTTPException(status_code=404, detail=f"Page '{page_id}' does not exist")
@@ -104,7 +95,11 @@ def update_page(page_id: str, start: int, end: int, page: model.PageUpdate):
         raise HTTPException(status_code=500, detail=f"Page '{pg.createId(page.title)}' does already exist")
     elif path.exists():
         response = pg.updatePageWithFragment(path, start, end, page)
-        es.updateDocument(response.id, response.title, response.category, response.content)
+        if page.title != None and page_id != response.id:
+            es.createDocument(response.id, response.title, response.category, response.content)
+            es.deleteDocumentById(page_id)
+        else:
+            es.updateDocument(response.id, response.title, response.category, response.content)
         return response
     else:
         raise HTTPException(status_code=404, detail=f"Page '{page_id}' does not exist")

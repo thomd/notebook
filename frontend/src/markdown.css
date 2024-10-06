@@ -15,7 +15,7 @@
 }
 
 ::selection {
-  background-color: rgba(255, 255, 0, 0.3);
+  background-color: rgba(255, 255, 0, 0.5);
   text-shadow: none;
 }
 
@@ -113,6 +113,18 @@
 .markdown aside + * {
   margin-right: 16rem !important;
 }
+.markdown aside.aside2 + * + *, .markdown aside.aside3 + * + *, .markdown aside.aside4 + * + *, .markdown aside.aside5 + * + * {
+  margin-right: 16rem !important;
+}
+.markdown aside.aside3 + * + * + *, .markdown aside.aside4 + * + * + *, .markdown aside.aside5 + * + * + * {
+  margin-right: 16rem !important;
+}
+.markdown aside.aside4 + * + * + * + *, .markdown aside.aside5 + * + * + * + * {
+  margin-right: 16rem !important;
+}
+.markdown aside.aside5 + * + * + * + * + * {
+  margin-right: 16rem !important;
+}
 .markdown aside p {
   font-size: 0.75rem;
   padding: 0.75rem 0;
@@ -120,6 +132,7 @@
 .markdown aside ul {
   list-style-type: none;
   margin-inline-start: 0;
+  padding: 1px 0;
 }
 .markdown aside ul li {
   margin: 0.75rem 0;

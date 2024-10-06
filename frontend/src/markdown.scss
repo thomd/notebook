@@ -22,7 +22,7 @@
 }
 
 ::selection {
-    background-color: rgba(255, 255, 0, 0.3);
+    background-color: rgba(255, 255, 0, 0.5);
     text-shadow: none;
 }
 
@@ -143,6 +143,8 @@
     }
 
     aside {
+        $asideWidth: 16rem;
+
         position: absolute;
         width: 16rem;
         right: 0;
@@ -155,7 +157,29 @@
         }
 
         & + * {
-            margin-right: 16rem !important;
+            margin-right: $asideWidth !important;
+        }
+
+        &.aside2 + * + *,
+        &.aside3 + * + *,
+        &.aside4 + * + *,
+        &.aside5 + * + * {
+            margin-right: $asideWidth !important;
+        }
+
+        &.aside3 + * + * + *,
+        &.aside4 + * + * + *,
+        &.aside5 + * + * + * {
+            margin-right: $asideWidth !important;
+        }
+
+        &.aside4 + * + * + * + *,
+        &.aside5 + * + * + * + * {
+            margin-right: $asideWidth !important;
+        }
+
+        &.aside5 + * + * + * + * + * {
+            margin-right: $asideWidth !important;
         }
 
         p {
@@ -166,6 +190,7 @@
         ul {
             list-style-type: none;
             margin-inline-start: 0;
+            padding: 1px 0;
 
             li {
                 margin: 0.75rem 0;

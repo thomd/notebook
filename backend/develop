@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# create python virtual environment
+if test -d .venv; then
+  source .venv/bin/activate
+else
+  python -m venv .venv
+  source .venv/bin/activate
+  pip install --upgrade pip
+  pip install -r requirements.txt
+fi
+
+# export environment
+while read e; do export "$e"; done < <(grep -v '^#' .env.dev | sed /^$/d)
+
+# clone pages repository
+python -m init.clone_git
+
+# start elasticsearch container
+make elasticsearch
+
+# index pages in elasticsearch
+python -m init.index_elasticsearch
+
+# start backend
+uvicorn notebook.main:app --host 0.0.0.0 --port 8002 --reload

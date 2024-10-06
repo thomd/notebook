@@ -1,5 +1,5 @@
 .venv
-.pages
+.env
 *.crt
 *.key
 *.pem

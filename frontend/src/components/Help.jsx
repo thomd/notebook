@@ -60,6 +60,21 @@ export function HelpModal({ className }) {
                   </li>
                 </ul>
               </section>
+              <section>
+                <h1 className="mb-4 mt-12 font-bold">KaTeX</h1>
+                <ul>
+                  <li className="mb-1">
+                    <a className="hover:text-sky-700 text-sky-800" href="https://katex.org/docs/supported.html" target="_blank" rel="noreferrer">
+                      Supported Functions
+                    </a>
+                  </li>
+                  <li className="mb-1">
+                    <a className="hover:text-sky-700 text-sky-800" href="https://github.com/KaTeX/KaTeX/wiki/Package-Emulation" target="_blank" rel="noreferrer">
+                      Package Emulation
+                    </a>
+                  </li>
+                </ul>
+              </section>
             </div>
           </ModalBody>
         </ModalContent>

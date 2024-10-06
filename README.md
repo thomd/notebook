@@ -25,11 +25,12 @@ on Github (do not enter a passphrase for the key):
         mkcert -install
         (cd frontend; mkcert notebook)
 
+1. Configure environment:
+
+        cp .env.example .env
+        vim .env
+
 1. Build application
-
-    Configure environment in `.env` file.
-
-    Then run
 
         docker compose build
 

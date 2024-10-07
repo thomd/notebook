@@ -19,7 +19,7 @@ def createDocument(id, title, category, content):
         'title': title,
         'category': category,
         'content': sanitize(content),
-        'url': f'/pages/{id}'
+        'url': f'/pages/{id}/'
     }
     result = client.index(index='notebooks', id=id, document=document)
     log.info(f"created document {result['_id']}")
@@ -29,7 +29,7 @@ def updateDocument(id, title, category, content):
         'title': title,
         'category': category,
         'content': sanitize(content),
-        'url': f'/pages/{id}'
+        'url': f'/pages/{id}/'
     }
     result = client.update(index='notebooks', id=id, doc=document)
     log.info(f"updated document {result['_id']}")

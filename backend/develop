@@ -18,6 +18,7 @@ python -m init.clone_git
 
 # start elasticsearch container
 make elasticsearch
+trap 'docker stop dev-es' EXIT
 
 # index pages in elasticsearch
 python -m init.index_elasticsearch

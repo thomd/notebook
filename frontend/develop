@@ -5,8 +5,8 @@ tmux splitw -v -l 50% "npm run css:sass"
 tmux selectp -t 1
 
 killpanes() {
-  tmux kill-pane -t 3
-  tmux kill-pane -t 2
+tmux kill-pane -t 3
+tmux kill-pane -t 2
 }
 trap 'killpanes' EXIT
 

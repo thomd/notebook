@@ -10,12 +10,7 @@ Then either start FastAPI & ElasticSearch backend with
 
 or with
 
-    source .venv/bin/activate
-    while read e; do export "$e"; done < <(grep -v '^#' .env.dev | sed /^$/d)
-    python -m init.clone_git
-    make elasticsearch
-    python -m init.index_elasticsearch
-    uvicorn notebook.main:app --host 0.0.0.0 --port 8002 --reload
+    ./develop
 
 ## Test
 

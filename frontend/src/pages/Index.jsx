@@ -17,10 +17,9 @@ export default function Index() {
   const categoryPages = Object.groupBy(pages, (page) => page.category)
   const categories = Object.keys(categoryPages).sort()
 
-  const numberCols = 5
   let columns = []
-  for (let i = 0; i < numberCols; i++) {
-    columns.push(categories.filter((_, index) => index % numberCols === i))
+  for (let i = 0; i < 5; i++) {
+    columns.push(categories.filter((_, index) => index % 5 === i))
   }
 
   useEffect(() => {
@@ -34,11 +33,11 @@ export default function Index() {
         <FavoritesMenu pages={pages} className="font-medium" />
         <NewPageForm pages={pages} />
       </div>
-      <div className="grid gap-10 p-8" style={{ gridTemplateColumns: 'repeat(' + numberCols + ', minmax(0, 1fr))' }}>
+      <div className="flex flex-row justify-between">
         {columns.map((column, i) => (
-          <div key={`col-${i}`} className="grid gap-8 auto-rows-min">
+          <div key={`col-${i}`} className="p-4 w-1/5">
             {column.map((category, j) => (
-              <div key={`col-${i}-${j}`}>
+              <div key={`col-${i}-${j}`} className="p-4">
                 <h1 className="font-light text-xl mb-1 pl-2 pb-1 border-b block border-gray-400 text-gray-400">
                   {category !== 'undefined' ? category : 'Uncategorized'}
                 </h1>

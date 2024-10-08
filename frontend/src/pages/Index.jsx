@@ -15,11 +15,16 @@ export default function Index() {
   const { pages } = useLoaderData()
   const [currentPage, setCurrentPage] = useOutletContext() // eslint-disable-line no-unused-vars
   const categoryPages = Object.groupBy(pages, (page) => page.category)
-  const categories = Object.keys(categoryPages).sort()
+  //const categories = Object.keys(categoryPages).sort()
+  const categories = Object.keys(categoryPages)
+    .sort()
+    .map((category) => {
+      return { id: category.toLowerCase().replace(/ /g, ''), name: category }
+    })
 
   let columns = []
   for (let i = 0; i < 5; i++) {
-    columns.push(categories.filter((_, index) => index % 5 === i))
+    columns.push(categories.filter((item, index) => index % 5 === i))
   }
 
   useEffect(() => {
@@ -39,10 +44,10 @@ export default function Index() {
             {column.map((category, j) => (
               <div key={`col-${i}-${j}`} className="p-4">
                 <h1 className="font-light text-xl mb-1 pl-2 pb-1 border-b block border-gray-400 text-gray-400">
-                  {category !== 'undefined' ? category : 'Uncategorized'}
+                  {category.name !== 'undefined' ? category.name : 'Uncategorized'}
                 </h1>
                 <ul className="pl-2">
-                  {categoryPages[category].map((page) => (
+                  {categoryPages[category.name].map((page) => (
                     <li key={page.id}>
                       <Link to={`/pages/${page.id}/`}>
                         {page.title}

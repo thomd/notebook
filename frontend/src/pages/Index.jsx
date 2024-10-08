@@ -6,6 +6,7 @@ import { FavoritesMenu, blackCircle } from '../components/Favorites'
 import { Footer } from '../components/Footer'
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd'
 import parse from 'html-react-parser'
+import useLocalStorageState from 'use-local-storage-state'
 
 export async function loader({ request }) {
   const pages = await getPages()
@@ -30,6 +31,19 @@ const moveBetweenColumns = (source, destination, droppableSource, droppableDesti
   return result
 }
 
+const flattenMatrixToCategoryNames = (matrix) => {
+  const maxLength = Math.max(...matrix.map((arr) => arr.length))
+  const result = []
+  for (let i = 0; i < maxLength; i++) {
+    for (let subArray of matrix) {
+      if (subArray[i]) {
+        result.push(subArray[i].name)
+      }
+    }
+  }
+  return result
+}
+
 const getItemStyle = (isDragging, draggableStyle) => ({
   userSelect: 'none',
   boxShadow: isDragging ? '0 25px 50px -12px rgb(0 0 0 / 0.25)' : 'none',
@@ -48,18 +62,23 @@ export default function Index() {
   })
 
   const categoryPages = Object.groupBy(pages, (page) => page.category)
-  const categories = Object.keys(categoryPages)
-    .sort()
-    .map((category) => {
-      return { id: category.toLowerCase().replace(/ /g, ''), name: category }
-    })
 
-  let columns = []
+  const [categories, setCategories] = useLocalStorageState('notebook', {
+    defaultValue: Object.keys(categoryPages).sort(),
+  })
+
+  const columnsMatrix = []
   for (let i = 0; i < 5; i++) {
-    columns.push(categories.filter((item, index) => index % 5 === i))
+    columnsMatrix.push(
+      categories
+        .map((category) => {
+          return { id: category.toLowerCase().replace(/ /g, ''), name: category }
+        })
+        .filter((item, index) => index % 5 === i)
+    )
   }
 
-  const [matrix, setMatrix] = useState(columns)
+  const [matrix, setMatrix] = useState(columnsMatrix)
 
   function onDragEnd(result) {
     const { source, destination } = result
@@ -73,12 +92,14 @@ export default function Index() {
       const newMatrix = [...matrix]
       newMatrix[sInd] = items
       setMatrix(newMatrix)
+      setCategories(flattenMatrixToCategoryNames(newMatrix))
     } else {
       const result = moveBetweenColumns(matrix[sInd], matrix[dInd], source, destination)
       const newMatrix = [...matrix]
       newMatrix[sInd] = result[sInd]
       newMatrix[dInd] = result[dInd]
       setMatrix(newMatrix.filter((group) => group.length))
+      setCategories(flattenMatrixToCategoryNames(newMatrix.filter((group) => group.length)))
     }
   }
 
@@ -94,7 +115,7 @@ export default function Index() {
           {matrix.map((column, i) => (
             <Droppable key={i} droppableId={`${i}`}>
               {(provided, snapshot) => (
-                <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} {...provided.droppableProps} key={`col-${i}`} className="p-4 w-1/5">
+                <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} {...provided.droppableProps} className="p-4 w-1/5">
                   {column.map((category, j) => (
                     <Draggable key={category.id} draggableId={category.id} index={j}>
                       {(provided, snapshot) => (
@@ -102,7 +123,6 @@ export default function Index() {
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
-                          key={`col-${i}-${j}`}
                           className="p-4"
                           style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}>
                           <h1 className="font-light text-xl mb-1 pl-2 pb-1 border-b block border-gray-400 text-gray-400">

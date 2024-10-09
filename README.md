@@ -1,4 +1,4 @@
-# ![](frontend/public/favicon.svg) Notebook
+# <img src="/thomd/notebook/raw/main/frontend/public/favicon.svg" width="50"> Notebook
 
 A simple **wiki-like** application to manage my personal notes (mainly it-development and science stuff) as **markdown files** in a **Git repository**.
 

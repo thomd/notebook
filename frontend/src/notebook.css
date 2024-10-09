@@ -732,6 +732,10 @@ video {
   cursor: grab;
 }
 
+.\!cursor-default {
+  cursor: default !important;
+}
+
 .select-none {
   -webkit-user-select: none;
           user-select: none;

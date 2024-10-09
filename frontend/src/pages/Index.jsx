@@ -46,12 +46,9 @@ const flattenMatrixToCategoryNames = (matrix) => {
 
 const getItemStyle = (isDragging, draggableStyle) => ({
   userSelect: 'none',
+  backgroundColor: isDragging ? 'rgba(255, 255, 255, 0.7)' : 'none',
   boxShadow: isDragging ? '0 25px 50px -12px rgb(0 0 0 / 0.25)' : 'none',
   ...draggableStyle,
-})
-
-const getListStyle = (isDraggingOver) => ({
-  border: isDraggingOver ? 'none' : 'none',
 })
 
 export default function Index() {
@@ -105,17 +102,13 @@ export default function Index() {
 
   return (
     <div className="grid grid-rows-index min-h-screen">
-      <div className="flex justify-between items-center px-8">
-        <h1 className="-ml-4 mt-32 text-headline font-bold text-stone-100">Notebook</h1>
-        <FavoritesMenu pages={pages} className="font-medium" />
-        <NewPageForm pages={pages} />
-      </div>
+      <IndexHeader pages={pages} />
       <div className="flex flex-row justify-between">
         <DragDropContext onDragEnd={onDragEnd}>
           {matrix.map((column, i) => (
             <Droppable key={i} droppableId={`${i}`}>
               {(provided, snapshot) => (
-                <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} {...provided.droppableProps} className="p-4 w-1/5">
+                <div ref={provided.innerRef} {...provided.droppableProps} className="p-4 w-1/5">
                   {column.map((category, j) => (
                     <Draggable key={category.id} draggableId={category.id} index={j}>
                       {(provided, snapshot) => (
@@ -123,21 +116,9 @@ export default function Index() {
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
-                          className="p-4 cursor-default"
+                          className="p-4 !cursor-default"
                           style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}>
-                          <h1 className="font-light text-xl mb-1 pl-2 pb-1 border-b block border-gray-400 text-gray-400 cursor-grab">
-                            {category.name !== 'undefined' ? category.name : 'Uncategorized'}
-                          </h1>
-                          <ul className="pl-2 cursor-default">
-                            {categoryPages[category.name].map((page) => (
-                              <li key={page.id}>
-                                <Link to={`/pages/${page.id}/`}>
-                                  {page.title}
-                                  {page.favorite && <span className="ml-2 text-orange-600">{parse(blackCircle)}</span>}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
+                          <CategoryCard categoryPages={categoryPages} category={category} />
                         </div>
                       )}
                     </Draggable>
@@ -151,5 +132,35 @@ export default function Index() {
       </div>
       <Footer className="px-8 py-4" />
     </div>
+  )
+}
+
+function IndexHeader({ pages }) {
+  return (
+    <div className="flex justify-between items-center px-8">
+      <h1 className="-ml-4 mt-32 text-headline font-bold text-stone-100">Notebook</h1>
+      <FavoritesMenu pages={pages} className="font-medium" />
+      <NewPageForm pages={pages} />
+    </div>
+  )
+}
+
+function CategoryCard({ categoryPages, category }) {
+  return (
+    <>
+      <h1 className="font-light text-xl mb-1 pl-2 pb-1 border-b block border-gray-400 text-gray-400 cursor-grab">
+        {category.name !== 'undefined' ? category.name : 'Uncategorized'}
+      </h1>
+      <ul className="pl-2">
+        {categoryPages[category.name].map((page) => (
+          <li key={page.id}>
+            <Link to={`/pages/${page.id}/`}>
+              {page.title}
+              {page.favorite && <span className="ml-2 text-orange-600">{parse(blackCircle)}</span>}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </>
   )
 }

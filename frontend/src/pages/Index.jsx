@@ -123,12 +123,12 @@ export default function Index() {
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
-                          className="p-4"
+                          className="p-4 cursor-default"
                           style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}>
-                          <h1 className="font-light text-xl mb-1 pl-2 pb-1 border-b block border-gray-400 text-gray-400">
+                          <h1 className="font-light text-xl mb-1 pl-2 pb-1 border-b block border-gray-400 text-gray-400 cursor-grab">
                             {category.name !== 'undefined' ? category.name : 'Uncategorized'}
                           </h1>
-                          <ul className="pl-2">
+                          <ul className="pl-2 cursor-default">
                             {categoryPages[category.name].map((page) => (
                               <li key={page.id}>
                                 <Link to={`/pages/${page.id}/`}>

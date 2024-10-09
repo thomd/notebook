@@ -45,10 +45,10 @@ const flattenMatrixToCategoryNames = (matrix) => {
 }
 
 const getItemStyle = (isDragging, draggableStyle) => ({
-  userSelect: 'none',
-  backgroundColor: isDragging ? 'rgba(255, 255, 255, 0.7)' : 'none',
-  boxShadow: isDragging ? '0 25px 50px -12px rgb(0 0 0 / 0.25)' : 'none',
   ...draggableStyle,
+  userSelect: 'none',
+  background: isDragging ? 'rgb(255, 255, 255)' : 'transparent',
+  boxShadow: isDragging ? '0 25px 50px -12px rgb(0 0 0 / 0.25)' : 'none',
 })
 
 export default function Index() {
@@ -95,8 +95,8 @@ export default function Index() {
       const newMatrix = [...matrix]
       newMatrix[sInd] = result[sInd]
       newMatrix[dInd] = result[dInd]
-      setMatrix(newMatrix.filter((group) => group.length))
-      setCategories(flattenMatrixToCategoryNames(newMatrix.filter((group) => group.length)))
+      setMatrix(newMatrix)
+      setCategories(flattenMatrixToCategoryNames(newMatrix))
     }
   }
 

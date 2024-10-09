@@ -2,7 +2,22 @@
 
 # Notebook
 
-A simple **wiki-like** application to manage my personal notes (mainly it-development and science stuff) as **markdown files** in a **Git repository**.
+A simple **wiki-like** application to manage my personal notes (mainly it-development and science stuff) as **markdown files** and store them in a private **git repository**.
+
+Notebook has a reduced and simple feature set and was created with the intention of running it locally. This avoids hosting costs and security features like user
+management and authemtication.
+
+Notebook is implemented as a [React](https://react.dev) frontend for rendering and editing the markdown pages. 
+Below is a **Python** backend served by **Nginx** which provides a REST API via [FastAPI](https://fastapi.tiangolo.com) to read, write pages and commit/push to Github. 
+All pages are indexed and can be searched via a local [ElasticSearch](https://www.elastic.co) service.
+Pages are stored in a local or remote Github git repository ("git as database") which allows to also read and edit them within Github.
+
+Special features are:
+
+* Isolated editing of page headline sections (similar to Wikipedia) for ease of editing.
+* Extended markdown syntax to fit my personal needs: text highligting, tables, margin notes, LaTeX, internal page links (see [notebook-example-pages](https://github.com/thomd/notebook-rexample-pages)).
+* Simple categorisation of pages on an overview page.
+* Search within all pages.
 
 This application was developed and tested on **MacOS** only.
 

@@ -27,7 +27,7 @@ export async function action({ request, params }) {
   })
 }
 
-const [collapsedWidth, minWidth, maxWidth, defaultWidth] = [32, 120, 500, 300]
+const [collapsedWidth, minWidth, maxWidth, defaultWidth] = [32, 120, 500, 320]
 
 export default function Page() {
   const [currentPage, setCurrentPage] = useOutletContext() // eslint-disable-line no-unused-vars

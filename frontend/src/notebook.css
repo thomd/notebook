@@ -716,29 +716,20 @@ video {
   width: 100%;
 }
 
+.\!cursor-default {
+  cursor: default !important;
+}
+
 .cursor-col-resize {
   cursor: col-resize;
-}
-
-.cursor-pointer {
-  cursor: pointer;
-}
-
-.cursor-default {
-  cursor: default;
 }
 
 .cursor-grab {
   cursor: grab;
 }
 
-.\!cursor-default {
-  cursor: default !important;
-}
-
-.select-none {
-  -webkit-user-select: none;
-          user-select: none;
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .grid-cols-2 {

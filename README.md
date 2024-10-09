@@ -1,4 +1,4 @@
-<img src="https://github.com/thomd/notebook/raw/main/frontend/public/favicon.svg" width="50">
+<img src="https://github.com/thomd/notebook/raw/main/frontend/public/favicon.svg" width="60">
 
 # Notebook
 
@@ -22,13 +22,13 @@ Special features are:
 
 **Notebook** renders markdown pages leveraging the superb [remark](https://github.com/remarkjs) and [rehype](https://github.com/rehypejs) ecosystem.
 
-Part of the **Notebook** implementation are a set of special **plugins** like [remark-heading-lines](https://github.com/thomd/remark-heading-lines), [remark-wiki-link](https://github.com/thomd/remark-wiki-link), [rehype-textmarker](https://github.com/thomd/rehype-textmarker), [rehype-navigation](https://github.com/thomd/rehype-navigation) and [rehype-block](https://github.com/thomd/rehype-block).
+Part of the **Notebook** implementation is a set of special **plugins** like [remark-heading-lines](https://github.com/thomd/remark-heading-lines), [remark-wiki-link](https://github.com/thomd/remark-wiki-link), [rehype-textmarker](https://github.com/thomd/rehype-textmarker), [rehype-navigation](https://github.com/thomd/rehype-navigation) and [rehype-block](https://github.com/thomd/rehype-block).
 
 ## Setup
 
-1. Create a git repository for notebook pages like for example [notebook-example-pages](https://github.com/thomd/notebook-rexample-pages).
+1. Create a git repository for your markdown pages like for example [notebook-example-pages](https://github.com/thomd/notebook-rexample-pages).
 
-1. If the pages repository is a private git repository on Github, then upload a public key to [SSH keys](https://github.com/settings/keys) 
+1. If the repository is a private git repository on Github, then upload a public key to [SSH keys](https://github.com/settings/keys) 
 on Github (do not enter a passphrase for the key):
 
         cd ~/.ssh

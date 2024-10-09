@@ -40,7 +40,7 @@ on Github (do not enter a passphrase for the key):
         sudo vim /etc/hosts
         sudo dscacheutil -flushcache
 
-1. Install locally-trusted SSL certificate:
+1. Install locally-trusted SSL certificate (although this is not really necessary for a local application):
 
         mkcert -install
         (cd frontend; mkcert notebook)

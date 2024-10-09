@@ -1,6 +1,6 @@
 # Notebook
 
-A simple **wiki-like** application to manage my personal notes (mainly it-development and science stuff) as **markdown files**.
+A simple **wiki-like** application to manage my personal notes (mainly it-development and science stuff) as **markdown files** in a **Git repository**.
 
 This application was developed and tested on **MacOS** only.
 

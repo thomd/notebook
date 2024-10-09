@@ -1,4 +1,4 @@
-# <img src="https://github.com/thomd/notebook/main/frontend/public/favicon.svg" width="50"> Notebook
+# <img src="https://github.com/thomd/notebook/raw/main/frontend/public/favicon.svg" width="50"> Notebook
 
 A simple **wiki-like** application to manage my personal notes (mainly it-development and science stuff) as **markdown files** in a **Git repository**.
 

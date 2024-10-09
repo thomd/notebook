@@ -1,4 +1,4 @@
-# Notebook
+# ![](frontend/public/favicon.svg) Notebook
 
 A simple **wiki-like** application to manage my personal notes (mainly it-development and science stuff) as **markdown files** in a **Git repository**.
 

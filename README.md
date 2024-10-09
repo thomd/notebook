@@ -20,10 +20,9 @@ Special features are:
 * Page navigation reflecting the headline hierarchy.
 * Search within all pages.
 
-Notebook renders markdown pages leveraging the superb [remark](https://github.com/remarkjs) and [rehype](https://github.com/rehypejs) ecosystem. 
-Part of the Notebook implementation are a set of special plugins like [rehype-textmarker](https://github.com/thomd/rehype-textmarker), [remark-heading-lines](https://github.com/thomd/remark-heading-lines), [remark-wiki-link](https://github.com/thomd/remark-wiki-link), [rehype-navigation](https://github.com/thomd/rehype-navigation) and [rehype-block](https://github.com/thomd/rehype-block).
+**Notebook** renders markdown pages leveraging the superb [remark](https://github.com/remarkjs) and [rehype](https://github.com/rehypejs) ecosystem.
 
-This application was developed and tested on **MacOS** only.
+Part of the **Notebook** implementation are a set of special **plugins** like [remark-heading-lines](https://github.com/thomd/remark-heading-lines), [remark-wiki-link](https://github.com/thomd/remark-wiki-link), [rehype-textmarker](https://github.com/thomd/rehype-textmarker), [rehype-navigation](https://github.com/thomd/rehype-navigation) and [rehype-block](https://github.com/thomd/rehype-block).
 
 ## Setup
 

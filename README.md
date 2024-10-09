@@ -8,16 +8,24 @@ Notebook has a reduced and simple feature set and was created with the intention
 management and authemtication.
 
 Notebook is implemented as a [React](https://react.dev) frontend for rendering and editing the markdown pages. 
+
 Below is a **Python** backend served by **Nginx** which provides a REST API via [FastAPI](https://fastapi.tiangolo.com) to read, write pages and commit/push to Github. 
+
 All pages are indexed and can be searched via a local [ElasticSearch](https://www.elastic.co) service.
-Pages are stored in a local or remote Github git repository ("git as database") which allows to also read and edit them within Github.
+
+Pages are stored in a local or remote Github git repository ("git as database") which allows to also read and edit them within Github. Page metadata like title
+and category are stored in a Frontmatter section.
 
 Special features are:
 
 * Isolated editing of page headline sections (similar to Wikipedia) for ease of editing.
 * Extended markdown syntax to fit my personal needs: text highligting, tables, margin notes, LaTeX, internal page links (see [notebook-example-pages](https://github.com/thomd/notebook-rexample-pages)).
 * Simple categorisation of pages on an overview page.
+* Page navigation reflecting the headline hierarchy.
 * Search within all pages.
+
+Notebook renders markdown pages leveraging the superb [remark](https://github.com/remarkjs) and [rehype](https://github.com/rehypejs) ecosystem. 
+Part of the Notebook implementation are a set of special plugins like [rehype-textmarker](https://github.com/thomd/rehype-textmarker), [remark-heading-lines](https://github.com/thomd/remark-heading-lines), [remark-wiki-link](https://github.com/thomd/remark-wiki-link), [rehype-navigation](https://github.com/thomd/rehype-navigation) and [rehype-block](https://github.com/thomd/rehype-block).
 
 This application was developed and tested on **MacOS** only.
 

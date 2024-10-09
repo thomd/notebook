@@ -6,9 +6,9 @@
 
 **Notebook** has a reduced and simple user interface for ease of use and was created with the intention of running it locally. This avoids hosting costs and the need of security features like user authentication.
 
-**Notebook** is implemented as a **[React](https://react.dev)** frontend for rendering and editing the markdown pages.
-Below is a **Python** backend served by **Nginx** which provides a REST API via **[FastAPI](https://fastapi.tiangolo.com)** to read/write pages and commit/push to Github.
-All pages are indexed and searchable via an **[ElasticSearch](https://www.elastic.co)** service.
+**Notebook** is implemented as a [React](https://react.dev) frontend for rendering and editing the markdown pages.
+Below is a **Python** backend served by Nginx which provides a REST API via [FastAPI](https://fastapi.tiangolo.com) to read/write pages and commit/push to Github.
+All pages are indexed and searchable via an [ElasticSearch](https://www.elastic.co) service.
 
 Pages are stored in a local and remote Github git repository ("_git as database_") which allows to also read and edit them within Github.
 

@@ -1,10 +1,11 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
 from notebook import page as pg
 from notebook import search as es
 from notebook import model
 from notebook import log
+from notebook import repository
 
 origins = [
     "http://localhost:3000",
@@ -51,7 +52,7 @@ def get_page(page_id: str, start: int, end: int):
 
 # curl -H "Content-Type: application/json" -d '{"title": "Foo", "content": "# Foo"}' http://localhost:8000/pages -s | jq
 @app.post("/pages", status_code=201, response_model=model.Response, response_model_exclude_none=True)
-def create_page(page: model.Page):
+def create_page(background_tasks: BackgroundTasks, page: model.Page):
     filename = pg.createFilename(page.title)
     path = Path(f"{pg.pagesDir()}/{filename}")
     if path.exists():
@@ -59,12 +60,13 @@ def create_page(page: model.Page):
     else:
         response = pg.createPage(path, page)
         es.createDocument(response.id, response.title, response.category, response.content)
+        background_tasks.add_task(repository.push)
         return response
 
 
 # curl -H "Content-Type: application/json" -X PATCH -d '{"title": "Other Foo"}' http://localhost:8000/pages/foo -s | jq
 @app.patch("/pages/{page_id}", response_model=model.Response, response_model_exclude_none=True)
-def update_page(page_id: str, page: model.PageUpdate):
+def update_page(background_tasks: BackgroundTasks, page_id: str, page: model.PageUpdate):
     """ PATCH is used to partially replace existing page attributes. """
     path = Path(f'{pg.pagesDir()}/{page_id}.md')
     # if we change the title to an already existing page, we would unintentionally overwrite it
@@ -77,6 +79,7 @@ def update_page(page_id: str, page: model.PageUpdate):
             es.deleteDocumentById(page_id)
         else:
             es.updateDocument(response.id, response.title, response.category, response.content)
+        background_tasks.add_task(repository.push)
         return response
     else:
         raise HTTPException(status_code=404, detail=f"Page '{page_id}' does not exist")
@@ -84,7 +87,7 @@ def update_page(page_id: str, page: model.PageUpdate):
 
 # curl -H "Content-Type: application/json" -X PATCH -d '{"content": "Bar"}' http://localhost:8000/pages/foo/1/2 -s | jq
 @app.patch("/pages/{page_id}/{start}/{end}", response_model=model.Response, response_model_exclude_none=True)
-def update_page(page_id: str, start: int, end: int, page: model.PageUpdate):
+def update_page(background_tasks: BackgroundTasks, page_id: str, start: int, end: int, page: model.PageUpdate):
     """ PATCH content of a page with a updated fragment between lines {start} and {end}. """
     if start <= 0 or end < start:
         raise HTTPException(status_code=404, detail=f"Page with lines {start} to {end} does not exist")
@@ -99,6 +102,7 @@ def update_page(page_id: str, start: int, end: int, page: model.PageUpdate):
             es.deleteDocumentById(page_id)
         else:
             es.updateDocument(response.id, response.title, response.category, response.content)
+        background_tasks.add_task(repository.push)
         return response
     else:
         raise HTTPException(status_code=404, detail=f"Page '{page_id}' does not exist")
@@ -106,11 +110,12 @@ def update_page(page_id: str, start: int, end: int, page: model.PageUpdate):
 
 # curl -H "Content-Type: application/json" -X DELETE http://localhost:8000/pages/foo -s | jq
 @app.delete("/pages/{page_id}", status_code=204)
-def delete_page(page_id: str):
+def delete_page(background_tasks: BackgroundTasks, page_id: str):
     path = Path(f"{pg.pagesDir()}/{page_id}.md")
     if path.exists():
         es.deleteDocument(path)
         pg.deletePage(path)
+        background_tasks.add_task(repository.push)
     else:
         raise HTTPException(status_code=404, detail=f"Page '{page_id}' does not exist")
 

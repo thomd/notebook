@@ -1,9 +1,9 @@
 from notebook import model, repository
 from slugify import slugify
 from pathlib import Path
+from notebook import log
 import frontmatter
 import os
-from notebook import log
 
 def pagesDir():
     ''' to make API testable, endpoints determine pages location in each call '''

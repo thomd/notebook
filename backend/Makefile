@@ -33,10 +33,7 @@ elasticsearch:
 index: build elasticsearch
 	@docker run -t --rm --network="host" -v $(LOCAL_PAGES_REPO):/$(LOCAL_PAGES_REPO) --env-file .env.dev notebook-backend python -m init.index_elasticsearch
 
-test: build
-	@docker run -t --rm -v $(PWD):/code notebook-backend pytest -vv
-
 build:
 	@[ -z "$$(docker images -q notebook-backend:latest)" ] && docker compose build || echo "'notebook-backend:latest' does already exist"
 
-.PHONY: backend clean git elasticsearch index test build
+.PHONY: backend clean git elasticsearch index build

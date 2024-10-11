@@ -14,12 +14,8 @@ or with
 
 ## Test
 
-Either start `uvicorn` server in background or separate terminal (see above) and run
+Run
 
     source .venv/bin/activate
+    make elasticsearch
     nodemon -w notebook -e py -x pytest -vv
-
-or run
-
-    make test
-

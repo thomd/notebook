@@ -7,7 +7,8 @@ from notebook import log
 
 def pagesDir():
     ''' to make API testable, endpoints determine pages location in each call '''
-    return os.environ.get("LOCAL_PAGES_REPO") + '/' + os.environ.get("PAGES_DIR")
+    return os.environ.get("LOCAL_PAGES_REPO") + '/' + os.environ.get("PAGES_DIR") if os.environ.get("LOCAL_PAGES_REPO") else os.environ.get("PAGES_DIR")
+
 
 def createFilename(title):
     return slugify(title) + '.md'

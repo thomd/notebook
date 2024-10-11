@@ -2,7 +2,7 @@
 
 # Notebook
 
-**Notebook** is a simple and minimalistic **wiki-like** web application to manage my personal notes (mainly it-development, math and science stuff) as **markdown files** and store them in a private **git repository**.
+**Notebook** is a simple, minimalistic **wiki-like** web application to manage the sheer amount of my personal notes (mainly it-development, math and science stuff) as **markdown files** and store them in a private **git repository**.
 
 **Notebook** has a reduced and simple user interface for ease of use. **Notebook** was created with the intention of **running it locally**. This avoids hosting costs and the need of security features like user authentication.
 

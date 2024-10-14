@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useLoaderData, useOutletContext } from 'react-router-dom'
 import { getPages, getPage, patchPage } from '../services/pages'
 import { Favorite } from '../components/Actions'
@@ -10,6 +10,7 @@ import MarkdownViewer from '../components/Markdown'
 import { Footer } from '../components/Footer'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { ScrollRestoration } from 'react-router-dom'
+import useLocalStorageState from 'use-local-storage-state'
 
 export async function loader({ params }) {
   const pages = await getPages()
@@ -45,7 +46,8 @@ export default function Page() {
     if (collapsed) {
       showNavigation()
     } else {
-      hideNavigation()
+      setCollapsed(true)
+      setWidth(collapsedWidth)
     }
   })
 
@@ -54,17 +56,12 @@ export default function Page() {
   })
 
   const resizing = useRef(false)
-  const [width, setWidth] = useState(parseInt(localStorage.getItem('sidebarWidth')) || defaultWidth)
-  const [collapsed, setCollapsed] = useState(localStorage.getItem('sidebarCollapsed') === 'true' || false)
+  const [width, setWidth] = useLocalStorageState('notebook-sidebar-width', { defaultValue: defaultWidth })
+  const [collapsed, setCollapsed] = useLocalStorageState('notebook-sidebar-collapsed', { defaultValue: false })
 
   const showNavigation = () => {
     setCollapsed(false)
     setWidth(defaultWidth)
-  }
-
-  const hideNavigation = () => {
-    setCollapsed(true)
-    setWidth(collapsedWidth)
   }
 
   const startNavigationResize = (ev) => {
@@ -88,7 +85,8 @@ export default function Page() {
       ev.preventDefault()
       const currentWidth = ev.clientX
       if (currentWidth < minWidth) {
-        hideNavigation()
+        setCollapsed(true)
+        setWidth(collapsedWidth)
       } else if (currentWidth > maxWidth) {
         setWidth(maxWidth)
       } else {
@@ -99,12 +97,7 @@ export default function Page() {
     window.addEventListener('mouseup', (ev) => {
       resizing.current = false
     })
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem('sidebarWidth', width)
-    localStorage.setItem('sidebarCollapsed', collapsed)
-  }, [width, collapsed])
+  }, [setWidth, setCollapsed])
 
   return (
     <div className="grid min-h-screen" style={{ gridTemplateColumns: `${width}px 4px 1fr` }}>

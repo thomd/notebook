@@ -263,7 +263,7 @@
     li {
         & > code {
             font-family: "Inconsolata", "Courier New", Courier, monospace;
-            font-size: 1rem;
+            font-size: 1.0625rem;
             padding: 2px 4px;
             margin: -3px 0;
             background-color: var(--inline-code-background-color);
@@ -303,7 +303,7 @@
         & > code {
             background-color: var(--code-background-color);
             font-family: "Inconsolata", "Courier New", Courier, monospace;
-            font-size: 0.9375rem;
+            font-size: 1.0625rem;
             color: var(--code-text-color);
             line-height: 1.4;
             -webkit-font-smoothing: auto;

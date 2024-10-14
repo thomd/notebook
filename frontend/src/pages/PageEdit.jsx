@@ -5,6 +5,7 @@ import { patchPage } from '../services/pages'
 import { useHotkeys } from 'react-hotkeys-hook'
 import * as prettier from 'prettier'
 import * as parserMarkdown from 'prettier/parser-markdown'
+import MarkdownViewer from '../components/Markdown'
 
 export async function action({ request, params }) {
   const updates = Object.fromEntries(await request.formData())
@@ -17,6 +18,7 @@ export default function PageEdit() {
   const navigate = useNavigate()
   const [content, setContent] = useState(page.content === '' ? '# ' + page.title : page.content)
   const inputRef = useRef()
+  const [preview, setPreview] = useState('hidden')
   const [characterCount, setCharacterCount] = useState('')
   const [linesCount, setLinesCount] = useState('')
 
@@ -45,6 +47,11 @@ export default function PageEdit() {
     setContent(prettifiedContent)
   }
 
+  const togglePreview = async (ev) => {
+    ev.preventDefault()
+    setPreview(preview === 'hidden' ? 'grid preview' : 'hidden')
+  }
+
   const cancel = () => {
     navigate(-1)
   }
@@ -52,7 +59,10 @@ export default function PageEdit() {
   useHotkeys('escape', cancel)
 
   return (
-    <div className="grid min-h-screen p-8 bg-gray-100">
+    <div className="grid min-h-screen has-[.preview]:grid-rows-2 gap-8 p-8 bg-gray-100">
+      <div className={`${preview} pl-4 gap-8 h-[calc(50vh-3rem)] bg-white shadow-[inset_0_0_20px_0_#ddd] border border-solid border-gray-200 overflow-scroll`}>
+        <MarkdownViewer content={content} className="" />
+      </div>
       <Form method="post" className="grid grid-cols-2 gap-8 h-full grid-rows-pageedit">
         <input type="hidden" name="favorite" value={page.favorite} />
         <div>
@@ -88,6 +98,9 @@ export default function PageEdit() {
             </button>
             <button type="button" onClick={prettify} className="ml-8 py-1 px-3 bg-gray-400 hover:bg-gray-500 text-white text-base rounded outline-none">
               Prettify
+            </button>
+            <button type="button" onClick={togglePreview} className="ml-8 py-1 px-3 bg-gray-400 hover:bg-gray-500 text-white text-base rounded outline-none">
+              {preview === 'hidden' ? 'Show Preview' : 'Hide Preview'}
             </button>
           </div>
           <div>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useLoaderData, Link, useOutletContext } from 'react-router-dom'
 import { getPages } from '../services/pages'
 import { NewPageForm } from '../components/NewPage'
@@ -11,6 +11,24 @@ import useLocalStorageState from 'use-local-storage-state'
 export async function loader({ request }) {
   const pages = await getPages()
   return { pages }
+}
+
+const groupPagesByCategory = (pages) => Object.groupBy(pages, ({ cid }) => cid)
+
+const extractCategoriesFromPages = (pages) => {
+  return Array.from(new Set(pages.map((page) => page.cid)))
+    .map((cid) => pages.find((page) => page.cid === cid))
+    .map((page) => ({ id: page.cid, name: page.category }))
+}
+
+const createColumnsMatrix = (categoryPages, categories) => {
+  const columnsMatrix = []
+  const categoryName = (id) => categories.find((category) => category.id === id).name
+  const sortedCategories = categories.sort((p, q) => p.name.localeCompare(q.name))
+  for (let i = 0; i < 5; i++) {
+    columnsMatrix.push(sortedCategories.filter((item, index) => index % 5 === i))
+  }
+  return columnsMatrix
 }
 
 const reorderWithinColumn = (list, startIndex, endIndex) => {
@@ -31,72 +49,74 @@ const moveBetweenColumns = (source, destination, droppableSource, droppableDesti
   return result
 }
 
-const flattenMatrixToCategoryNames = (matrix) => {
-  const maxLength = Math.max(...matrix.map((arr) => arr.length))
-  const result = []
-  for (let i = 0; i < maxLength; i++) {
-    for (let subArray of matrix) {
-      if (subArray[i]) {
-        result.push(subArray[i].name)
-      }
-    }
-  }
-  return result
+const createCategoryId = (category) => {
+  return category.toLowerCase().replace(/ /g, '')
 }
 
-const getItemStyle = (isDragging, draggableStyle) => ({
-  ...draggableStyle,
+const categoriesDiff = (categories1, categories2) => {
+  const ids = (categories1) => categories1.map((category) => category.id)
+  const categoryIdsToAdd = ids(categories1).filter((category) => !ids(categories2).includes(category))
+  return categoryIdsToAdd.map((id) => categories1.find((category) => category.id === id))
+}
+
+const categoriesToAdd = (categories, matrix) => categoriesDiff(categories, matrix.flat())
+
+const categoriesToRemove = (categories, matrix) => categoriesDiff(matrix.flat(), categories)
+
+const where = (matrix, category) => {
+  const rowIndex = matrix.findIndex((row) => row.some((col) => col.id === category.id))
+  const colIndex = matrix[rowIndex].findIndex((col) => col.id === category.id)
+  return [rowIndex, colIndex]
+}
+
+const itemStyle = (snapshot, provided) => ({
+  ...provided.draggableProps.style,
   userSelect: 'none',
-  background: isDragging ? 'rgb(255, 255, 255)' : 'transparent',
-  boxShadow: isDragging ? '0 25px 50px -12px rgb(0 0 0 / 0.25)' : 'none',
+  background: snapshot.isDragging ? 'rgb(255, 255, 255)' : 'transparent',
+  boxShadow: snapshot.isDragging ? '0 25px 50px -12px rgb(0 0 0 / 0.25)' : 'none',
 })
 
 export default function Index() {
   const { pages } = useLoaderData()
+
   const [currentPage, setCurrentPage] = useOutletContext() // eslint-disable-line no-unused-vars
   useEffect(() => {
     setCurrentPage(undefined)
   })
 
-  const categoryPages = Object.groupBy(pages, (page) => page.category)
+  const categoryPages = groupPagesByCategory(pages)
+  const categories = extractCategoriesFromPages(pages)
+  const columnsMatrix = createColumnsMatrix(categoryPages, categories)
+  const [matrix, setMatrix] = useLocalStorageState('notebook-categories', { defaultValue: columnsMatrix })
 
-  const [categories, setCategories] = useLocalStorageState('notebook', {
-    defaultValue: Object.keys(categoryPages).sort(),
+  categoriesToAdd(categories, matrix).forEach((category) => [...matrix][0].splice(0, 0, category))
+  categoriesToRemove(categories, matrix).forEach((category) => {
+    const pos = where(matrix, category)
+    return [...matrix][pos[0]].splice(pos[1], 1)
   })
 
-  const columnsMatrix = []
-  for (let i = 0; i < 5; i++) {
-    columnsMatrix.push(
-      categories
-        .map((category) => {
-          return { id: category.toLowerCase().replace(/ /g, ''), name: category }
-        })
-        .filter((item, index) => index % 5 === i)
-    )
-  }
-
-  const [matrix, setMatrix] = useState(columnsMatrix)
+  useEffect(() => {
+    setMatrix(matrix)
+  }, [matrix, setMatrix])
 
   function onDragEnd(result) {
     const { source, destination } = result
     if (!destination) {
       return
     }
-    const sInd = source.droppableId
-    const dInd = destination.droppableId
-    if (sInd === dInd) {
-      const items = reorderWithinColumn(matrix[sInd], source.index, destination.index)
+    const s = source.droppableId
+    const d = destination.droppableId
+    if (s === d) {
+      const items = reorderWithinColumn(matrix[s], source.index, destination.index)
       const newMatrix = [...matrix]
-      newMatrix[sInd] = items
+      newMatrix[s] = items
       setMatrix(newMatrix)
-      setCategories(flattenMatrixToCategoryNames(newMatrix))
     } else {
-      const result = moveBetweenColumns(matrix[sInd], matrix[dInd], source, destination)
+      const result = moveBetweenColumns(matrix[s], matrix[d], source, destination)
       const newMatrix = [...matrix]
-      newMatrix[sInd] = result[sInd]
-      newMatrix[dInd] = result[dInd]
+      newMatrix[s] = result[s]
+      newMatrix[d] = result[d]
       setMatrix(newMatrix)
-      setCategories(flattenMatrixToCategoryNames(newMatrix))
     }
   }
 
@@ -107,23 +127,18 @@ export default function Index() {
         <DragDropContext onDragEnd={onDragEnd}>
           {matrix.map((column, i) => (
             <Droppable key={i} droppableId={`${i}`}>
-              {(provided, snapshot) => (
-                <div ref={provided.innerRef} {...provided.droppableProps} className="p-4 w-1/5">
+              {(p, s) => (
+                <div ref={p.innerRef} {...p.droppableProps} className="p-4 w-1/5">
                   {column.map((category, j) => (
                     <Draggable key={category.id} draggableId={category.id} index={j}>
-                      {(provided, snapshot) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          className="p-4 !cursor-default"
-                          style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}>
+                      {(p, s) => (
+                        <div ref={p.innerRef} {...p.draggableProps} {...p.dragHandleProps} className="p-4 !cursor-default" style={itemStyle(s, p)}>
                           <CategoryCard categoryPages={categoryPages} category={category} />
                         </div>
                       )}
                     </Draggable>
                   ))}
-                  {provided.placeholder}
+                  {p.placeholder}
                 </div>
               )}
             </Droppable>
@@ -152,7 +167,7 @@ function CategoryCard({ categoryPages, category }) {
         {category.name !== 'undefined' ? category.name : 'Uncategorized'}
       </h1>
       <ul className="pl-2">
-        {categoryPages[category.name].map((page) => (
+        {categoryPages[category.id].map((page) => (
           <li key={page.id}>
             <Link to={`/pages/${page.id}/`}>
               {page.title}

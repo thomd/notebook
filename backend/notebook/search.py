@@ -12,6 +12,7 @@ def sanitize(content):
     content = markdown(content)                            # transform Markdown to HTML
     content = re.sub(re.compile('<.*?>'), '', content)     # remove HTML tags
     content = content.replace('\n', ' ')                   # remove line-breaks
+    content = content.replace('≈', '')                   # remove text-highlight symbol
     return content
 
 def createDocument(id, title, category, content):

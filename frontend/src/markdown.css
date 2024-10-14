@@ -229,7 +229,8 @@
 }
 .markdown pre > code.language-ascii {
   font-size: 15px;
-  line-height: 14px;
+  line-height: 17px;
+  font-family: "Courier New", Courier, monospace;
 }
 .markdown pre > code.language-ascii > mark.white-marker {
   background-color: #fff;

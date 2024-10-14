@@ -23,7 +23,6 @@ const extractCategoriesFromPages = (pages) => {
 
 const createColumnsMatrix = (categoryPages, categories) => {
   const columnsMatrix = []
-  const categoryName = (id) => categories.find((category) => category.id === id).name
   const sortedCategories = categories.sort((p, q) => p.name.localeCompare(q.name))
   for (let i = 0; i < 5; i++) {
     columnsMatrix.push(sortedCategories.filter((item, index) => index % 5 === i))
@@ -47,10 +46,6 @@ const moveBetweenColumns = (source, destination, droppableSource, droppableDesti
   result[droppableSource.droppableId] = sourceClone
   result[droppableDestination.droppableId] = destClone
   return result
-}
-
-const createCategoryId = (category) => {
-  return category.toLowerCase().replace(/ /g, '')
 }
 
 const categoriesDiff = (categories1, categories2) => {

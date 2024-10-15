@@ -19,6 +19,7 @@ Markdown files are stored in a flat git repository ("_git as database_") which a
 * Simple categorisation of pages on an overview page.
 * Page navigation reflecting the headline hierarchy.
 * Search within all pages.
+* Mark highly used pages as favorites.
 * Page interaction via keyboard.
 
 **Notebook** renders markdown pages leveraging the superb [remark](https://github.com/remarkjs) and [rehype](https://github.com/rehypejs) ecosystem.
@@ -27,7 +28,7 @@ Part of the **Notebook** implementation is a set of special **plugins** like [re
 
 ## Setup
 
-1. Create a git repository for your markdown pages like for example [notebook-example-pages](https://github.com/thomd/notebook-rexample-pages).
+1. Create a git repository for your markdown pages like for example [notebook-example-pages](https://github.com/thomd/notebook-example-pages).
 
 1. If the repository is a private git repository on Github, then upload a public key to [SSH keys](https://github.com/settings/keys) 
 on Github (do not enter a passphrase for the key):
@@ -41,7 +42,7 @@ on Github (do not enter a passphrase for the key):
         sudo vim /etc/hosts
         sudo dscacheutil -flushcache
 
-1. Install locally-trusted SSL certificate (although this is not really necessary for a local application):
+1. Optionally install locally-trusted SSL certificate using [mkcert](https://github.com/FiloSottile/mkcert):
 
         mkcert -install
         (cd frontend; mkcert notebook)

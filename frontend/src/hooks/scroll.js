@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import ScrollMirror from 'scrollmirror'
 
 export function useHashEditPageLink() {
   useEffect(() => {
@@ -20,4 +21,10 @@ export function useScrollIntoView() {
       target?.parentNode?.scrollIntoView({ behavior: 'auto' })
     }
   }, [pathname, hash])
+}
+
+export function useScrollMirror() {
+  useEffect(() => {
+    new ScrollMirror(document.querySelectorAll('.scroll-mirror'))
+  }, [])
 }

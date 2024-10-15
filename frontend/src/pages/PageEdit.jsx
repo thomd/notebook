@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { Form, useLoaderData, redirect, useNavigate } from 'react-router-dom'
 import CategorySelect from '../components/CategorySelect'
 import { patchPage } from '../services/pages'
+import { useScrollMirror } from '../hooks/scroll'
 import { useHotkeys } from 'react-hotkeys-hook'
 import * as prettier from 'prettier'
 import * as parserMarkdown from 'prettier/parser-markdown'
@@ -49,7 +50,7 @@ export default function PageEdit() {
     setContent(prettifiedContent)
   }
 
-  const togglePreview = async (ev) => {
+  const togglePreview = (ev) => {
     ev.preventDefault()
     setPreview(preview === 'hidden' ? 'grid preview' : 'hidden')
   }
@@ -60,9 +61,12 @@ export default function PageEdit() {
 
   useHotkeys('escape', cancel)
 
+  useScrollMirror()
+
   return (
     <div className="grid min-h-screen has-[.preview]:grid-rows-2 gap-8 p-8 bg-gray-100">
-      <div className={`${preview} pl-4 gap-8 h-[calc(50vh-3rem)] bg-white shadow-[inset_0_0_20px_0_#ddd] border border-solid border-gray-200 overflow-scroll`}>
+      <div
+        className={`${preview} scroll-mirror pl-4 gap-8 h-[calc(50vh-3rem)] bg-white shadow-[inset_0_0_20px_0_#ddd] border border-solid border-gray-200 overflow-scroll`}>
         <MarkdownViewer content={content} className="" />
       </div>
       <Form method="post" className="grid grid-cols-2 gap-8 h-full grid-rows-pageedit">
@@ -87,7 +91,7 @@ export default function PageEdit() {
             autoFocus
             value={content}
             onChange={handleChange}
-            className="px-3 py-[6px] font-mono text-sm block w-full h-full text-gray-900 border-2 border-gray-300 focus:border-gray-400 focus:outline-none focus:ring-0"
+            className="scroll-mirror px-3 py-[6px] font-mono text-sm block w-full h-full text-gray-900 border-2 border-gray-300 focus:border-gray-400 focus:outline-none focus:ring-0"
           />
         </div>
         <div className="col-span-2 flex justify-between items-center">

@@ -36,6 +36,7 @@
     "remark-heading-lines": "github:thomd/remark-heading-lines",
     "remark-math": "^6.0.0",
     "remark-wiki-link": "github:thomd/remark-wiki-link",
+    "scrollmirror": "^1.0.0",
     "sort-by": "^1.2.0",
     "use-local-storage-state": "^19.4.0"
   },

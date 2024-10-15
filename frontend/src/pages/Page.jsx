@@ -105,7 +105,7 @@ export default function Page() {
       <ResizeHandle startNavigationResize={startNavigationResize} />
       <div className="grid grid-rows-page">
         <Header pages={pages} page={page} currentPage={currentPage} className="px-8" />
-        <MarkdownViewer content={page.content} className="px-8 mb-12" />
+        <MarkdownViewer content={page.content} className="px-8 mb-12" preview={false} />
         <Footer filename={page?.filename} className="p-8" />
       </div>
     </div>

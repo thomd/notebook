@@ -23,17 +23,21 @@ function remarkGfmTable(options = {}) {
   toMarkdownExtensions.push({ extensions: [gfmTableToMarkdown(options)] })
 }
 
-export default function MarkdownViewer({ content, className }) {
+export default function MarkdownViewer({ content, className, preview }) {
   return (
     <div className={`markdown ${className}`}>
       <Markdown
-        remarkPlugins={[
-          remarkGfmTable,
-          [remarkHeadingLines, { position: 'after', linkText: '[ Edit ]', className: 'headline h{depth}' }],
-          [remarkWikiLink, { path: '/pages/', slugger: true }],
-          remarkDeflist,
-          remarkMath,
-        ]}
+        remarkPlugins={
+          preview
+            ? [remarkGfmTable, [remarkHeadingLines, { position: 'after', linkText: '', className: 'headline h{depth}' }], remarkDeflist, remarkMath]
+            : [
+                remarkGfmTable,
+                [remarkHeadingLines, { position: 'after', linkText: '[ Edit ]', className: 'headline h{depth}' }],
+                [remarkWikiLink, { path: '/pages/', slugger: true }],
+                remarkDeflist,
+                remarkMath,
+              ]
+        }
         rehypePlugins={[
           [rehypeBlock, { blockSymbol: ':::', classSymbol: ':', prefixClassWithBlockSymbol: true, wrapperTag: 'div' }],
           rehypeKatex,

@@ -48,6 +48,7 @@ export default function PageEdit() {
       printWidth: 140,
     })
     setContent(prettifiedContent)
+    setDisabled(page.content === prettifiedContent)
   }
 
   const togglePreview = (ev) => {
@@ -64,12 +65,12 @@ export default function PageEdit() {
   useScrollMirror()
 
   return (
-    <div className="grid min-h-screen has-[.preview]:grid-rows-2 gap-8 p-8 bg-gray-100">
+    <div className="grid min-h-screen has-[.preview]:grid-rows-2 bg-gray-100 has-[.preview]:bg-gray-200">
       <div
-        className={`${preview} scroll-mirror pl-4 gap-8 h-[calc(50vh-3rem)] bg-white shadow-[inset_0_0_20px_0_#ddd] border border-solid border-gray-200 overflow-scroll`}>
-        <MarkdownViewer content={content} className="" />
+        className={`${preview} scroll-mirror pl-8 gap-8 h-[50vh] bg-white shadow-[inset_0_-10px_20px_-10px_#ddd] border border-solid border-gray-300 overflow-scroll`}>
+        <MarkdownViewer content={content} className="" preview={true} />
       </div>
-      <Form method="post" className="grid grid-cols-2 gap-8 h-full grid-rows-pageedit">
+      <Form method="post" className="grid grid-cols-2 gap-8 p-8 h-full grid-rows-pageedit">
         <input type="hidden" name="favorite" value={page.favorite} />
         <div>
           <input

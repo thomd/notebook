@@ -21,6 +21,7 @@ export default function PageEdit() {
   const [preview, setPreview] = useState('hidden')
   const [characterCount, setCharacterCount] = useState('')
   const [linesCount, setLinesCount] = useState('')
+  const [disabled, setDisabled] = useState(true)
 
   const count = (inputRef) => {
     setCharacterCount(new Intl.NumberFormat('de-DE').format(inputRef.current.value.length))
@@ -34,6 +35,7 @@ export default function PageEdit() {
   const handleChange = (ev) => {
     setContent(ev.target.value)
     count(inputRef)
+    setDisabled(page.content === ev.target.value)
   }
 
   const prettify = async (ev) => {
@@ -90,16 +92,25 @@ export default function PageEdit() {
         </div>
         <div className="col-span-2 flex justify-between items-center">
           <div>
-            <button type="button" onClick={cancel} className="py-1 px-3 bg-white text-gray-500 text-base rounded border border-gray-400">
+            <button type="button" onClick={cancel} className="py-1 px-3 bg-white hover:bg-gray-100 text-gray-500 text-base rounded border border-gray-400">
               Cancel
             </button>
-            <button type="submit" className="ml-8 py-1 px-3 bg-gray-400 hover:bg-gray-500 text-white text-base rounded outline-none">
+            <button
+              type="submit"
+              disabled={disabled}
+              className="ml-8 py-1 px-3 bg-emerald-500 hover:bg-emerald-600 text-white text-base rounded outline-none disabled:bg-gray-500 disabled:text-white disabled:text-base disabled:rounded disabled:outline-none">
               Save
             </button>
-            <button type="button" onClick={prettify} className="ml-8 py-1 px-3 bg-gray-400 hover:bg-gray-500 text-white text-base rounded outline-none">
+            <button
+              type="button"
+              onClick={prettify}
+              className="ml-16 py-1 px-3 bg-white hover:bg-gray-100 text-gray-500 text-base rounded border border-gray-400">
               Prettify
             </button>
-            <button type="button" onClick={togglePreview} className="ml-8 py-1 px-3 bg-gray-400 hover:bg-gray-500 text-white text-base rounded outline-none">
+            <button
+              type="button"
+              onClick={togglePreview}
+              className="ml-8 py-1 px-3 bg-white hover:bg-gray-100 text-gray-500 text-base rounded border border-gray-400">
               {preview === 'hidden' ? 'Show Preview' : 'Hide Preview'}
             </button>
           </div>

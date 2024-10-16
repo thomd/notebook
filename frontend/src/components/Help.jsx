@@ -49,13 +49,13 @@ export function HelpModal({ className }) {
                 <h1 className="mb-4 mt-12 font-bold">Tools</h1>
                 <ul>
                   <li className="mb-1">
-                    <a className="hover:text-sky-700 text-sky-800" href="https://tinyurl.com" target="_blank" rel="noreferrer">
-                      URL Shortener
+                    <a className="hover:text-sky-700 text-sky-800" href="https://asciiflow.com" target="_blank" rel="noreferrer">
+                      ASCII Diagrams
                     </a>
                   </li>
                   <li className="mb-1">
-                    <a className="hover:text-sky-700 text-sky-800" href="https://asciiflow.com" target="_blank" rel="noreferrer">
-                      ASCII Diagrams
+                    <a className="hover:text-sky-700 text-sky-800" href="https://mermaid-ascii.art/" target="_blank" rel="noreferrer">
+                      Mermaid ASCII
                     </a>
                   </li>
                 </ul>

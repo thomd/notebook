@@ -4,18 +4,16 @@
 
 **Notebook** is a simple, minimalistic **wiki-like** web application to manage the sheer amount of my personal notes (mainly it-development, math and science stuff) as **markdown files** and store them in a private **git repository**.
 
-**Notebook** was created with the intention of **running it locally** (to avoid hosting and user management).
+**Notebook** was created with the intention of **running it locally** (to avoid hosting and user management). Markdown files are stored in a git repository ("_git as database_") which allows to also read and edit them within Github.
 
 **Notebook** is implemented as a [React](https://react.dev) frontend for rendering and editing the markdown pages.
 Pages are managed with a **Python** backend service which provides a REST API via [FastAPI](https://fastapi.tiangolo.com) to read/write pages and commit/push pages to Github.
 All pages are indexed and searchable via an [ElasticSearch](https://www.elastic.co) service.
 
-Markdown files are stored in a flat git repository ("_git as database_") which allows to also read and edit them within Github.
-
-**Notebook** focuses on some special features for ease of use:
+**Notebook** focuses on some special features to meet my special needs:
 
 * Isolated editing of page headline sections (similar to Wikipedia) for ease of editing.
-* Extended markdown syntax to fit my personal needs: text highligting, tables, margin notes, LaTeX or internal page links.
+* Extended markdown syntax: text highligting, tables, margin notes, mathematical expressions (via LaTeX) or internal page links.
 * Simple categorisation of pages on an overview page.
 * Page navigation reflecting the headline hierarchy.
 * Search within all pages.

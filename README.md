@@ -4,7 +4,7 @@
 
 **Notebook** is a simple, minimalistic **wiki-like** web application to manage the sheer amount of my personal notes (mainly IT-development, math and science stuff) as **markdown files** and store them in a private **git repository**.
 
-**Notebook** was created with the intention of **running it locally** (to avoid hosting and user management). Markdown files are stored in a git repository ("_git as database_") which allows to read and edit them within Github.
+**Notebook** was created with the intention of **running it locally** (to avoid hosting and user management). Markdown files are stored in a git repository ("_git as database_") which allows to read and edit them in Github.
 
 **Notebook** is implemented as a [React](https://react.dev) frontend for rendering and editing the markdown pages.
 Pages are managed with a **Python** service which provides a REST API via [FastAPI](https://fastapi.tiangolo.com) to read/write pages and commit/push pages to Github.
@@ -31,7 +31,7 @@ Part of the **Notebook** implementation is a set of special **plugins** like [re
 2. If the repository is a private git repository on Github, then upload a public key to [SSH keys](https://github.com/settings/keys) 
 on Github (do not enter a passphrase for the key):
 
-        (cd ~/.ssh; ssh-keygen -f notebook)
+        ssh-keygen -f ~/.ssh/notebook
         cat ~/.ssh/notebook.pub | pbcopy
 
 3. Add a record `127.0.0.1 notebook` into your local hosts file and flush DNS cache:

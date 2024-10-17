@@ -4,10 +4,10 @@
 
 **Notebook** is a simple, minimalistic **wiki-like** web application to manage the sheer amount of my personal notes (mainly IT-development, math and science stuff) as **markdown files** and store them in a private **git repository**.
 
-**Notebook** was created with the intention of **running it locally** (to avoid hosting and user management). Markdown files are stored in a git repository ("_git as database_") which allows to also read and edit them within Github.
+**Notebook** was created with the intention of **running it locally** (to avoid hosting and user management). Markdown files are stored in a git repository ("_git as database_") which allows to read and edit them within Github.
 
 **Notebook** is implemented as a [React](https://react.dev) frontend for rendering and editing the markdown pages.
-Pages are managed with a **Python** backend service which provides a REST API via [FastAPI](https://fastapi.tiangolo.com) to read/write pages and commit/push pages to Github.
+Pages are managed with a **Python** service which provides a REST API via [FastAPI](https://fastapi.tiangolo.com) to read/write pages and commit/push pages to Github.
 All pages are indexed and searchable via an [ElasticSearch](https://www.elastic.co) service.
 
 **Notebook** focuses on some special features to meet my needs:
@@ -28,41 +28,36 @@ Part of the **Notebook** implementation is a set of special **plugins** like [re
 
 1. Create a git repository for your markdown pages like for example [notebook-example-pages](https://github.com/thomd/notebook-example-pages).
 
-1. If the repository is a private git repository on Github, then upload a public key to [SSH keys](https://github.com/settings/keys) 
+2. If the repository is a private git repository on Github, then upload a public key to [SSH keys](https://github.com/settings/keys) 
 on Github (do not enter a passphrase for the key):
 
-        cd ~/.ssh
-        ssh-keygen -f notebook
-        cat notebook.pub | pbcopy
+        (cd ~/.ssh; ssh-keygen -f notebook)
+        cat ~/.ssh/notebook.pub | pbcopy
 
-1. Add a record `127.0.0.1 notebook` into your local hosts file and flush DNS cache:
+3. Add a record `127.0.0.1 notebook` into your local hosts file and flush DNS cache:
 
         sudo vim /etc/hosts
         sudo dscacheutil -flushcache
 
-1. Optionally install locally-trusted SSL certificate using [mkcert](https://github.com/FiloSottile/mkcert):
+4. Optionally install locally-trusted SSL certificate using [mkcert](https://github.com/FiloSottile/mkcert):
 
         mkcert -install
         (cd frontend; mkcert notebook)
 
-1. Configure environment:
+5. Configure environment:
 
         cp .env.example .env
         vim .env
 
-1. Build application
+6. Build application
 
         docker compose build
 
-1. Start the application with
+7. Start the application with
 
         docker compose up -d
         docker compose ps
         open https://notebook
-
-1. Stop the application with
-
-        docker compose down
 
 ## Development
 

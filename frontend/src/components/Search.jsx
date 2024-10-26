@@ -50,7 +50,7 @@ export function SearchModal() {
                     className="hover:text-sky-700 text-sky-800 font-medium py-1 px-2 -my-1 -mx-2 focus:bg-sky-700 focus:text-gray-50 focus:rounded outline-none">
                     {result.title}
                   </Link>
-                  <ul className="search-filter text-gray-400 mb-6 font-mono text-sm">
+                  <ul className="search-filter text-gray-400 mb-8 mt-1 font-mono text-sm">
                     {result.result.map((res, j) => (
                       <li key={`res-${i}-${j}`}>{parse(res)}</li>
                     ))}

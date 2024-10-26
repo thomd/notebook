@@ -33,10 +33,14 @@ export default function PageEdit() {
     count(inputRef)
   }, [inputRef])
 
-  const handleChange = (ev) => {
+  const handleContentChange = (ev) => {
     setContent(ev.target.value)
     count(inputRef)
     setDisabled(page.content === ev.target.value)
+  }
+
+  const handleTitleChange = (ev) => {
+    setDisabled(page.title === ev.target.value)
   }
 
   const prettify = async (ev) => {
@@ -78,12 +82,13 @@ export default function PageEdit() {
             placeholder="Title"
             type="text"
             name="title"
+            onChange={handleTitleChange}
             defaultValue={page.title}
             className="block w-full border-0 px-3 py-[6px] text-gray-900 placeholder:text-gray-300 border-2 border-gray-300 focus:border-gray-400 focus:outline-none focus:ring-0"
           />
         </div>
         <div>
-          <CategorySelect pages={pages} page={page} />
+          <CategorySelect setDisabled={setDisabled} pages={pages} page={page} />
         </div>
         <div className="col-span-2">
           <textarea
@@ -91,7 +96,7 @@ export default function PageEdit() {
             name="content"
             autoFocus
             value={content}
-            onChange={handleChange}
+            onChange={handleContentChange}
             className="scroll-mirror px-3 py-[6px] font-mono text-sm block w-full h-full text-gray-900 border-2 border-gray-300 focus:border-gray-400 focus:outline-none focus:ring-0"
           />
         </div>

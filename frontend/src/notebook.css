@@ -692,20 +692,12 @@ video {
   height: 0.75rem;
 }
 
-.h-\[calc\(50vh-3rem\)\] {
-  height: calc(50vh - 3rem);
+.h-\[50vh\] {
+  height: 50vh;
 }
 
 .h-full {
   height: 100%;
-}
-
-.h-\[calc\(50vh-2rem\)\] {
-  height: calc(50vh - 2rem);
-}
-
-.h-\[50vh\] {
-  height: 50vh;
 }
 
 .min-h-screen {
@@ -867,11 +859,6 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.bg-gray-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
-}
-
 .p-4 {
   padding: 1rem;
 }
@@ -937,20 +924,12 @@ video {
   padding-left: 0.5rem;
 }
 
-.pl-4 {
-  padding-left: 1rem;
+.pl-8 {
+  padding-left: 2rem;
 }
 
 .pt-32 {
   padding-top: 8rem;
-}
-
-.pt-0 {
-  padding-top: 0px;
-}
-
-.pl-8 {
-  padding-left: 2rem;
 }
 
 .font-mono {
@@ -1057,27 +1036,15 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.shadow-\[inset_0_0_20px_0_\#ddd\] {
-  --tw-shadow: inset 0 0 20px 0 #ddd;
-  --tw-shadow-colored: inset 0 0 20px 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.shadow-sm {
-  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
 .shadow-\[inset_0_-10px_20px_-10px_\#ddd\] {
   --tw-shadow: inset 0 -10px 20px -10px #ddd;
   --tw-shadow-colored: inset 0 -10px 20px -10px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.shadow-\[inset_0_-10px_20px_-10px_\#d00\] {
-  --tw-shadow: inset 0 -10px 20px -10px #d00;
-  --tw-shadow-colored: inset 0 -10px 20px -10px var(--tw-shadow-color);
+.shadow-sm {
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
@@ -1257,9 +1224,4 @@ html {
 .has-\[\.preview\]\:bg-gray-200:has(.preview) {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
-}
-
-.has-\[\.preview\]\:bg-gray-300:has(.preview) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
 }

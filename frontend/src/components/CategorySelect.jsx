@@ -2,7 +2,7 @@ import { useState } from 'react'
 import CreatableSelect from 'react-select/creatable'
 import sortBy from 'sort-by'
 
-export default function CategorySelect({ pages, page }) {
+export default function CategorySelect({ setDisabled, pages, page }) {
   const [value, setValue] = useState(page.category ? { value: page.category, label: page.category } : '')
 
   const categories = pages
@@ -39,11 +39,16 @@ export default function CategorySelect({ pages, page }) {
     }),
   }
 
+  const handleChange = (newValue) => {
+    setValue(newValue ? newValue : '')
+    setDisabled(newValue === page.category)
+  }
+
   return (
     <CreatableSelect
       name="category"
       placeholder="Category"
-      onChange={(newValue) => setValue(newValue ? newValue : '')}
+      onChange={handleChange}
       defaultValue={value}
       isClearable
       options={categories}

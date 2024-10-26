@@ -23,8 +23,14 @@ export function useScrollIntoView() {
   }, [pathname, hash])
 }
 
-export function useScrollMirror() {
+export function scrollMirror() {
+  new ScrollMirror(document.querySelectorAll('.scroll-mirror'))
+}
+
+export function useScrollMirror(preview) {
   useEffect(() => {
-    new ScrollMirror(document.querySelectorAll('.scroll-mirror'))
-  }, [])
+    if (preview === 'grid preview') {
+      new ScrollMirror(document.querySelectorAll('.scroll-mirror'))
+    }
+  }, [preview])
 }

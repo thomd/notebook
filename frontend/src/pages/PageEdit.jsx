@@ -66,12 +66,12 @@ export default function PageEdit() {
 
   useHotkeys('escape', cancel)
 
-  useScrollMirror()
+  useScrollMirror(preview)
 
   return (
     <div className="grid min-h-screen has-[.preview]:grid-rows-2 bg-gray-100 has-[.preview]:bg-gray-200">
       <div
-        className={`${preview} scroll-mirror pl-8 gap-8 h-[50vh] bg-white shadow-[inset_0_-10px_20px_-10px_#ddd] border border-solid border-gray-300 overflow-scroll`}>
+        className={`${preview} overflow-auto scroll-mirror pl-8 gap-8 h-[50vh] bg-white shadow-[inset_0_-10px_20px_-10px_#ddd] border border-solid border-gray-300`}>
         <MarkdownViewer content={content} className="" preview={true} />
       </div>
       <Form method="post" className="grid grid-cols-2 gap-8 p-8 h-full grid-rows-pageedit">
@@ -97,7 +97,7 @@ export default function PageEdit() {
             autoFocus
             value={content}
             onChange={handleContentChange}
-            className="scroll-mirror px-3 py-[6px] font-mono text-sm block w-full h-full text-gray-900 border-2 border-gray-300 focus:border-gray-400 focus:outline-none focus:ring-0"
+            className="overflow-auto scroll-mirror px-3 py-[6px] font-mono text-sm block w-full h-full text-gray-900 border-2 border-gray-300 focus:border-gray-400 focus:outline-none focus:ring-0"
           />
         </div>
         <div className="col-span-2 flex justify-between items-center">

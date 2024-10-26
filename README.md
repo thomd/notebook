@@ -28,7 +28,7 @@ Part of the **Notebook** implementation is a set of special **plugins** like [re
 
 1. Create a git repository for your markdown pages like for example [notebook-example-pages](https://github.com/thomd/notebook-example-pages).
 
-2. If the repository is a private git repository on Github, then upload a public key to Github (do not enter a passphrase for the key):
+2. If the repository is a private git repository on Github, then upload a public key to Github using [gh](https://cli.github.com/) (do not enter a passphrase for the key):
 
         ssh-keygen -f ~/.ssh/notebook
         gh ssh-key add ~/.ssh/notebook.pub -t notebook

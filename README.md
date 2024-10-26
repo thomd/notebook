@@ -28,11 +28,10 @@ Part of the **Notebook** implementation is a set of special **plugins** like [re
 
 1. Create a git repository for your markdown pages like for example [notebook-example-pages](https://github.com/thomd/notebook-example-pages).
 
-2. If the repository is a private git repository on Github, then upload a public key to [SSH keys](https://github.com/settings/keys) 
-on Github (do not enter a passphrase for the key):
+2. If the repository is a private git repository on Github, then upload a public key to Github (do not enter a passphrase for the key):
 
         ssh-keygen -f ~/.ssh/notebook
-        cat ~/.ssh/notebook.pub | pbcopy
+        gh ssh-key add ~/.ssh/notebook.pub -t notebook
 
 3. Add a record `127.0.0.1 notebook` into your local hosts file and flush DNS cache:
 

@@ -166,13 +166,13 @@ function CategoryCard({ categoryPages, category }) {
   return (
     <>
       <h1 className="font-light text-xl mb-1 pl-2 pb-1 border-b block border-gray-400 text-gray-400 cursor-grab">{category.name}</h1>
-      <ul className="pl-2">
+      <ul className="p-2">
         {categoryPages[category.id].map((page) => (
-          <li key={page.id}>
-            <Link to={`/pages/${page.id}/`}>
+          <li key={page.id} className="flex">
+            <Link to={`/pages/${page.id}/`} className="truncate">
               {page.title}
-              {page.favorite && <span className="ml-2 text-orange-600">{parse(blackCircle)}</span>}
             </Link>
+            {page.favorite && <span className="ml-2 text-orange-600">{parse(blackCircle)}</span>}
           </li>
         ))}
       </ul>

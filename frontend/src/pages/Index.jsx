@@ -10,7 +10,14 @@ import useLocalStorageState from 'use-local-storage-state'
 
 export async function loader({ request }) {
   const pages = await getPages()
-  return { pages }
+  const sanitizedPages = pages.map((page) => {
+    if (page.cid === undefined) {
+      page.category = 'Uncategorized'
+      page.cid = 'uncategorized'
+    }
+    return page
+  })
+  return { pages: sanitizedPages }
 }
 
 const groupPagesByCategory = (pages) => Object.groupBy(pages, ({ cid }) => cid)
@@ -158,9 +165,7 @@ function IndexHeader({ pages }) {
 function CategoryCard({ categoryPages, category }) {
   return (
     <>
-      <h1 className="font-light text-xl mb-1 pl-2 pb-1 border-b block border-gray-400 text-gray-400 cursor-grab">
-        {category.name !== 'undefined' ? category.name : 'Uncategorized'}
-      </h1>
+      <h1 className="font-light text-xl mb-1 pl-2 pb-1 border-b block border-gray-400 text-gray-400 cursor-grab">{category.name}</h1>
       <ul className="pl-2">
         {categoryPages[category.id].map((page) => (
           <li key={page.id}>

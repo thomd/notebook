@@ -1,16 +1,12 @@
-import { matchSorter } from 'match-sorter'
 import sortBy from 'sort-by'
 
 const baseURL = process.env.REACT_APP_NOTEBOOK_MODE === 'production' ? 'http://localhost:8000' : 'http://localhost:8002'
 
-export async function getPages(query) {
+export async function getPages() {
   const response = await fetch(`${baseURL}/pages`)
   const data = await response.json()
   let pages = await data.pages
   if (!pages) pages = []
-  if (query) {
-    pages = matchSorter(pages, query, { keys: ['title'] })
-  }
   return pages.sort(sortBy('title'))
 }
 

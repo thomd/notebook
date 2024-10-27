@@ -12,8 +12,8 @@ export async function loader({ request }) {
   const pages = await getPages()
   const sanitizedPages = pages.map((page) => {
     if (page.cid === undefined) {
-      page.category = 'Uncategorized'
-      page.cid = 'uncategorized'
+      page.category = 'Uncategorised'
+      page.cid = 'uncategorised'
     }
     return page
   })

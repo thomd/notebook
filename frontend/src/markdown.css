@@ -232,16 +232,18 @@
   line-height: 17px;
   font-family: monospace;
 }
-.markdown pre > code.language-ascii > mark.white-marker {
-  background-color: #fff;
-  padding: 1px 3px;
-  margin: 0 -3px;
-  color: var(--code-text-color);
+.markdown pre > code.language-dense-bottom, .markdown pre > code.language-dense-top, .markdown pre > code.language-dense-around {
+  line-height: 1;
 }
-.markdown pre > code.language-ascii > mark.yellow-marker {
-  background-color: rgba(255, 255, 0, 0.3);
-  padding: 1px 3px;
-  margin: 0 -3px;
+.markdown pre:has(> .language-dense-top) {
+  margin-bottom: -1rem;
+}
+.markdown pre:has(> .language-dense-bottom) {
+  margin-top: -1rem;
+}
+.markdown pre:has(> .language-dense-around) {
+  margin-top: -1rem;
+  margin-bottom: -1rem;
 }
 .markdown table {
   margin-top: 1rem;
@@ -267,7 +269,7 @@
   border-radius: 2px;
 }
 .markdown mark.yellow-marker {
-  background-color: rgba(255, 255, 0, 0.25);
+  background-color: rgba(255, 255, 0, 0.3);
   padding: 1px 3px;
   margin: 0 -3px;
 }
@@ -282,9 +284,12 @@
   background-color: transparent;
   color: #aaa;
 }
+.markdown mark.grey-comment > .yellow-marker {
+  color: #aaa;
+}
 .markdown mark.white-marker {
   background-color: #fff;
-  color: #999;
+  color: #aaa;
   padding: 1px 3px;
   margin: -3px;
 }
@@ -321,7 +326,7 @@
   height: 0;
   overflow: visible;
   border-color: var(--first-headline-border-color);
-  margin: 2rem 0 2rem -1rem;
+  margin: 2rem 0;
 }
 
 .navigation {

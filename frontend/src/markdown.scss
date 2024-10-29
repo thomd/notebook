@@ -312,22 +312,26 @@
                 font-size: 14px;
                 line-height: 17px;
                 font-family: monospace;
-
-                & > mark {
-                    &.white-marker {
-                        background-color: #fff;
-                        padding: 1px 3px;
-                        margin: 0 -3px;
-                        color: var(--code-text-color);
-                    }
-
-                    &.yellow-marker {
-                        background-color: rgba(255, 255, 0, 0.3);
-                        padding: 1px 3px;
-                        margin: 0 -3px;
-                    }
-                }
             }
+
+            &.language-dense-bottom,
+            &.language-dense-top,
+            &.language-dense-around {
+                line-height: 1;
+            }
+        }
+
+        &:has(> .language-dense-top) {
+            margin-bottom: -1rem;
+        }
+
+        &:has(> .language-dense-bottom) {
+            margin-top: -1rem;
+        }
+
+        &:has(> .language-dense-around) {
+            margin-top: -1rem;
+            margin-bottom: -1rem;
         }
     }
 
@@ -359,7 +363,7 @@
 
     mark {
         &.yellow-marker {
-            background-color: rgba(255, 255, 0, 0.25);
+            background-color: rgba(255, 255, 0, 0.3);
             padding: 1px 3px;
             margin: 0 -3px;
         }
@@ -375,11 +379,15 @@
         &.grey-comment {
             background-color: transparent;
             color: #aaa;
+
+            > .yellow-marker {
+                color: #aaa;
+            }
         }
 
         &.white-marker {
             background-color: #fff;
-            color: #999;
+            color: #aaa;
             padding: 1px 3px;
             margin: -3px;
         }
@@ -422,7 +430,7 @@
         height: 0;
         overflow: visible;
         border-color: var(--first-headline-border-color);
-        margin: 2rem 0 2rem -1rem;
+        margin: 2rem 0;
     }
 }
 

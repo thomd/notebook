@@ -6,6 +6,7 @@ The app is served using a [Nginx](https://nginx.org) webserver.
 
 ## Development
 
+    npm install
     ./develop
     open http://localhost:3000
 

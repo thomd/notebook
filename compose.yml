@@ -5,8 +5,8 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        - REMOTE_PAGES_REPO_URL=${REMOTE_PAGES_REPO_URL}
-        - NOTEBOOK_MODE="production"
+        REMOTE_PAGES_REPO_URL: ${REMOTE_PAGES_REPO_URL}
+        NOTEBOOK_MODE: production
     container_name: notebook-frontend
     ports:
       - "80:80"

@@ -1,6 +1,6 @@
 import sortBy from 'sort-by'
 
-const baseURL = process.env.REACT_APP_NOTEBOOK_MODE === 'production' ? 'http://localhost:8000' : 'http://localhost:8002'
+const baseURL = process.env.REACT_APP_NOTEBOOK_MODE === 'development' ? 'http://localhost:8002' : 'http://localhost:8000'
 
 export async function getPages() {
   const response = await fetch(`${baseURL}/pages`)

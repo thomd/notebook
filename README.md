@@ -40,7 +40,7 @@ Part of the **Notebook** implementation is a set of special **plugins** like [re
         sudo vim /etc/hosts
         sudo dscacheutil -flushcache
 
-4. Optionally install locally-trusted SSL certificate using [mkcert](https://github.com/FiloSottile/mkcert):
+4. Install locally-trusted SSL certificate using [mkcert](https://github.com/FiloSottile/mkcert):
 
         mkcert -install
         (cd frontend; mkcert notebook)

@@ -5,7 +5,7 @@ from notebook import page as pg
 import os
 import re
 
-url = 'http://elasticsearch:9200' if os.environ.get('NOTEBOOK_MODE') == 'production' else 'http://localhost:9202'
+url = 'http://elasticsearch:9202' if os.environ.get('NOTEBOOK_MODE') == 'development' else 'http://localhost:9200'
 client = Elasticsearch(url)
 
 def sanitize(content):

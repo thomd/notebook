@@ -1,4 +1,4 @@
-const baseURL = process.env.REACT_APP_NOTEBOOK_MODE === 'production' ? 'http://localhost:9200' : 'http://localhost:9202'
+const baseURL = process.env.REACT_APP_NOTEBOOK_MODE === 'development' ? 'http://localhost:9202' : 'http://localhost:9200'
 
 export async function searchIndex(input) {
   const query = {

@@ -5,7 +5,7 @@ from notebook import search as es
 from notebook import log
 import os
 
-url = 'http://elasticsearch:9200' if os.environ.get('NOTEBOOK_MODE') == 'production' else 'http://localhost:9202'
+url = 'http://elasticsearch:9202' if os.environ.get('NOTEBOOK_MODE') == 'development' else 'http://localhost:9200'
 client = Elasticsearch(url)
 
 if not client.indices.exists(index='notebooks'):

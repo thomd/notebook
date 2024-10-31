@@ -29,7 +29,13 @@ export default function MarkdownViewer({ content, className, preview }) {
       <Markdown
         remarkPlugins={
           preview
-            ? [remarkGfmTable, [remarkHeadingLines, { position: 'after', linkText: '', className: 'headline h{depth}' }], remarkDeflist, remarkMath]
+            ? [
+                remarkGfmTable,
+                [remarkHeadingLines, { position: 'after', linkText: '', className: 'headline h{depth}' }],
+                [remarkWikiLink, { path: '/pages/', slugger: true }],
+                remarkDeflist,
+                remarkMath,
+              ]
             : [
                 remarkGfmTable,
                 [remarkHeadingLines, { position: 'after', linkText: '[ Edit ]', className: 'headline h{depth}' }],
@@ -49,7 +55,7 @@ export default function MarkdownViewer({ content, className, preview }) {
               { textPattern: /( # .+| \/\/ .+)/g, className: 'grey-comment', tags: ['code'] },
               { textPattern: /`(.+?)`/g, className: 'white-marker', tags: ['code.language-ascii'] },
               { textPattern: /≈(.+?)≈/g, className: 'yellow-marker', tags: ['p', 'code', 'li', 'td'] },
-              { textPattern: /\b(TODO)\b/, className: 'red-marker' },
+              { textPattern: /\b(TODO)\b/, className: 'red-marker', tags: ['p', 'li'], ignore: ['code'] },
               { textPattern: /\[(.+?)\]/g, htmlTag: 'kbd', tags: ['p', 'li', 'td'], ignore: ['code'] },
             ],
           ],

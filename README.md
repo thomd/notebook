@@ -4,6 +4,8 @@
 
 **Notebook** is a simple, minimalistic **wiki-like** web application to manage the sheer amount of my personal notes (mainly IT-development, math and science stuff) as **markdown files** and store them in a private **git repository**.
 
+![screenshot of notebook](https://raw.githubusercontent.com/thomd/notebook/refs/heads/images/index-page.png?token=GHSAT0AAAAAACWOXRWWKFAGRPJ4U2OYPN2EZZD2TWA)
+
 **Notebook** was created with the intention of **running it locally** (to avoid hosting and user management). Markdown files are stored in a git repository ("_git as database_") which allows to read and edit them in Github.
 
 **Notebook** is implemented as a [React](https://react.dev) frontend for rendering and editing the markdown pages.

@@ -289,9 +289,13 @@
 }
 .markdown mark.white-marker {
   background-color: #fff;
-  color: #aaa;
+  color: #888;
   padding: 1px 3px;
   margin: -3px;
+}
+.markdown .language-ascii mark.white-marker {
+  color: #777;
+  outline: 1px solid #eee;
 }
 .markdown dl {
   display: block;

@@ -348,10 +348,7 @@
 }
 .navigation nav > ul {
   margin: 0 0 0 1rem;
-  padding: 0;
-}
-.navigation nav > ul > li:first-child {
-  padding-top: 1.5rem;
+  padding: 1.5rem 0 0 0;
 }
 .navigation nav > ul > li {
   padding: 0 1rem 1rem;
@@ -367,7 +364,7 @@
 }
 .navigation nav > ul > li:not(:has(ul)) {
   padding-bottom: 0;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 .navigation nav > ul > li.active > a {
   color: #000;

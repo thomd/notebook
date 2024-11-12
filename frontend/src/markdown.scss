@@ -461,11 +461,7 @@
 
     nav > ul {
         margin: 0 0 0 1rem;
-        padding: 0;
-
-        & > li:first-child {
-            padding-top: 1.5rem;
-        }
+        padding: 1.5rem 0 0 0;
 
         & > li {
             padding: 0 1rem 1rem;
@@ -482,7 +478,7 @@
 
             &:not(:has(ul)) {
                 padding-bottom: 0;
-                margin-bottom: 0.25rem;
+                margin-bottom: 0.5rem;
             }
 
             &.active > a {

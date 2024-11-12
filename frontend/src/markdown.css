@@ -355,10 +355,15 @@
 }
 .navigation nav > ul > li {
   padding: 0 1rem 1rem;
+  position: relative;
 }
-.navigation nav > ul > li > ul {
-  border-left: 2px solid #e8e8e8;
-  padding-left: 4px;
+.navigation nav > ul > li > ul::before {
+  content: "";
+  border-left: 2px solid #eee;
+  position: absolute;
+  top: 27px;
+  left: 16px;
+  height: calc(100% - 44px);
 }
 .navigation nav > ul > li:not(:has(ul)) {
   padding-bottom: 0;
@@ -382,7 +387,7 @@
   color: #000;
 }
 .navigation nav > ul > li li {
-  padding: 0 0 0 0.5rem;
+  padding: 0 0 0 0.75rem;
   margin-top: 0.25rem;
 }
 .navigation nav > ul > li li a {

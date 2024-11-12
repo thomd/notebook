@@ -470,6 +470,11 @@
         & > li {
             padding: 0 1rem 1rem;
 
+            & > ul {
+                border-left: 2px solid #e8e8e8;
+                padding-left: 4px;
+            }
+
             &:not(:has(ul)) {
                 padding-bottom: 0;
                 margin-bottom: 0.25rem;

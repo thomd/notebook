@@ -6,7 +6,7 @@
 
 ![screenshot of notebook](https://github.com/thomd/notebook/blob/images/index-page.png)
 
-**Notebook** was created with the intention of **running it locally** (to avoid hosting and user management). Markdown files are stored in a git repository ("_git as database_") which allows to read and edit them in Github.
+**Notebook** was created with the intention of running it locally (to avoid hosting and user management). Markdown files are stored in a local or remote git repository ("_git as database_") which allows to read and edit them in Github.
 
 **Notebook** is implemented as a [React](https://react.dev) frontend for rendering and editing the markdown pages.
 Pages are managed with a **Python** service which provides a REST API via [FastAPI](https://fastapi.tiangolo.com) to read/write pages and commit/push pages to Github.
@@ -16,7 +16,7 @@ All pages are indexed and searchable via an [ElasticSearch](https://www.elastic.
 
 * Isolated editing of page headline sections (similar to Wikipedia) for ease of editing.
 * Extended markdown syntax: text highligting, tables, margin notes, mathematical expressions (via LaTeX) or internal page links.
-* Simple categorisation of pages on an overview page.
+* Simple categorisation of pages on an overview page. Category-tiles can be positioned as required.
 * Page navigation reflecting the headline hierarchy.
 * Search within all pages.
 * Mark highly used pages as favorites.
@@ -28,9 +28,9 @@ Part of the **Notebook** implementation is a set of special **plugins** like [re
 
 ## Simple Setup
 
-If you don't want to push your notebook pages to a remote git repository.
+If you don't want to push your notebook pages to a remote git repository and want to keep everything local.
 
-1. Create a local git repository for your markdown pages:
+1. Create a local git repository folder for your notebook pages:
 
         mkdir notebook-pages
         (cd notebook-pages; git init)

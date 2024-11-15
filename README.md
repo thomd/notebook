@@ -99,6 +99,22 @@ If you don't want to push your notebook pages to a remote git repository and wan
         docker compose up -d
         open https://notebook
 
+## Usage
+
+### Keyboard Shortcuts
+
+* Edit Page with <kbd>E</kbd>
+* Delete Page with <kbd>D</kbd>
+* Scroll Page to Top with <kbd>Q</kbd>
+* Scroll Page to Bottom with <kbd>W</kbd>
+* Open Index Page with <kbd>I or <kbd>esc</kbd>
+* Toggle Page Navigation with <kbd>N</kbd>
+* Search with <kbd>S</kbd> or <kbd>/</kbd>
+
+### Markdown
+
+See [markdown pages](https://github.com/thomd/notebook-example-pages/tree/main/pages) of the example repository.
+
 ## Development
 
 Follow development instructions in [backend](./backend/README.md) and [frontend](./frontend/README.md).

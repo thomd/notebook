@@ -4,7 +4,7 @@
 
 **Notebook** is a simple, minimalistic **wiki-like** web application to manage the sheer amount of my personal notes (mainly IT-development, math and science stuff) as **markdown files** and store them in a private **git repository**.
 
-![screenshot of notebook](https://raw.githubusercontent.com/thomd/notebook/refs/heads/images/index-page.png?token=GHSAT0AAAAAACWOXRWWKFAGRPJ4U2OYPN2EZZD2TWA)
+![screenshot of notebook](https://github.com/thomd/notebook/blob/images/index-page.png)
 
 **Notebook** was created with the intention of **running it locally** (to avoid hosting and user management). Markdown files are stored in a git repository ("_git as database_") which allows to read and edit them in Github.
 
@@ -26,14 +26,16 @@ All pages are indexed and searchable via an [ElasticSearch](https://www.elastic.
 
 Part of the **Notebook** implementation is a set of special **plugins** like [remark-heading-lines](https://github.com/thomd/remark-heading-lines), [remark-wiki-link](https://github.com/thomd/remark-wiki-link), [rehype-textmarker](https://github.com/thomd/rehype-textmarker), [rehype-navigation](https://github.com/thomd/rehype-navigation) and [rehype-block](https://github.com/thomd/rehype-block).
 
-## Setup
+## Simple Setup
 
-1. Create a git repository for your markdown pages like for example [notebook-example-pages](https://github.com/thomd/notebook-example-pages).
+If you don't want to push your notebook pages to a remote git repository.
 
-2. Upload a public SSH key to Github using [gh-cli](https://cli.github.com/) (do not enter a passphrase for the key):
+1. Create a local git repository for your markdown pages:
 
-        ssh-keygen -f ~/.ssh/notebook
-        gh ssh-key add ~/.ssh/notebook.pub -t notebook
+        mkdir notebook-pages
+        (cd notebook-pages; git init)
+
+2. Clone this repository.
 
 3. Add a record `127.0.0.1 notebook` into your local hosts file and flush DNS cache:
 
@@ -47,7 +49,7 @@ Part of the **Notebook** implementation is a set of special **plugins** like [re
 
 5. Configure environment:
 
-        cp .env.example .env
+        cp .env.example.local .env
         vim .env
 
 6. Build application
@@ -57,7 +59,41 @@ Part of the **Notebook** implementation is a set of special **plugins** like [re
 7. Start the application with
 
         docker compose up -d
-        docker compose ps
+        open https://notebook
+
+## Setup with Remote Repository
+
+1. Create a git repository on Github for your notebook pages like for example [notebook-example-pages](https://github.com/thomd/notebook-example-pages).
+
+2. Upload a public SSH key to Github using [gh-cli](https://cli.github.com/) (do not enter a passphrase for the key):
+
+        ssh-keygen -f ~/.ssh/notebook
+        gh ssh-key add ~/.ssh/notebook.pub -t notebook
+
+3. Clone this repository.
+
+4. Add a record `127.0.0.1 notebook` into your local hosts file and flush DNS cache:
+
+        sudo vim /etc/hosts
+        sudo dscacheutil -flushcache
+
+5. Install locally-trusted SSL certificate using [mkcert](https://github.com/FiloSottile/mkcert):
+
+        mkcert -install
+        (cd frontend; mkcert notebook)
+
+6. Configure environment
+
+        cp .env.example.remote .env
+        vim .env
+
+7. Build application
+
+        docker compose build
+
+8. Start the application with
+
+        docker compose up -d
         open https://notebook
 
 ## Development

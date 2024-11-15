@@ -37,6 +37,9 @@ If you don't want to push your notebook pages to a remote git repository and wan
 
 2. Clone this repository.
 
+        git clone https://github.com/thomd/notebook.git
+        cd notebook
+
 3. Add a record `127.0.0.1 notebook` into your local hosts file and flush DNS cache:
 
         sudo vim /etc/hosts

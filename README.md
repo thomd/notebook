@@ -103,17 +103,17 @@ If you don't want to push your notebook pages to a remote git repository and wan
 
 ### Keyboard Shortcuts
 
-* Edit Page with <kbd>E</kbd>
-* Delete Page with <kbd>D</kbd>
-* Scroll Page to Top with <kbd>Q</kbd>
-* Scroll Page to Bottom with <kbd>W</kbd>
-* Open Index Page with <kbd>I</kbd> or <kbd>esc</kbd>
-* Toggle Page Navigation with <kbd>N</kbd>
+* Edit page with <kbd>E</kbd>
+* Delete page with <kbd>D</kbd>
+* Scroll page to top with <kbd>Q</kbd>
+* Scroll page to bottom with <kbd>W</kbd>
+* Open index page with <kbd>I</kbd> or <kbd>esc</kbd>
+* Toggle page navigation with <kbd>N</kbd>
 * Search with <kbd>S</kbd> or <kbd>/</kbd>
 
 ### Markdown
 
-See [markdown pages](https://github.com/thomd/notebook-example-pages/tree/main/pages) of the example-pages repository.
+See [markdown pages](https://github.com/thomd/notebook-example-pages/tree/main/pages) of the example-pages repository for some explanatory examples.
 
 ## Development
 

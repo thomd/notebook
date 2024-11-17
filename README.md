@@ -10,6 +10,8 @@
 
 ![screenshot of page](https://raw.githubusercontent.com/thomd/notebook/refs/heads/images/page.png)
 
+![screenshot of page edit](https://raw.githubusercontent.com/thomd/notebook/refs/heads/images/page-edit.png)
+
 **Notebook** was created with the intention of running it locally (to avoid hosting and user management). Markdown files are stored in a local or remote git repository ("_git as database_") which allows to read and edit them in Github.
 
 **Notebook** is implemented as a [React](https://react.dev) frontend for rendering and editing the markdown pages.

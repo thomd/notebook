@@ -24,9 +24,9 @@
 
 **Notebook** was created with the intention of running it locally (to avoid hosting and user management). Markdown files are stored in a local or remote git repository ("_git as database_") which allows to read and edit them in Github.
 
-**Notebook** is implemented as a [React](https://react.dev) frontend for rendering and editing the markdown pages.
-Pages are managed with a **Python** service which provides a REST API via [FastAPI](https://fastapi.tiangolo.com) to read/write pages and commit/push pages to Github.
-All pages are indexed and searchable via an [ElasticSearch](https://www.elastic.co) service.
+**Notebook** is implemented as a **React** frontend for rendering and editing the markdown pages.
+Pages are managed with a **Python** service which provides a REST API via **FastAPI** to read/write pages and commit/push pages to Github.
+All pages are indexed and searchable via an **ElasticSearch** service.
 
 **Notebook** focuses on some special features to meet my needs:
 
@@ -45,7 +45,7 @@ Part of the **Notebook** implementation is a set of special **plugins** like [re
 > [!NOTE]
 > Notebook was created to fit my personal needs. It might not fit your needs. It might not work properly on your machine.
 
-## Simple Setup
+## Setup with Local Repository
 
 If you don't want to push your notebook pages to a remote git repository and want to keep everything local.
 

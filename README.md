@@ -42,7 +42,7 @@ All pages are indexed and searchable via an [ElasticSearch](https://www.elastic.
 
 Part of the **Notebook** implementation is a set of special **plugins** like [remark-heading-lines](https://github.com/thomd/remark-heading-lines), [remark-wiki-link](https://github.com/thomd/remark-wiki-link), [rehype-textmarker](https://github.com/thomd/rehype-textmarker), [rehype-navigation](https://github.com/thomd/rehype-navigation) and [rehype-block](https://github.com/thomd/rehype-block).
 
-> [!IMPORTANT]
+> [!NOTE]
 > Notebook was created to fit my personal needs. It might not fit your needs. It might not work properly on your machine.
 
 ## Simple Setup

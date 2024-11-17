@@ -4,11 +4,21 @@
 
 **Notebook** is a simple, minimalistic **wiki-like** web application to manage the sheer amount of my personal notes (mainly IT-development, math and science stuff) as **markdown files** and store them in a private **git repository**.
 
+**Notebook** consists of four page types: an **index** page as an overview of all pages, a **search** page, the **pages** itself and an **editor** page to edit its content:
+
+### Index
+
 ![screenshot of index page](https://raw.githubusercontent.com/thomd/notebook/refs/heads/images/index.png)
+
+### Search
 
 ![screenshot of search](https://raw.githubusercontent.com/thomd/notebook/refs/heads/images/search.png)
 
+### Page
+
 ![screenshot of page](https://raw.githubusercontent.com/thomd/notebook/refs/heads/images/page.png)
+
+### Edit Page
 
 ![screenshot of page edit](https://raw.githubusercontent.com/thomd/notebook/refs/heads/images/page-edit.png)
 

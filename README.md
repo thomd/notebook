@@ -122,6 +122,7 @@ If you don't want to push your notebook pages to a remote git repository and wan
 
 ### Keyboard Shortcuts
 
+* Show help with <kbd>H</kbd>
 * Edit page with <kbd>E</kbd>
 * Delete page with <kbd>D</kbd>
 * Scroll page to top with <kbd>Q</kbd>

@@ -357,6 +357,7 @@
 }
 .navigation + div {
   z-index: 1;
+  background-color: white;
 }
 .navigation ul {
   list-style: none;

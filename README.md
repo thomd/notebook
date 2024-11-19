@@ -10,10 +10,6 @@
 
 ![screenshot of index page](https://raw.githubusercontent.com/thomd/notebook/refs/heads/images/index.png)
 
-### Search
-
-![screenshot of search](https://raw.githubusercontent.com/thomd/notebook/refs/heads/images/search.png)
-
 ### Page
 
 ![screenshot of page](https://raw.githubusercontent.com/thomd/notebook/refs/heads/images/page.png)
@@ -21,6 +17,10 @@
 ### Edit Page
 
 ![screenshot of page edit](https://raw.githubusercontent.com/thomd/notebook/refs/heads/images/page-edit.png)
+
+### Search
+
+![screenshot of search](https://raw.githubusercontent.com/thomd/notebook/refs/heads/images/search.png)
 
 **Notebook** was created with the intention of running it locally (to avoid hosting and user management). Markdown files are stored in a local or remote git repository ("_git as database_") which allows to read and edit them in Github.
 

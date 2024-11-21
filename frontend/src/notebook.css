@@ -553,6 +553,10 @@ video {
   top: -10rem;
 }
 
+.z-10 {
+  z-index: 10;
+}
+
 .col-span-2 {
   grid-column: span 2 / span 2;
 }

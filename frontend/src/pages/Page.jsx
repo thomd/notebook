@@ -103,7 +103,7 @@ export default function Page() {
     <div className="grid min-h-screen" style={{ gridTemplateColumns: `${width}px 4px 1fr` }}>
       <Navigation content={page.content} showNavigation={showNavigation} collapsed={collapsed} />
       <ResizeHandle startNavigationResize={startNavigationResize} />
-      <div className="grid grid-rows-page">
+      <div className="grid grid-rows-page z-10">
         <Header pages={pages} page={page} currentPage={currentPage} className="px-8" />
         <MarkdownViewer content={page.content} className="px-8 mb-12" preview={false} />
         <Footer filename={page?.filename} className="p-8" />

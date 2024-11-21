@@ -16,6 +16,7 @@ or with
 
 Run
 
+    python -m venv .venv
     source .venv/bin/activate
     make elasticsearch
     nodemon -w notebook -e py -x pytest -vv

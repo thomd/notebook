@@ -113,7 +113,7 @@ export default function Page() {
 }
 
 function ResizeHandle({ startNavigationResize }) {
-  return <div className="cursor-col-resize hover:bg-gray-300" onMouseDown={startNavigationResize} />
+  return <div className="cursor-col-resize hover:bg-gray-300 hover:z-20" onMouseDown={startNavigationResize} />
 }
 
 function Header({ pages, page, currentPage, className }) {

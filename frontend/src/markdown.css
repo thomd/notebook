@@ -113,6 +113,9 @@
 .markdown aside + * {
   margin-right: 16rem !important;
 }
+.markdown aside + ol > li > pre {
+  margin-right: 0 !important;
+}
 .markdown aside.aside2 + * + *, .markdown aside.aside3 + * + *, .markdown aside.aside4 + * + *, .markdown aside.aside5 + * + * {
   margin-right: 16rem !important;
 }

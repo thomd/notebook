@@ -160,6 +160,10 @@
             margin-right: $asideWidth !important;
         }
 
+        & + ol > li > pre {
+            margin-right: 0 !important;
+        }
+
         &.aside2 + * + *,
         &.aside3 + * + *,
         &.aside4 + * + *,

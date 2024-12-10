@@ -95,6 +95,7 @@ export default function PageEdit() {
             ref={inputRef}
             name="content"
             autoFocus
+            wrap="off"
             value={content}
             onChange={handleContentChange}
             className="overflow-auto scroll-mirror px-3 py-[6px] font-mono text-sm block w-full h-full text-gray-900 border-2 border-gray-300 focus:border-gray-400 focus:outline-none focus:ring-0"

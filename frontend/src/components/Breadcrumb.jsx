@@ -1,14 +1,7 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react'
-import { useHotkeys } from 'react-hotkeys-hook'
 
 export default function Breadcrumb({ pages, page }) {
-  const navigate = useNavigate()
-
-  useHotkeys(['i', 'escape'], () => {
-    navigate('/')
-  })
-
   return (
     <>
       <Link className="text-lg text-gray-400 hover:text-gray-600" to={'/'}>

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { useLoaderData, useOutletContext } from 'react-router-dom'
+import { useLoaderData, useOutletContext, useNavigate } from 'react-router-dom'
 import { getPages, getPage, patchPage } from '../services/pages'
 import { Favorite } from '../components/Actions'
 import Breadcrumb from '../components/Breadcrumb'
@@ -33,6 +33,7 @@ const [collapsedWidth, minWidth, maxWidth, defaultWidth] = [32, 120, 500, 320]
 export default function Page() {
   const [currentPage, setCurrentPage] = useOutletContext() // eslint-disable-line no-unused-vars
   const { pages, page } = useLoaderData()
+  const navigate = useNavigate()
 
   useHotkeys('q', () => {
     window.scrollTo(0, 0)
@@ -49,6 +50,10 @@ export default function Page() {
       setCollapsed(true)
       setWidth(collapsedWidth)
     }
+  })
+
+  useHotkeys(['i', 'escape'], () => {
+    navigate('/')
   })
 
   useEffect(() => {

@@ -6,23 +6,23 @@
 
 **Notebook** consists of four page types: an **index** page as an overview of all pages, a **search** page, the **pages** itself and an **editor** page to edit its content:
 
-### Index
+**Notebook** was created with the intention of running it locally (to avoid hosting and user management). Markdown files are stored in a local or remote git repository ("_git as database_") which allows to read and edit them in Github.
+
+### Index Page
 
 ![screenshot of index page](https://raw.githubusercontent.com/thomd/notebook/refs/heads/images/index.png)
 
-### Page
+### Rendered Markdown Page
 
 ![screenshot of page](https://raw.githubusercontent.com/thomd/notebook/refs/heads/images/page.png)
 
-### Edit Page
+### Edit a Page
 
 ![screenshot of page edit](https://raw.githubusercontent.com/thomd/notebook/refs/heads/images/page-edit.png)
 
 ### Search
 
 ![screenshot of search](https://raw.githubusercontent.com/thomd/notebook/refs/heads/images/search.png)
-
-**Notebook** was created with the intention of running it locally (to avoid hosting and user management). Markdown files are stored in a local or remote git repository ("_git as database_") which allows to read and edit them in Github.
 
 **Notebook** is implemented as a **React** frontend for rendering and editing the markdown pages.
 Pages are managed with a **Python** service which provides a REST API via **FastAPI** to read/write pages and commit/push pages to Github.

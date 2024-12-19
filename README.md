@@ -24,7 +24,7 @@ Search in all Markdown Pages:
 
 ![screenshot of search](https://raw.githubusercontent.com/thomd/notebook/refs/heads/images/search.png)
 
-**Notebook** focuses on some special features to meet my needs:
+**Notebook** focuses on some **special features** to meet my needs:
 
 * Isolated editing of page headline sections (similar to Wikipedia) for ease of editing.
 * Extended markdown syntax: text highligting, tables, margin notes, mathematical expressions (via LaTeX) or internal page links.
@@ -49,9 +49,9 @@ Part of the **Notebook** implementation is a set of special **plugins** like [re
 
 ## Setup with Local Repository
 
-If you don't want to push your notebook pages to a remote git repository and want to keep everything local.
+If you don't want to push your markdown pages to a remote git repository and want to keep everything local.
 
-1. Create a local git repository folder for your notebook pages:
+1. Create a local git repository folder for your markdown pages:
 
         mkdir notebook-pages
         (cd notebook-pages; git init)
@@ -87,7 +87,7 @@ If you don't want to push your notebook pages to a remote git repository and wan
 
 ## Setup with Remote Repository
 
-1. Create a git repository on Github for your notebook pages like for example [notebook-example-pages](https://github.com/thomd/notebook-example-pages).
+1. Create a git repository on Github for your markdown pages like for example [notebook-example-pages](https://github.com/thomd/notebook-example-pages).
 
 2. Upload a public SSH key to Github using [gh-cli](https://cli.github.com/) (do not enter a passphrase for the key):
 

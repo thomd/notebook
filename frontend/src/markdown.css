@@ -164,7 +164,7 @@
   margin-block-end: 1.5rem;
   margin-inline-start: 1.5rem;
 }
-.markdown ol > li::marker {
+.markdown > ol > li::marker {
   font-weight: bold;
 }
 .markdown ol,

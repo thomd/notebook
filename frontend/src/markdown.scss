@@ -167,22 +167,30 @@
         &.aside2 + * + *,
         &.aside3 + * + *,
         &.aside4 + * + *,
-        &.aside5 + * + * {
+        &.aside5 + * + *,
+        &.aside6 + * + * {
             margin-right: $asideWidth !important;
         }
 
         &.aside3 + * + * + *,
         &.aside4 + * + * + *,
-        &.aside5 + * + * + * {
+        &.aside5 + * + * + *,
+        &.aside6 + * + * + * {
             margin-right: $asideWidth !important;
         }
 
         &.aside4 + * + * + * + *,
-        &.aside5 + * + * + * + * {
+        &.aside5 + * + * + * + *,
+        &.aside6 + * + * + * + * {
             margin-right: $asideWidth !important;
         }
 
-        &.aside5 + * + * + * + * + * {
+        &.aside5 + * + * + * + * + *,
+        &.aside6 + * + * + * + * + * {
+            margin-right: $asideWidth !important;
+        }
+
+        &.aside6 + * + * + * + * + * + * {
             margin-right: $asideWidth !important;
         }
 
@@ -216,47 +224,45 @@
     }
 
     ul {
-        display: block;
         list-style-type: circle;
         margin-block-start: 1rem;
         margin-block-end: 1rem;
-        margin-inline-start: 20px;
-        margin-inline-end: 0px;
-        padding-inline-start: 0px;
+        margin-inline-start: 1.25px;
+    }
+
+    ol {
+        list-style-type: decimal;
+        margin-block-start: 1.5rem;
+        margin-block-end: 1.5rem;
+        margin-inline-start: 1.5rem;
 
         & > li {
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-
-            & > ol,
-            & > ul {
-                margin-block-start: 0.25rem;
-                margin-block-end: 0;
+            &::marker {
+                font-weight: bold;
             }
         }
     }
 
-    ol {
+    ol,
+    ul {
         display: block;
-        list-style-type: decimal;
-        margin-block-start: 1rem;
-        margin-block-end: 1rem;
-        margin-inline-start: 24px;
+        margin-inline-start: 1.5rem;
         margin-inline-end: 0px;
         padding-inline-start: 0px;
 
         & > li {
             font-size: 1rem;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.5rem;
 
             & > p {
-                margin-top: -0.5rem;
+                margin-top: 0.5rem;
+                margin-bottom: 0;
             }
 
             & > pre {
                 margin-left: -3.75rem;
-                margin-top: -0.5rem;
-                margin-bottom: 1.5rem;
+                margin-top: 0.5rem;
+                margin-bottom: 0.5rem;
 
                 & > code {
                     margin-left: 1.5rem;
@@ -266,12 +272,8 @@
 
             & > ol,
             & > ul {
-                margin-block-start: 0.25rem;
+                margin-block-start: 0.5rem;
                 margin-block-end: 0;
-            }
-
-            &::marker {
-                font-weight: bold;
             }
         }
     }

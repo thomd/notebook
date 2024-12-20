@@ -10,6 +10,7 @@ Then either start FastAPI & ElasticSearch backend with
 
 or with
 
+    pyenv install 3.9.20
     ./develop
 
 ## Test

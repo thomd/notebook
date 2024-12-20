@@ -235,7 +235,9 @@
         margin-block-start: 1.5rem;
         margin-block-end: 1.5rem;
         margin-inline-start: 1.5rem;
+    }
 
+    & > ol {
         & > li {
             &::marker {
                 font-weight: bold;

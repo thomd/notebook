@@ -36,7 +36,8 @@ if not client.indices.exists(index='notebooks'):
             "properties": {
                 "title": {
                     "type": "text",
-                    "analyzer": "edge_ngram_analyzer"
+                    "analyzer": "edge_ngram_analyzer",
+                    "search_analyzer": "search_analyzer"
                 },
                 "category": {
                     "type": "text",

@@ -125,12 +125,19 @@
     .h1 + .h2 {
         h2,
         a {
-            padding-top: 1rem;
+            padding-top: 2rem;
         }
     }
 
     .h2 + .h3 {
         h3,
+        a {
+            padding-top: 1rem;
+        }
+    }
+
+    .h3 + .h4 {
+        h4,
         a {
             padding-top: 1rem;
         }

@@ -88,10 +88,14 @@
 }
 .markdown .h1 + .h2 h2,
 .markdown .h1 + .h2 a {
-  padding-top: 1rem;
+  padding-top: 2rem;
 }
 .markdown .h2 + .h3 h3,
 .markdown .h2 + .h3 a {
+  padding-top: 1rem;
+}
+.markdown .h3 + .h4 h4,
+.markdown .h3 + .h4 a {
   padding-top: 1rem;
 }
 .markdown .h1 {

@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import CreatableSelect from 'react-select/creatable'
-import sortBy from 'sort-by'
 
 export default function CategorySelect({ setDisabled, pages, page }) {
   const [value, setValue] = useState(page.category ? { value: page.category, label: page.category } : '')
@@ -12,7 +11,7 @@ export default function CategorySelect({ setDisabled, pages, page }) {
     .map((category) => {
       return { value: category, label: category }
     })
-    .sort(sortBy('label'))
+    .sort((p, q) => p.label.localeCompare(q.label))
 
   const creatableSelectTheme = (theme) => ({
     ...theme,

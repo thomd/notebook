@@ -1,6 +1,8 @@
 :root {
   --text-color: #111;
   --link-color: #075985;
+  --internal-link-color: #ea580c;
+  --internal-link-hover-color: #fb923c;
   --link-hover-color: #0284c7;
   --first-headline-color: #111;
   --second-headline-color: #333;
@@ -237,6 +239,12 @@
 }
 .markdown a:hover {
   color: var(--link-hover-color);
+}
+.markdown a[href^="/pages/"] {
+  color: var(--internal-link-color);
+}
+.markdown a[href^="/pages/"]:hover {
+  color: var(--internal-link-hover-color);
 }
 .markdown pre {
   margin: 1rem -2.25rem;

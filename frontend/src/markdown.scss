@@ -5,6 +5,8 @@
     --text-color: #111;
 
     --link-color: #075985; // sky-800
+    --internal-link-color: #ea580c; // orange-600
+    --internal-link-hover-color: #fb923c; // orange-400
     --link-hover-color: #0284c7; // sky-600
 
     --first-headline-color: #111;
@@ -14,7 +16,7 @@
     --headline-edit-link-hover-color: #0369a1; // sky-700
 
     --blockquote-border-color: #eee;
-    --blockquote-color: #9ca3af;
+    --blockquote-color: #9ca3af; // gray-400
 
     --code-background-color: #f6f6f6;
     --inline-code-background-color: #f6f6f6;
@@ -325,6 +327,14 @@
 
         &:hover {
             color: var(--link-hover-color);
+        }
+
+        &[href^="/pages/"] {
+            color: var(--internal-link-color);
+
+            &:hover {
+                color: var(--internal-link-hover-color);
+            }
         }
     }
 

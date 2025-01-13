@@ -51,9 +51,10 @@ export default function MarkdownViewer({ content, className, preview }) {
           [
             rehypeTextmarker,
             [
-              { textPattern: /^(# .+|#)$/gm, className: 'grey-comment', tags: ['code'] },
+              { textPattern: /^(# .+|#.+|\/\/ .+)$/gm, className: 'grey-comment', tags: ['code'] },
               { textPattern: /( # .+| \/\/ .+)/g, className: 'grey-comment', tags: ['code'] },
               { textPattern: /(?<=# .*)`(.+?)`/g, className: 'white-marker', tags: ['code'] },
+              { textPattern: /(?<=\/\/ .*)`(.+?)`/g, className: 'white-marker', tags: ['code'] },
               { textPattern: /`(.+?)`/g, className: 'white-marker', tags: ['code.language-ascii'] },
               { textPattern: /≈(.+?)≈/g, className: 'yellow-marker', tags: ['p', 'code', 'li', 'td'] },
               { textPattern: /\b(TODO)\b/, className: 'red-marker', tags: ['p', 'li'], ignore: ['code'] },

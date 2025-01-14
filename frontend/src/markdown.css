@@ -1,8 +1,8 @@
 :root {
   --text-color: #111;
   --link-color: #075985;
-  --internal-link-color: #ea580c;
-  --internal-link-hover-color: #fb923c;
+  --internal-link-color: #0284c7;
+  --internal-link-hover-color: #38bdf8;
   --link-hover-color: #0284c7;
   --first-headline-color: #111;
   --second-headline-color: #333;
@@ -140,6 +140,7 @@
 .markdown aside p {
   font-size: 0.875rem;
   padding: 0.75rem 0;
+  margin-top: -0.5rem;
 }
 .markdown aside ul {
   list-style-type: none;
@@ -154,9 +155,11 @@
 .markdown .h1:has(+ aside) {
   margin-right: 16rem;
 }
-.markdown .h1 + aside div {
+.markdown .h1 + aside div,
+.markdown .h2 + aside div,
+.markdown .h3 + aside div {
   position: relative;
-  top: -4rem;
+  top: -2.5rem;
 }
 .markdown ul {
   list-style-type: circle;

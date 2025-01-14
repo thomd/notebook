@@ -5,8 +5,8 @@
     --text-color: #111;
 
     --link-color: #075985; // sky-800
-    --internal-link-color: #ea580c; // orange-600
-    --internal-link-hover-color: #fb923c; // orange-400
+    --internal-link-color: #0284c7; // sky-600
+    --internal-link-hover-color: #38bdf8; // sky-400
     --link-hover-color: #0284c7; // sky-600
 
     --first-headline-color: #111;
@@ -206,6 +206,7 @@
         p {
             font-size: 0.875rem;
             padding: 0.75rem 0;
+            margin-top: -0.5rem;
         }
 
         ul {
@@ -225,10 +226,14 @@
         margin-right: 16rem;
     }
 
-    .h1 + aside {
-        div {
-            position: relative;
-            top: -4rem;
+    .h1,
+    .h2,
+    .h3 {
+        & + aside {
+            div {
+                position: relative;
+                top: -2.5rem;
+            }
         }
     }
 

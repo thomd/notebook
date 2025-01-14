@@ -32,14 +32,14 @@ export default function MarkdownViewer({ content, className, preview }) {
             ? [
                 remarkGfmTable,
                 [remarkHeadingLines, { position: 'after', linkText: '', className: 'headline h{depth}' }],
-                [remarkWikiLink, { path: '/pages/', slugger: true }],
+                [remarkWikiLink, { path: '/pages/', slugger: true, trailingSlash: true }],
                 remarkDeflist,
                 remarkMath,
               ]
             : [
                 remarkGfmTable,
                 [remarkHeadingLines, { position: 'after', linkText: '[ Edit ]', className: 'headline h{depth}' }],
-                [remarkWikiLink, { path: '/pages/', slugger: true }],
+                [remarkWikiLink, { path: '/pages/', slugger: true, trailingSlash: true }],
                 remarkDeflist,
                 remarkMath,
               ]

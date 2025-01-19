@@ -363,22 +363,22 @@
                 font-family: monospace;
             }
 
-            &.language-dense-bottom,
-            &.language-dense-top,
-            &.language-dense-around {
+            &.language-ascii-bottom,
+            &.language-ascii-top,
+            &.language-ascii-middle {
                 line-height: 1;
             }
         }
 
-        &:has(> .language-dense-top) {
+        &:has(> .language-ascii-top) {
             margin-bottom: -1rem;
         }
 
-        &:has(> .language-dense-bottom) {
+        &:has(> .language-ascii-bottom) {
             margin-top: -1rem;
         }
 
-        &:has(> .language-dense-around) {
+        &:has(> .language-ascii-middle) {
             margin-top: -1rem;
             margin-bottom: -1rem;
         }

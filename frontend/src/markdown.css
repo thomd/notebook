@@ -268,16 +268,16 @@
   line-height: 17px;
   font-family: monospace;
 }
-.markdown pre > code.language-dense-bottom, .markdown pre > code.language-dense-top, .markdown pre > code.language-dense-around {
+.markdown pre > code.language-ascii-bottom, .markdown pre > code.language-ascii-top, .markdown pre > code.language-ascii-middle {
   line-height: 1;
 }
-.markdown pre:has(> .language-dense-top) {
+.markdown pre:has(> .language-ascii-top) {
   margin-bottom: -1rem;
 }
-.markdown pre:has(> .language-dense-bottom) {
+.markdown pre:has(> .language-ascii-bottom) {
   margin-top: -1rem;
 }
-.markdown pre:has(> .language-dense-around) {
+.markdown pre:has(> .language-ascii-middle) {
   margin-top: -1rem;
   margin-bottom: -1rem;
 }

@@ -58,7 +58,7 @@ export default function MarkdownViewer({ content, className, preview }) {
               { textPattern: /`(.+?)`/g, className: 'white-marker', tags: ['code.language-ascii'] },
               { textPattern: /≈(.+?)≈/g, className: 'yellow-marker', tags: ['p', 'code', 'li', 'td'] },
               { textPattern: /\b(TODO)\b/, className: 'red-marker', tags: ['p', 'li'], ignore: ['code'] },
-              { textPattern: /\b(READ)\b/, className: 'green-marker', tags: ['p', 'li'], ignore: ['code'] },
+              { textPattern: /\b(READ|WATCH)\b/, className: 'green-marker', tags: ['p', 'li'], ignore: ['code'] },
               { textPattern: /\[(.+?)\]/g, htmlTag: 'kbd', tags: ['p', 'li', 'td'], ignore: ['code'] },
             ],
           ],

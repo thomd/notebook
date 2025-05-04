@@ -172,7 +172,7 @@ function CategoryCard({ categoryPages, category }) {
             <Link to={`/pages/${page.id}/`} className="truncate">
               {page.title}
             </Link>
-            {page.favorite && <span className="ml-2 text-orange-600">{parse(blackCircle)}</span>}
+            {page.favorite && <span className="ml-2 text-[#bc0a6f]">{parse(blackCircle)}</span>}
           </li>
         ))}
       </ul>

@@ -75,7 +75,7 @@ export function Favorite({ page, className }) {
   return (
     <fetcher.Form method="post" className={`${className} inline`}>
       {favorite ? (
-        <button name="favorite" value="false" className="text-lg text-orange-600">
+        <button name="favorite" value="false" className="text-lg text-[#bc0a6f]">
           {parse(blackCircle)}
         </button>
       ) : (

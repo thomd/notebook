@@ -16,7 +16,7 @@ export function EditButton({ className }) {
   return (
     <>
       <Form className={className} action={`${pathname}edit`}>
-        <button className="px-3 bg-white hover:text-sky-700 text-sky-800 text-lg">Edit</button>
+        <button className="px-3 bg-white text-[#bc0a6f] text-lg font-light">Edit</button>
       </Form>
     </>
   )
@@ -35,7 +35,7 @@ export function DeleteButton({ pageTitle, className }) {
 
   return (
     <div className={className}>
-      <button onClick={onOpen} className="px-3 bg-white hover:text-sky-700 text-sky-800 text-lg">
+      <button onClick={onOpen} className="px-3 bg-white text-[#bc0a6f] text-lg font-light">
         Delete
       </button>
       <Modal isOpen={isOpen} onClose={onClose} initialFocusRef={inputRef}>

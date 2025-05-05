@@ -118,12 +118,21 @@ export default function PageEdit() {
               className="ml-16 py-1 px-3 bg-white hover:bg-gray-100 text-gray-500 text-base rounded border border-gray-400">
               Prettify
             </button>
-            <button
-              type="button"
-              onClick={togglePreview}
-              className="ml-8 py-1 px-3 bg-white hover:bg-gray-100 text-gray-500 text-base rounded border border-gray-400">
-              {preview === 'hidden' ? 'Show Preview' : 'Hide Preview'}
-            </button>
+            {preview === 'hidden' ? (
+              <button
+                type="button"
+                onClick={togglePreview}
+                className="ml-8 py-1 px-3 bg-white hover:bg-gray-100 text-gray-500 text-base rounded border border-gray-400">
+                Show Preview
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={togglePreview}
+                className="ml-8 py-1 px-3 bg-gray-400 hover:bg-gray-500 text-white text-base rounded border border-gray-900">
+                Hide Preview
+              </button>
+            )}
           </div>
           <div>
             <Counter characterCount={characterCount} linesCount={linesCount} />

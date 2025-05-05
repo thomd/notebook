@@ -13,10 +13,10 @@
     --second-headline-color: #333;
     --first-headline-border-color: #ddd;
     --headline-edit-link-color: #ccc;
-    --headline-edit-link-hover-color: #0369a1; // sky-700
+    --headline-edit-link-hover-color: #bc0a6f;
 
     --blockquote-border-color: #eee;
-    --blockquote-color: #9ca3af; // gray-400
+    --blockquote-color: #9ca3af;
 
     --code-background-color: #f6f6f6;
     --inline-code-background-color: #f6f6f6;
@@ -418,19 +418,19 @@
         }
 
         &.red-marker {
-            background-color: rgba(248, 113, 113, 1);
+            background-color: rgba(248, 113, 113, 0.6);
             color: #fff;
-            padding: 2px 5px;
+            padding: 2px 15px;
             margin: 0 5px 0 0;
-            border-radius: 4px;
+            border-radius: 12px;
         }
 
         &.green-marker {
-            background-color: rgba(34, 197, 94, 1);
+            background-color: rgba(34, 197, 94, 0.6);
             color: #fff;
-            padding: 2px 5px;
+            padding: 2px 15px;
             margin: 0 5px 0 0;
-            border-radius: 4px;
+            border-radius: 12px;
         }
 
         &.grey-comment {

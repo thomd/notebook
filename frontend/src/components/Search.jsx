@@ -47,7 +47,7 @@ export function SearchModal() {
                   <Link
                     to={result.url}
                     onClick={handleLinkClick}
-                    className="hover:text-sky-700 text-sky-800 font-medium py-1 px-2 -my-1 -mx-2 focus:bg-sky-700 focus:text-gray-50 focus:rounded outline-none">
+                    className="text-[#bc0a6f] font-medium py-1 px-2 -my-1 -mx-2 focus:bg-[#bc0a6f] focus:text-gray-50 focus:rounded outline-none">
                     {result.title}
                   </Link>
                   <ul className="search-filter text-gray-400 mb-8 mt-1 font-mono text-sm">

@@ -49,12 +49,12 @@ export function HelpModal({ className }) {
                 <h1 className="mb-4 mt-12 font-bold">Tools</h1>
                 <ul>
                   <li className="mb-1">
-                    <a className="hover:text-sky-700 text-sky-800" href="https://asciiflow.com" target="_blank" rel="noreferrer">
+                    <a className="text-[#bc0a6f]" href="https://asciiflow.com" target="_blank" rel="noreferrer">
                       ASCII Diagrams
                     </a>
                   </li>
                   <li className="mb-1">
-                    <a className="hover:text-sky-700 text-sky-800" href="https://mermaid-ascii.art/" target="_blank" rel="noreferrer">
+                    <a className="text-[#bc0a6f]" href="https://mermaid-ascii.art/" target="_blank" rel="noreferrer">
                       Mermaid ASCII
                     </a>
                   </li>
@@ -64,12 +64,12 @@ export function HelpModal({ className }) {
                 <h1 className="mb-4 mt-12 font-bold">KaTeX</h1>
                 <ul>
                   <li className="mb-1">
-                    <a className="hover:text-sky-700 text-sky-800" href="https://katex.org/docs/supported.html" target="_blank" rel="noreferrer">
+                    <a className="text-[#bc0a6f]" href="https://katex.org/docs/supported.html" target="_blank" rel="noreferrer">
                       Supported Functions
                     </a>
                   </li>
                   <li className="mb-1">
-                    <a className="hover:text-sky-700 text-sky-800" href="https://github.com/KaTeX/KaTeX/wiki/Package-Emulation" target="_blank" rel="noreferrer">
+                    <a className="text-[#bc0a6f]" href="https://github.com/KaTeX/KaTeX/wiki/Package-Emulation" target="_blank" rel="noreferrer">
                       Package Emulation
                     </a>
                   </li>

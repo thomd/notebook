@@ -4,7 +4,7 @@ import { Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react'
 export default function Breadcrumb({ pages, page }) {
   return (
     <>
-      <Link className="text-lg text-gray-400 hover:text-gray-600" to={'/'}>
+      <Link className="text-lg text-gray-400 hover:text-gray-600 font-medium" to={'/'}>
         Index
       </Link>
       <Chevron />
@@ -12,10 +12,10 @@ export default function Breadcrumb({ pages, page }) {
         <>
           <CategoriesMenu pages={pages} page={page} />
           <Chevron />
-          <span className="text-lg text-gray-900">{page.title}</span>
+          <span className="text-lg text-gray-900 font-medium">{page.title}</span>
         </>
       ) : (
-        <span className="text-lg text-gray-900">{page.title}</span>
+        <span className="text-lg text-gray-900 font-medium">{page.title}</span>
       )}
     </>
   )

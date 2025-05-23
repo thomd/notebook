@@ -112,7 +112,7 @@
 }
 .markdown aside > * {
   padding: 0 1rem !important;
-  border-left: 6px solid var(--code-background-color);
+  border-left: 4px solid var(--link-color);
   margin: 0.5rem 0;
   width: 14rem;
 }

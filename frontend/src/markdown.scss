@@ -291,6 +291,10 @@
                 margin-block-start: 0.5rem;
                 margin-block-end: 0;
             }
+
+            & > hr {
+                margin: 1rem 0;
+            }
         }
     }
 

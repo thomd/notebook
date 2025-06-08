@@ -210,6 +210,10 @@
   margin-block-start: 0.5rem;
   margin-block-end: 0;
 }
+.markdown ol > li > hr,
+.markdown ul > li > hr {
+  margin: 1rem 0;
+}
 .markdown p {
   margin-top: 1rem;
   margin-bottom: 1rem;

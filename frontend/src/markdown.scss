@@ -421,20 +421,31 @@
             margin: 0 -3px;
         }
 
-        &.red-marker {
-            background-color: rgba(0, 0, 0, 0.3);
-            color: #fff;
+        &.todo-marker {
+            background-color: #fce8e6;
+            color: #c5221f;
             padding: 2px 10px;
             margin: 0 5px 0 0;
-            border-radius: 12px;
+            border-radius: 6px;
+            border: 1px solid #c5221f;
         }
 
-        &.green-marker {
-            background-color: rgba(0, 0, 0, 0.3);
-            color: #fff;
+        &.read-marker {
+            background-color: #fef7e0;
+            color: #faab00;
             padding: 2px 10px;
             margin: 0 5px 0 0;
-            border-radius: 12px;
+            border-radius: 6px;
+            border: 1px solid #faab00;
+        }
+
+        &.watch-marker {
+            background-color: #e7f0fe;
+            color: #1967d2;
+            padding: 2px 10px;
+            margin: 0 5px 0 0;
+            border-radius: 6px;
+            border: 1px solid #1967d2;
         }
 
         &.grey-comment {

@@ -424,28 +424,25 @@
         &.todo-marker {
             background-color: #fce8e6;
             color: #c5221f;
-            padding: 2px 10px;
+            padding: 4px 18px;
             margin: 0 5px 0 0;
-            border-radius: 6px;
-            border: 1px solid #c5221f;
+            border-radius: 14px;
         }
 
         &.read-marker {
             background-color: #fef7e0;
             color: #faab00;
-            padding: 2px 10px;
+            padding: 4px 18px;
             margin: 0 5px 0 0;
-            border-radius: 6px;
-            border: 1px solid #faab00;
+            border-radius: 14px;
         }
 
         &.watch-marker {
             background-color: #e7f0fe;
             color: #1967d2;
-            padding: 2px 10px;
+            padding: 4px 18px;
             margin: 0 5px 0 0;
-            border-radius: 6px;
-            border: 1px solid #1967d2;
+            border-radius: 14px;
         }
 
         &.grey-comment {

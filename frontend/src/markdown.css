@@ -13,7 +13,7 @@
   --blockquote-color: #9ca3af;
   --code-background-color: #f6f6f6;
   --inline-code-background-color: #f6f6f6;
-  --code-text-color: #000;
+  --code-text-color: #444;
 }
 
 ::selection {
@@ -21,12 +21,6 @@
   text-shadow: none;
 }
 
-@font-face {
-  font-family: "Inconsolata";
-  src: url("inconsolata-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
 .markdown {
   padding-right: 2rem;
   position: relative;
@@ -221,9 +215,9 @@
 }
 .markdown p > code,
 .markdown li > code {
-  font-family: "Inconsolata", "Courier New", Courier, monospace;
-  font-size: 1.0625rem;
-  padding: 2px 4px;
+  font-family: monospace;
+  font-size: 0.875rem;
+  padding: 4px 6px;
   margin: -3px 0;
   background-color: var(--inline-code-background-color);
   border-radius: 3px;
@@ -261,10 +255,10 @@
 }
 .markdown pre > code {
   background-color: var(--code-background-color);
-  font-family: "Inconsolata", "Courier New", Courier, monospace;
-  font-size: 1.0625rem;
+  font-family: monospace;
+  font-size: 0.875rem;
   color: var(--code-text-color);
-  line-height: 1.4;
+  line-height: 1.6;
   -webkit-font-smoothing: auto;
 }
 .markdown pre > code.language-ascii {
@@ -301,12 +295,13 @@
 }
 .markdown table tr th > code,
 .markdown table tr td > code {
-  font-family: "Inconsolata", "Courier New", Courier, monospace;
-  font-size: 1rem;
+  font-family: monospace;
+  font-size: 0.8125rem;
   padding: 2px 4px;
   margin: -3px 0;
   background-color: var(--inline-code-background-color);
   border-radius: 2px;
+  color: var(--code-text-color);
 }
 .markdown mark.yellow-marker {
   background-color: rgba(255, 255, 0, 0.3);
@@ -372,9 +367,9 @@
   border: 1px solid #ccc;
   padding: 2px 5px;
   margin: 0 3px 0 0;
-  color: var(--text-color);
-  font-family: "Inconsolata", "Courier New", Courier, monospace;
-  font-size: 1rem;
+  color: var(--code-text-color);
+  font-family: monospace;
+  font-size: 0.8125rem;
   border-radius: 4px;
   box-shadow: 1px 1px 3px 0 #eee;
 }

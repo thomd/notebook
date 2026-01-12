@@ -406,6 +406,10 @@
                 }
             }
         }
+
+        &:has(th[style*="center"]) {
+            width: 100%;
+        }
     }
 
     mark {

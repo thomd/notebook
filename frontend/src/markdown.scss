@@ -435,6 +435,15 @@
             border-radius: 14px;
         }
 
+        &.grey-comment {
+            background-color: transparent;
+            color: #1a202c;
+
+            > .yellow-marker {
+                color: #aaa;
+            }
+        }
+
         &.watch-marker {
             background-color: #e7f0fe;
             color: #1967d2;
@@ -443,20 +452,24 @@
             border-radius: 14px;
         }
 
-        &.grey-comment {
-            background-color: transparent;
-            color: #aaa;
-
-            > .yellow-marker {
-                color: #aaa;
-            }
-        }
-
         &.white-marker {
             background-color: #fff;
             color: #888;
             padding: 1px 3px;
             margin: -3px;
+        }
+    }
+
+    pre {
+        mark {
+            &.grey-comment {
+                background-color: transparent;
+                color: #aaa;
+
+                > .yellow-marker {
+                    color: #aaa;
+                }
+            }
         }
     }
 

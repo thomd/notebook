@@ -3,7 +3,7 @@ include .env.dev
 export
 
 backend: clean build git index
-	@docker run -d -t --rm --name dev-backend -v $(REMOTE_PAGES_REPO):/$(REMOTE_PAGES_REPO) -v $(LOCAL_PAGES_REPO):$(LOCAL_PAGES_REPO) -p 8002:8000 --env-file .env.dev notebook-backend
+	@docker run -d -t --rm --name dev-backend -v $(REMOTE_PAGES_REPO):/$(REMOTE_PAGES_REPO) -v $(LOCAL_PAGES_REPO):$(LOCAL_PAGES_REPO) -p 9102:9100 --env-file .env.dev notebook-backend
 	@docker logs -f dev-backend
 
 clean:

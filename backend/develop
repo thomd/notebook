@@ -24,4 +24,4 @@ trap 'docker stop dev-es' EXIT
 python -m init.index_elasticsearch
 
 # start backend
-uvicorn notebook.main:app --host 0.0.0.0 --port 8002 --reload
+uvicorn notebook.main:app --host 0.0.0.0 --port 9102 --reload

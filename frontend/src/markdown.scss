@@ -379,6 +379,11 @@
             margin-top: -1rem;
             margin-bottom: -1rem;
         }
+
+        &:has(> .language-md) {
+          padding-top: 1rem;
+          padding-bottom: 1rem;
+        }
     }
 
     table {
@@ -478,6 +483,10 @@
             color: #777;
             outline: 1px solid #eee;
         }
+    }
+
+    .language-md {
+        color: #888;
     }
 
     dl {

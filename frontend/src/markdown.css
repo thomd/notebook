@@ -279,6 +279,10 @@
   margin-top: -1rem;
   margin-bottom: -1rem;
 }
+.markdown pre:has(> .language-md) {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
 .markdown table {
   margin-top: 1rem;
   margin-bottom: 2rem;
@@ -355,6 +359,9 @@
 .markdown .language-ascii mark.white-marker {
   color: #777;
   outline: 1px solid #eee;
+}
+.markdown .language-md {
+  color: #888;
 }
 .markdown dl {
   display: block;

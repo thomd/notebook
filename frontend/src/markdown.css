@@ -280,8 +280,11 @@
   margin-bottom: -1rem;
 }
 .markdown pre:has(> .language-md) {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  background-color: #fafafa;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
 }
 .markdown table {
   margin-top: 1rem;
@@ -362,6 +365,7 @@
 }
 .markdown .language-md {
   color: #888;
+  background-color: #fafafa;
 }
 .markdown dl {
   display: block;

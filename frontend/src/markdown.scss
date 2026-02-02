@@ -16,7 +16,7 @@
     --headline-edit-link-hover-color: #bc0a6f;
 
     --blockquote-border-color: #eee;
-    --blockquote-color: #9ca3af;
+    --blockquote-color: #777;
 
     --code-background-color: #f6f6f6;
     --inline-code-background-color: #f6f6f6;
@@ -317,10 +317,21 @@
         margin-inline-end: 0;
         border-left: 2px solid var(--blockquote-border-color);
         padding-left: 1rem;
+        margin-left: 0;
 
         p {
             font-style: italic;
             color: var(--blockquote-color);
+            quotes: "„" "“";
+            padding: 1rem 0;
+
+            &:before {
+                content: open-quote;
+            }
+
+            &:after {
+                content: close-quote;
+            }
         }
     }
 

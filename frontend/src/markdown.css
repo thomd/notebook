@@ -199,6 +199,10 @@
   margin-left: 1.5rem;
   box-decoration-break: clone;
 }
+.markdown ol > li > li > pre,
+.markdown ul > li > li > pre {
+  margin-left: -5.25rem;
+}
 .markdown ol > li > ol, .markdown ol > li > ul,
 .markdown ul > li > ol,
 .markdown ul > li > ul {

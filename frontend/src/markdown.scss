@@ -22,7 +22,8 @@
     --inline-code-background-color: #f6f6f6;
     --code-text-color: #444;
 
-    --text-box-color: #ddd;
+    --text-box-border-color: #ddd;
+    --text-box-background-color: #fcfcfc;
 }
 
 ::selection {
@@ -220,10 +221,15 @@
     box {
         & > div {
             & > p {
-                border: 1px solid var(--text-box-color);
+                border: 1px solid var(--text-box-border-color);
+                background-color: var(--text-box-background-color);
                 padding: 1rem 1.5rem;
                 margin-left: -1rem;
                 width: calc(100% + 2rem);
+
+                & code {
+                    background-color: #eee;
+                }
             }
         }
     }

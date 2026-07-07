@@ -21,6 +21,8 @@
     --code-background-color: #f6f6f6;
     --inline-code-background-color: #f6f6f6;
     --code-text-color: #444;
+
+    --text-box-color: #ddd;
 }
 
 ::selection {
@@ -211,6 +213,17 @@
                 margin: 0.75rem 0;
                 line-height: 1.3;
                 font-size: 0.875rem;
+            }
+        }
+    }
+
+    box {
+        & > div {
+            & > p {
+                border: 1px solid var(--text-box-color);
+                padding: 1rem 1.5rem;
+                margin-left: -1rem;
+                width: calc(100% + 2rem);
             }
         }
     }

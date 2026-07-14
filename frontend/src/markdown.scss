@@ -301,6 +301,10 @@
             & > ul > li > pre,
             & > ol > li > pre {
                 margin-left: -5.25rem;
+
+                & > code {
+                    margin-left: 3rem;
+                }
             }
 
             & > ol,

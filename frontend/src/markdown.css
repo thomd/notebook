@@ -216,6 +216,11 @@
 .markdown ul > li > ol > li > pre {
   margin-left: -5.25rem;
 }
+.markdown ol > li > ul > li > pre > code, .markdown ol > li > ol > li > pre > code,
+.markdown ul > li > ul > li > pre > code,
+.markdown ul > li > ol > li > pre > code {
+  margin-left: 3rem;
+}
 .markdown ol > li > ol, .markdown ol > li > ul,
 .markdown ul > li > ol,
 .markdown ul > li > ul {

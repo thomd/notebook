@@ -17,10 +17,13 @@
   --code-text-color: #444;
   --text-box-border-color: #ddd;
   --text-box-background-color: #fcfcfc;
+  --highlight-border-color: rgba(255, 255, 0, 0.1);
+  --highlight-background-color: rgba(255, 255, 0, 0.1);
 }
 
 ::selection {
-  background-color: rgba(255, 255, 0, 0.5);
+  background-color: var(--link-color);
+  color: white;
   text-shadow: none;
 }
 
@@ -116,6 +119,9 @@
 .markdown aside + * {
   margin-right: 16rem !important;
 }
+.markdown aside + box > * {
+  margin-right: 18rem !important;
+}
 .markdown aside + ol > li > pre {
   margin-right: 0 !important;
 }
@@ -155,6 +161,17 @@
   padding: 0 1.5rem;
 }
 .markdown box > div code {
+  background-color: #eee;
+}
+.markdown highlight > div {
+  border: 1px solid var(--highlight-border-color);
+  border-left: 0;
+  border-right: 0;
+  background-color: var(--highlight-background-color);
+  margin: 1rem -2.25rem;
+  padding: 0 2.25rem;
+}
+.markdown highlight > div code {
   background-color: #eee;
 }
 .markdown .h1:has(+ aside) {

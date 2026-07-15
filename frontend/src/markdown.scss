@@ -220,16 +220,12 @@
 
     box {
         & > div {
-            & > p {
-                border: 1px solid var(--text-box-border-color);
-                background-color: var(--text-box-background-color);
-                padding: 1rem 1.5rem;
-                margin-left: -1rem;
-                width: calc(100% + 2rem);
+            border: 1px solid var(--text-box-border-color);
+            background-color: var(--text-box-background-color);
+            padding: 0 1.5rem;
 
-                & code {
-                    background-color: #eee;
-                }
+            & code {
+                background-color: #eee;
             }
         }
     }

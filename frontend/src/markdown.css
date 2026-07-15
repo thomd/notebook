@@ -163,6 +163,15 @@
 .markdown box > div code {
   background-color: #eee;
 }
+.markdown ibox > div {
+  border: 1px solid var(--text-box-border-color);
+  background-color: var(--text-box-background-color);
+  padding: 0 1.5rem;
+  display: inline-block;
+}
+.markdown ibox > div code {
+  background-color: #eee;
+}
 .markdown highlight > div {
   border: 1px solid var(--highlight-border-color);
   border-left: 0;

@@ -235,6 +235,19 @@
         }
     }
 
+    ibox {
+        & > div {
+            border: 1px solid var(--text-box-border-color);
+            background-color: var(--text-box-background-color);
+            padding: 0 1.5rem;
+            display: inline-block;
+
+            & code {
+                background-color: #eee;
+            }
+        }
+    }
+
     highlight {
         & > div {
             border: 1px solid var(--highlight-border-color);

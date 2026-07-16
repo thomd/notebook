@@ -52,6 +52,7 @@ export default function MarkdownViewer({ content, className, preview }) {
             rehypeTextmarker,
             [
               { textPattern: /^(# .+|#.+|\/\/ .+)$/gm, className: 'grey-comment', tags: ['code'], ignore: ['code.language-md'] },
+              { textPattern: /(-- .+)$/gm, className: 'grey-comment', tags: ['code.language-sql'] },
               { textPattern: /( # .+| \/\/ .+)/g, className: 'grey-comment', tags: ['code'] },
               { textPattern: /(?<=# .*)`(.+?)`/g, className: 'white-marker', tags: ['code'] },
               { textPattern: /(?<=\/\/ .*)`(.+?)`/g, className: 'white-marker', tags: ['code'] },

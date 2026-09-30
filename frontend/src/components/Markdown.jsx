@@ -53,9 +53,9 @@ export default function MarkdownViewer({ content, className, preview }) {
             [
               { textPattern: /^(# .+|#.+|\/\/ .+)$/gm, className: 'grey-comment', tags: ['code'], ignore: ['code.language-md'] },
               { textPattern: /(-- .+)$/gm, className: 'grey-comment', tags: ['code.language-sql'] },
-              { textPattern: /(#| # .+|\/\/| \/\/ .+)/g, className: 'grey-comment', tags: ['code'] },
               { textPattern: /(?<=# .*)`(.+?)`/g, className: 'white-marker', tags: ['code'] },
               { textPattern: /(?<=\/\/ .*)`(.+?)`/g, className: 'white-marker', tags: ['code'] },
+              { textPattern: /(#| # .+|\/\/| \/\/ .+)/g, className: 'grey-comment', tags: ['code'] },
               { textPattern: /`(.+?)`/g, className: 'white-marker', tags: ['code.language-ascii'] },
               { textPattern: /≈(.+?)≈/g, className: 'yellow-marker', tags: ['p', 'code', 'li', 'td'] },
               { textPattern: /\b(TODO)\b/, className: 'todo-marker', tags: ['p', 'li'], ignore: ['code'] },

@@ -53,7 +53,7 @@ export default function MarkdownViewer({ content, className, preview }) {
             [
               { textPattern: /^(#|\/\/)$/gm, className: 'grey-comment', tags: ['code'] },
               { textPattern: /(-- .+)$/gm, className: 'grey-comment', tags: ['code.language-sql'] },
-              { textPattern: /( # .+| \/\/ .+)/gm, className: 'grey-comment', tags: ['code'] },
+              { textPattern: /(  # .+|  \/\/ .+)/gm, className: 'grey-comment', tags: ['code'] },
               { textPattern: /^(# .+|\/\/ .+)/gm, className: 'grey-comment', tags: ['code'] },
               { textPattern: /(?<=# .*)`(.+?)`/g, className: 'white-marker', tags: ['code'] },
               { textPattern: /(?<=\/\/ .*)`(.+?)`/g, className: 'white-marker', tags: ['code'] },
